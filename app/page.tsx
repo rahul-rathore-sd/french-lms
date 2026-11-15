@@ -16,7 +16,8 @@ import {
   Moon,
   Sun,
   Layers,
-  ArrowRight
+  ArrowRight,
+  Lock
 } from "lucide-react";
 
 export default function HomePage() {
@@ -135,10 +136,10 @@ export default function HomePage() {
                   Connexion
                 </Link>
                 <Link
-                  href="/sign-up"
-                  className="bg-[#D52B1E] hover:bg-[#B52419] text-white text-sm font-semibold py-2 px-4 rounded-xl shadow-md shadow-red-500/20 transition-all flex items-center gap-1.5"
+                  href="/apply"
+                  className="bg-[#D52B1E] hover:bg-[#B52419] text-white text-xs sm:text-sm font-semibold py-2 px-3 sm:px-4 rounded-xl shadow-md shadow-red-500/20 transition-all flex items-center gap-1.5"
                 >
-                  Inscription
+                  <span>Candidature</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
@@ -151,8 +152,8 @@ export default function HomePage() {
       <section className="relative overflow-hidden py-16 lg:py-24 border-b border-slate-200 dark:border-slate-800 bg-gradient-to-b from-white via-slate-50 to-slate-100 dark:from-[#0b101c] dark:via-[#090d16] dark:to-[#070a12]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 dark:bg-red-950/60 border border-red-300 dark:border-red-900/60 text-[#D52B1E] dark:text-red-400 text-xs font-semibold uppercase tracking-wider mb-6">
-            <Sparkles className="w-3.5 h-3.5" />
-            Nouveau &bull; Next.js 15 App Router &bull; Clerk Auth &bull; 0 XP Clutter
+            <Lock className="w-3.5 h-3.5" />
+            Accès Sélectif &bull; Admission sur Candidature Philologique
           </div>
 
           <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white max-w-4xl mx-auto leading-tight">
@@ -167,11 +168,11 @@ export default function HomePage() {
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
-              href={isSignedIn ? "/dashboard" : "/sign-up"}
+              href={isSignedIn ? "/dashboard" : "/apply"}
               className="bg-[#D52B1E] hover:bg-[#B52419] text-white text-base font-semibold py-3 px-8 rounded-xl shadow-lg shadow-red-500/25 transition-all flex items-center gap-2 hover:scale-[1.02]"
             >
               <BookOpen className="w-5 h-5" />
-              {isSignedIn ? "Ouvrir mon Sanctuaire" : "Commencer Mon Immersion"}
+              {isSignedIn ? "Ouvrir mon Sanctuaire" : "Déposer ma Candidature d'Admission"}
             </Link>
             <a
               href="#lexicon"
@@ -398,7 +399,7 @@ export default function HomePage() {
                 </div>
 
                 <Link
-                  href={isSignedIn ? "/dashboard" : "/sign-up"}
+                  href={isSignedIn ? "/dashboard" : "/apply"}
                   className="w-full text-center text-xs font-semibold py-2.5 px-4 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-[#D52B1E] hover:text-white hover:border-[#D52B1E] transition-all flex items-center justify-center gap-1.5"
                 >
                   Étudier ce Niveau

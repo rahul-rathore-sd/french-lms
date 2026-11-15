@@ -1,6 +1,6 @@
-import { Course, Lesson, VocabularyWord, Scholar } from "./types";
+import { Course, Lesson, VocabularyWord, Scholar, AdmissionRequest } from "./types";
 
-export type { Course, Lesson, VocabularyWord, Scholar };
+export type { Course, Lesson, VocabularyWord, Scholar, AdmissionRequest };
 
 export const initialVocabulary: VocabularyWord[] = [
   {
@@ -722,3 +722,61 @@ export const mockScholars: Scholar[] = [
 export const INITIAL_VOCABULARY = initialVocabulary;
 export const INITIAL_COURSES = initialCourses;
 export const INITIAL_SCHOLARS = mockScholars;
+
+export const initialAdmissionRequests: AdmissionRequest[] = [
+  {
+    id: 1,
+    full_name: "Camille Claudel",
+    email: "camille@sorbonne-art.fr",
+    target_cefr: "B2",
+    academic_background: "Étudiante en Histoire de l'Art, Sorbonne Nouvelle",
+    motivation: "Je souhaite approfondir le lexique classique pour analyser les correspondances littéraires du XIXe siècle.",
+    status: "pending",
+    submitted_at: "2026-11-15T09:30:00Z",
+  },
+  {
+    id: 2,
+    full_name: "Vikram Sharma",
+    email: "vikram.sharma@delhi-univ.in",
+    target_cefr: "B1",
+    academic_background: "Département d'Études Françaises et Francophones, Université de Delhi",
+    motivation: "Intéressé par le pont philologique Français-Hindi et les nuances phonétiques pour mes recherches doctorales.",
+    status: "pending",
+    submitted_at: "2026-11-15T10:15:00Z",
+  },
+  {
+    id: 3,
+    full_name: "Arthur Rimbaud",
+    email: "arthur@poesie-nord.fr",
+    target_cefr: "C1",
+    academic_background: "Chercheur indépendant en poétique et stylistique romane",
+    motivation: "Recherche une immersion totale dans les structures du subjonctif imparfait et la haute rhétorique classique.",
+    status: "pending",
+    submitted_at: "2026-11-15T10:45:00Z",
+  },
+  {
+    id: 4,
+    full_name: "Alexandre Dumas",
+    email: "scholar@academie.fr",
+    target_cefr: "B1",
+    academic_background: "Romancier & Historien du XIXe siècle",
+    motivation: "Admis par la faculté pour approfondir la stylistique classique.",
+    status: "approved",
+    submitted_at: "2026-11-10T14:00:00Z",
+    reviewed_at: "2026-11-10T15:20:00Z",
+  },
+  {
+    id: 5,
+    full_name: "Anonyme Proxy Spammer",
+    email: "spam@anonymous-proxy.xyz",
+    target_cefr: "A1",
+    academic_background: "Inconnu",
+    motivation: "Promotion de services commerciaux non sollicités.",
+    status: "rejected",
+    submitted_at: "2026-11-12T08:00:00Z",
+    reviewed_at: "2026-11-12T08:15:00Z",
+    rejection_reason: "Candidature non conforme aux critères d'excellence académique.",
+  },
+];
+
+export const INITIAL_ADMISSION_REQUESTS = initialAdmissionRequests;

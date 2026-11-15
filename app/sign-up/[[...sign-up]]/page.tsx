@@ -1,11 +1,12 @@
 import { SignUp } from "@clerk/nextjs";
 import Link from "next/link";
+import { Lock, ArrowRight } from "lucide-react";
 
 export default function SignUpPage() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col justify-center items-center px-4 py-12 transition-colors">
       {/* Academy Crest Header */}
-      <div className="mb-8 text-center">
+      <div className="mb-6 text-center">
         <Link href="/" className="inline-flex items-center gap-3 group">
           <div className="w-12 h-12 rounded-xl bg-[#D52B1E] flex items-center justify-center text-white text-2xl shadow-lg shadow-red-500/20 group-hover:scale-105 transition-transform">
             🍁
@@ -15,13 +16,27 @@ export default function SignUpPage() {
               Académie de Français
             </span>
             <span className="text-xs uppercase tracking-widest text-[#D52B1E] font-semibold">
-              Inscription de Savant
+              Inscription sur Invitation & Candidature
             </span>
           </div>
         </Link>
-        <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
-          Créez votre profil académique et recevez votre guide de bienvenue par courriel.
-        </p>
+      </div>
+
+      {/* Admission Notice Banner */}
+      <div className="w-full max-w-md mb-6 bg-amber-500/10 border border-amber-500/25 rounded-2xl p-4 text-xs text-amber-700 dark:text-amber-300 flex items-start gap-3">
+        <Lock className="w-4 h-4 mt-0.5 flex-shrink-0 text-amber-600 dark:text-amber-400" />
+        <div>
+          <span className="font-bold block mb-0.5">Accès Académique Restreint</span>
+          <span>
+            Les inscriptions sont réservées aux candidats dont le dossier a été préalablement validé par la Faculté.
+          </span>
+          <Link
+            href="/apply"
+            className="mt-2 inline-flex items-center gap-1 font-bold text-[#D52B1E] dark:text-red-400 hover:underline"
+          >
+            Déposer une demande d&apos;admission <ArrowRight className="w-3 h-3" />
+          </Link>
+        </div>
       </div>
 
       {/* Clerk SignUp Component Container */}
@@ -51,7 +66,7 @@ export default function SignUpPage() {
       </div>
 
       <div className="mt-8 text-center text-xs text-slate-500 dark:text-slate-500">
-        Secured by Clerk Authentication &bull; Resend Welcome Automation Active
+        Secured by Clerk Authentication &bull; Académie de Français &bull; Admission Contrôlée
       </div>
     </div>
   );

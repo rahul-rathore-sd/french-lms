@@ -77,3 +77,17 @@ export interface Scholar {
   streak_days: number;
   target_goal?: string;
 }
+
+export interface AdmissionRequest {
+  id: number;
+  full_name: string;
+  email: string;
+  target_cefr: "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
+  academic_background: string;
+  motivation: string;
+  status: "pending" | "approved" | "rejected";
+  submitted_at: string;
+  reviewed_at?: string;
+  rejection_reason?: string;
+}
+
