@@ -18,6 +18,7 @@ import {
   XCircle,
 } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
+import MobileTabBar from "@/components/MobileTabBar";
 import ProgressRing from "@/components/ProgressRing";
 import { useSpeech } from "@/components/useSpeech";
 import { useLexicon } from "@/components/useLexicon";
@@ -138,6 +139,7 @@ function Dashboard() {
 
         <div className="mt-8">{tab === "learn" ? <LearnTab /> : <LexiconTab />}</div>
       </main>
+      <MobileTabBar />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, PartyPopper, RotateCcw, Volume2 } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
+import MobileTabBar from "@/components/MobileTabBar";
 import { useSpeech } from "@/components/useSpeech";
 import { useLexicon } from "@/components/useLexicon";
 import { actions, useProgress } from "@/lib/progress";
@@ -181,6 +182,7 @@ export default function PracticePage() {
           </>
         )}
       </main>
+      <MobileTabBar />
     </div>
   );
 }

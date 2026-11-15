@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { BookOpenText, CheckCircle2, Feather, Languages, ScrollText } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
+import MobileTabBar from "@/components/MobileTabBar";
 import TextReader from "@/components/library/TextReader";
 import TranslateDrill from "@/components/library/TranslateDrill";
 import GrammarView from "@/components/library/GrammarView";
@@ -142,6 +143,7 @@ function Library() {
           </>
         )}
       </main>
+      <MobileTabBar />
     </div>
   );
 }
