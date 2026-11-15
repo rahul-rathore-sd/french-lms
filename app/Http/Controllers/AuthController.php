@@ -16,7 +16,8 @@ class AuthController extends Controller
         if (Auth::check()) {
             return redirect()->route('dashboard');
         }
-        return view('auth.login');
+        $clerkPublishableKey = config('services.clerk.publishable_key', env('CLERK_PUBLISHABLE_KEY'));
+        return view('auth.login', compact('clerkPublishableKey'));
     }
 
     public function login(Request $request)
@@ -119,8 +120,9 @@ class AuthController extends Controller
                 'course_id' => $a1Course->id,
             ], [
                 'progress_percent' => 0,
+                'completed_lessons_count' => 0,
                 'status' => 'in_progress',
-                'enrolled_at' => now(),
+                'last_accessed_at' => now(),
             ]);
         }
 
@@ -128,6 +130,80 @@ class AuthController extends Controller
         $request->session()->regenerate();
 
         return redirect()->route('dashboard');
+    }
+
+    /**
+     * Synchronize and authenticate user from Clerk.com frontend
+     */
+    public function clerkSync(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'clerk_id' => 'nullable|string',
+            'name' => 'nullable|string',
+        ]);
+
+        $email = strtolower(trim($validated['email']));
+        $name = !empty($validated['name']) ? trim($validated['name']) : explode('@', $email)[0];
+
+        // Specific administrator emails
+        $isAdmin = in_array($email, ['rrathore959910@gmail.com', 'instructor@academie.fr']);
+
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            $user = User::create([
+                'name' => $name,
+                'email' => $email,
+                'password' => Hash::make(bin2hex(random_bytes(16))),
+                'level' => 'A1',
+                'role' => $isAdmin ? 'admin' : 'student',
+                'role_title' => $isAdmin ? 'Chief Academic Chancellor' : 'A1 Novice Scholar',
+                'country' => 'Global Scholar',
+                'target_goal' => 'Build acoustic foundations and master French fluency',
+                'current_streak' => 1,
+                'theme_preference' => 'amber',
+                'last_active_at' => now(),
+            ]);
+
+            // Auto-enroll newly registered user into A1 course
+            $a1Course = Course::where('level', 'A1')->first();
+            if ($a1Course) {
+                Enrollment::firstOrCreate([
+                    'user_id' => $user->id,
+                    'course_id' => $a1Course->id,
+                ], [
+                    'progress_percent' => 0,
+                    'completed_lessons_count' => 0,
+                    'status' => 'in_progress',
+                    'last_accessed_at' => now(),
+                ]);
+            }
+        } else {
+            if ($isAdmin && $user->role !== 'admin') {
+                $user->role = 'admin';
+                $user->role_title = 'Chief Academic Chancellor';
+            }
+            $user->last_active_at = now();
+            $user->save();
+        }
+
+        Auth::login($user, true);
+        $request->session()->regenerate();
+
+        $redirectUrl = ($user->role === 'admin') ? route('admin.index') : route('dashboard');
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Authenticated successfully via Clerk',
+            'redirect_url' => $redirectUrl,
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role,
+            ]
+        ]);
     }
 
     public function logout(Request $request)
