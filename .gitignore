@@ -1,41 +1,37 @@
-*.log
-.DS_Store
-.env
-.env.*
-!.env.example
-.phpactor.json
-.phpunit.result.cache
-/.codex
-/.cursor/
-/.idea
-/.nova
-/.phpunit.cache
-/.vscode
-/.zed
-/auth.json
+# Dependencies
 /node_modules
-/public/build
-/public/fonts-manifest.dev.json
-/public/hot
-/public/storage
-/storage/*.key
-/storage/pail
-/storage/logs/*.log
-/storage/framework/cache/*
-!/storage/framework/cache/.gitignore
-/storage/framework/sessions/*
-!/storage/framework/sessions/.gitignore
-/storage/framework/views/*
-!/storage/framework/views/.gitignore
-/vendor
-_ide_helper.php
-Homestead.json
-Homestead.yaml
-Thumbs.db
+/.pnp
+.pnp.js
+.yarn/cache
 
-# Database files - Keep SQLite database local & private
-/database/*.sqlite
-/database/*.sqlite-journal
-/database/*.sqlite-shm
-/database/*.sqlite-wal
-!/database/.gitignore
+# Testing
+/coverage
+
+# Next.js build output
+/.next/
+/out/
+
+# Production build artifacts
+/build
+dist
+
+# Misc
+.DS_Store
+*.pem
+*.log
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local environment files (NEVER commit secrets!)
+.env
+.env*.local
+.env.development
+.env.test
+.env.production
+
+# TypeScript cache
+*.tsbuildinfo
+next-env.d.ts

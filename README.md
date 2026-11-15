@@ -1,51 +1,36 @@
-# Académie de Français · Classical French LMS & Cultural Sanctuary 🇨🇦
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A bilingual French learning management system and cultural sanctuary engineered for deep linguistic fluency, classical literature immersion (A1–C2), and continuous vocabulary ingestion.
+## Getting Started
 
----
+First, run the development server:
 
-## 🏛️ Key Features
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-- **CEFR Structured Syllabus (A1–C2)**:
-  - From A1 acoustic foundations to C2 administrative rhetoric and classical philosophical disquisitions.
-  - Interactive quizzes with instant acoustic validation and progress tracking.
-- **Classical Immersion Vocabulary Sanctuary**:
-  - French terms with IPA pronunciation and Web Speech API audio synthesis.
-  - Bilingual academic definitions (**English & Hindi / हिन्दी अर्थ**).
-  - Practical usage guides (**Use Cases**) explaining exact situational and conversational context.
-- **Academic Administration Console**:
-  - Comprehensive dashboard at `/admin` for curriculum, scholar management, and lexicon updates.
-  - Live editing of Hindi translations and usage guides.
-- **Hermes Autonomous Ingestion API**:
-  - Secure REST endpoint (`/api/v1/vocabulary`) authenticated via token header.
-  - Ingests daily batch vocabulary directly from autonomous background agents.
-- **Modern Scholarly Aesthetic**:
-  - Canadian Maple Leaf crest and official palette (`#D52B1E`).
-  - Single-click Dark Mode persistence.
-  - Active 7-day academic streak system.
-  - Zero clutter, clean typography (`Plus Jakarta Sans` & `Merriweather`).
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
----
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## 🚀 Deployment on Render
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-This repository is pre-configured with a production-ready `Dockerfile` and `render.yaml` Blueprint.
+## Learn More
 
-### Deploy in 3 Steps:
-1. Link this repository in your [Render Dashboard](https://dashboard.render.com).
-2. Choose **Web Service** -> **Docker Runtime** (or apply the included `render.yaml` Blueprint).
-3. Set the following Environment Variables in Render:
-   - `APP_KEY`: Generate via `php artisan key:generate --show`
-   - `HERMES_API_KEY`: Secret API token for Hermes background sync
-   - `APP_ENV`: `production`
-   - `APP_DEBUG`: `false`
-   - `SESSION_DRIVER`: `cookie`
+To learn more about Next.js, take a look at the following resources:
 
-The container will automatically execute migrations and seed the initial classical curriculum on first boot.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
----
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## 🔒 Security & Privacy Notice
-- No sensitive API keys or database files are committed to this repository.
-- Environment secrets are loaded exclusively at runtime via environment variables.
-- Password hashes use high-entropy bcrypt encryption.
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
