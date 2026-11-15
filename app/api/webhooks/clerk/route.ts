@@ -22,6 +22,15 @@ interface ClerkWebhookEvent {
   data: ClerkUserCreatedData;
 }
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
 
@@ -76,7 +85,10 @@ export async function POST(req: Request) {
       email_addresses.find((e) => e.id === primary_email_address_id)?.email_address ||
       email_addresses[0]?.email_address;
 
-    const scholarName = [first_name, last_name].filter(Boolean).join(" ") || "Cher Savant";
+    const scholarName = escapeHtml(
+      [first_name, last_name].filter(Boolean).join(" ") || "Cher Savant"
+    );
+    const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://academie-francais.onrender.com").replace(/\/$/, "");
 
     console.log(`[Clerk Webhook] New user registered: ${scholarName} (${primaryEmail}), User ID: ${id}`);
 
@@ -122,7 +134,7 @@ export async function POST(req: Request) {
       <p>Commencez dès aujourd'hui votre première leçon pour allumer votre flamme d'assiduité (Streak Tracker 7-Jours) :</p>
       
       <div style="text-align: center;">
-        <a href="https://academie-francais.onrender.com/dashboard" class="cta-button">Accéder à mon Sanctuaire &rarr;</a>
+        <a href="${siteUrl}/dashboard" class="cta-button">Accéder à mon Sanctuaire &rarr;</a>
       </div>
     </div>
     <div class="footer">

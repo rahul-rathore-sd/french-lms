@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { initialVocabulary, VocabularyWord } from "@/lib/data";
+import { checkHermesKey } from "@/lib/auth";
 
 // In-memory persistent store during runtime (can be swapped with database)
 let lexiconMemory: VocabularyWord[] = [...initialVocabulary];
@@ -43,12 +44,16 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const authHeader = req.headers.get("authorization");
-  const expectedKey = process.env.HERMES_API_KEY || "hermes_classical_secure_token_2026";
-
-  if (!authHeader || authHeader !== `Bearer ${expectedKey}`) {
+  const keyStatus = checkHermesKey(req);
+  if (keyStatus === "unconfigured") {
     return NextResponse.json(
-      { error: "Unauthorized. Valid Bearer token required for Hermes Ingestion." },
+      { error: "Ingestion is disabled: HERMES_API_KEY is not configured on the server." },
+      { status: 503 }
+    );
+  }
+  if (keyStatus !== "ok") {
+    return NextResponse.json(
+      { error: "Unauthorized. A valid Bearer token is required." },
       { status: 401 }
     );
   }

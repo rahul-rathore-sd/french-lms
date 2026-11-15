@@ -816,7 +816,7 @@ export default function AdminConsolePage() {
                 Jeton Secret d&apos;Ingestion (HERMES_API_KEY)
               </span>
               <div className="flex items-center justify-between font-mono text-xs text-slate-800 dark:text-slate-200">
-                <span>hermes_classical_secure_token_2026</span>
+                <span>Stored in the server environment (never displayed)</span>
                 <span className="text-[10px] bg-emerald-500/10 text-emerald-500 font-bold px-2 py-0.5 rounded">
                   Actif
                 </span>
