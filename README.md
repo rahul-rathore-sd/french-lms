@@ -31,6 +31,7 @@ All secrets live in environment variables (see `.env.example`). Never commit `.e
 | `RESEND_API_KEY`, `RESEND_FROM_EMAIL` | Welcome emails |
 | `NEXT_PUBLIC_SITE_URL` | Public URL used in emails |
 | `ADMIN_EMAILS` | Comma-separated emails allowed into `/admin` (or set Clerk `publicMetadata.role = "admin"`) |
+| `DATABASE_URL` | PostgreSQL connection string. Applications and ingested words persist here (tables are created automatically) |
 | `HERMES_API_KEY` | Bearer token for `POST /api/v1/vocabulary` (ingestion is disabled while unset) |
 
 ## API
@@ -38,5 +39,11 @@ All secrets live in environment variables (see `.env.example`). Never commit `.e
 - `POST /api/v1/admissions` public application form; `GET`/`PATCH` are admin only
 - `GET /api/v1/status` health and content counts
 
-> Applications and ingested words are held in memory and reset when the server restarts.
-> Attach a database before relying on them in production.
+## Database
+Set `DATABASE_URL` to any PostgreSQL database and the app creates its tables on first use
+(`admissions`, `vocabulary`). Without it, data is kept in memory and is lost on restart,
+which is fine for local development.
+
+On Render: create a **PostgreSQL** instance, copy its **Internal Database URL** and add it to the
+web service as `DATABASE_URL`. Learner progress (XP, streaks, flashcards) is stored in the
+learner's browser, not in the database.

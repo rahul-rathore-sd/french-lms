@@ -1,9 +1,15 @@
 import { NextResponse } from "next/server";
 import { initialVocabulary, VocabularyWord } from "@/lib/data";
 import { checkHermesKey } from "@/lib/auth";
+import { listIngestedWords, upsertWord } from "@/lib/store";
 
-// In-memory persistent store during runtime (can be swapped with database)
-let lexiconMemory: VocabularyWord[] = [...initialVocabulary];
+export const dynamic = "force-dynamic";
+
+const CEFR = ["A1", "A2", "B1", "B2", "C1", "C2"];
+
+function text(value: unknown, max: number): string {
+  return typeof value === "string" ? value.trim().slice(0, max) : "";
+}
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -11,20 +17,20 @@ export async function GET(req: Request) {
   const level = searchParams.get("level");
   const search = searchParams.get("search");
 
-  let filtered = [...lexiconMemory];
-
-  if (category) {
-    filtered = filtered.filter(
-      (w) => w.category.toLowerCase() === category.toLowerCase()
-    );
+  // Words ingested at runtime override built-in words with the same spelling.
+  const merged = new Map<string, VocabularyWord>();
+  try {
+    for (const w of [...initialVocabulary, ...(await listIngestedWords())]) {
+      merged.set(w.french_word.toLowerCase(), w);
+    }
+  } catch (err) {
+    console.error("Vocabulary storage unavailable, serving built-in lexicon only:", err);
+    for (const w of initialVocabulary) merged.set(w.french_word.toLowerCase(), w);
   }
 
-  if (level) {
-    filtered = filtered.filter(
-      (w) => w.cefr_level.toLowerCase() === level.toLowerCase()
-    );
-  }
-
+  let filtered = Array.from(merged.values());
+  if (category) filtered = filtered.filter((w) => w.category.toLowerCase() === category.toLowerCase());
+  if (level) filtered = filtered.filter((w) => w.cefr_level.toLowerCase() === level.toLowerCase());
   if (search) {
     const q = search.toLowerCase();
     filtered = filtered.filter(
@@ -36,11 +42,7 @@ export async function GET(req: Request) {
     );
   }
 
-  return NextResponse.json({
-    success: true,
-    count: filtered.length,
-    data: filtered,
-  });
+  return NextResponse.json({ success: true, count: filtered.length, data: filtered });
 }
 
 export async function POST(req: Request) {
@@ -52,69 +54,60 @@ export async function POST(req: Request) {
     );
   }
   if (keyStatus !== "ok") {
+    return NextResponse.json({ error: "Unauthorized. A valid Bearer token is required." }, { status: 401 });
+  }
+
+  let body: Record<string, unknown>;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
+  }
+
+  const french_word = text(body.french_word, 120);
+  const meaning_en = text(body.meaning_en, 500);
+  const meaning_hi = text(body.meaning_hi, 500);
+  const use_case = text(body.use_case, 800);
+
+  if (!french_word || !meaning_en || !meaning_hi || !use_case) {
     return NextResponse.json(
-      { error: "Unauthorized. A valid Bearer token is required." },
-      { status: 401 }
+      { error: "french_word, meaning_en, meaning_hi and use_case are required." },
+      { status: 422 }
     );
   }
 
+  const level = text(body.cefr_level, 2).toUpperCase();
+  const cefr_level = CEFR.includes(level) ? level : "B2";
+  const example = text(body.example_sentence, 500) || french_word;
+  const ipa = text(body.ipa_phonetic, 120) || "/.../";
+
   try {
-    const body = await req.json();
-    const {
+    const { word, created } = await upsertWord({
+      word: french_word,
       french_word,
-      ipa_phonetic,
-      part_of_speech,
+      ipa,
+      ipa_phonetic: ipa,
+      part_of_speech: text(body.part_of_speech, 60) || "nom",
+      meaning: meaning_en,
       meaning_en,
       meaning_hi,
-      use_case,
-      example_sentence,
-      category = "Classical Literature",
-      cefr_level = "B2",
-      notes,
-    } = body;
-
-    if (!french_word || !meaning_en || !meaning_hi || !use_case) {
-      return NextResponse.json(
-        {
-          error:
-            "Missing required fields: french_word, meaning_en, meaning_hi (हिन्दी), and use_case are strictly required.",
-        },
-        { status: 422 }
-      );
-    }
-
-    const existingIndex = lexiconMemory.findIndex(
-      (w) => w.french_word.toLowerCase() === french_word.toLowerCase()
-    );
-
-    const newWord: VocabularyWord = {
-      id: existingIndex >= 0 ? lexiconMemory[existingIndex].id : Math.max(0, ...lexiconMemory.map((w) => w.id)) + 1,
-      french_word,
-      ipa_phonetic: ipa_phonetic || "/.../",
-      part_of_speech: part_of_speech || "nom",
-      meaning_en,
-      meaning_hi,
-      use_case,
-      example_sentence: example_sentence || french_word,
-      category,
+      level: cefr_level,
       cefr_level,
-      notes: notes || "Autonomous ingestion via Hermes Agent",
+      category: text(body.category, 80) || "General",
+      example_fr: example,
+      example_sentence: example,
+      use_case,
+      notes: text(body.notes, 500) || "Ingested via Hermes agent",
+      source: "Hermes",
       created_at: new Date().toISOString(),
-    };
-
-    if (existingIndex >= 0) {
-      lexiconMemory[existingIndex] = newWord;
-    } else {
-      lexiconMemory.unshift(newWord);
-    }
-
+    });
     return NextResponse.json({
       success: true,
-      message: existingIndex >= 0 ? "Term updated successfully" : "New term ingested into Sanctuary Lexicon",
-      data: newWord,
+      message: created ? "New word added to the lexicon." : "Word updated.",
+      data: word,
     });
-  } catch (err: unknown) {
-    const errorMsg = err instanceof Error ? err.message : "Internal error";
-    return NextResponse.json({ error: errorMsg }, { status: 500 });
+  } catch (err) {
+    console.error("Vocabulary ingestion failed:", err);
+    return NextResponse.json({ error: "Storage error. Please try again." }, { status: 500 });
   }
 }

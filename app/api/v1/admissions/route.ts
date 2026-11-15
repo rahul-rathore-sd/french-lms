@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { initialAdmissionRequests, AdmissionRequest } from "@/lib/data";
+import type { AdmissionRequest } from "@/lib/data";
 import { isAdmin } from "@/lib/auth";
+import { createAdmission, decideAdmission, listAdmissions, storageMode } from "@/lib/store";
 
-// In-memory store for now (resets on restart). Swap for a database when ready.
-const admissionsStore: AdmissionRequest[] = [...initialAdmissionRequests];
+export const dynamic = "force-dynamic";
 
 const CEFR = ["A1", "A2", "B1", "B2", "C1", "C2"] as const;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -18,17 +18,20 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
   const status = new URL(req.url).searchParams.get("status");
-  const filtered =
-    status && status !== "all"
-      ? admissionsStore.filter((r) => r.status === status)
-      : admissionsStore;
-
-  return NextResponse.json({
-    success: true,
-    total: filtered.length,
-    pending_count: admissionsStore.filter((r) => r.status === "pending").length,
-    data: filtered,
-  });
+  try {
+    const all = await listAdmissions();
+    const filtered = status && status !== "all" ? all.filter((r) => r.status === status) : all;
+    return NextResponse.json({
+      success: true,
+      storage: storageMode,
+      total: filtered.length,
+      pending_count: all.filter((r) => r.status === "pending").length,
+      data: filtered,
+    });
+  } catch (err) {
+    console.error("Could not load admissions:", err);
+    return NextResponse.json({ error: "Storage error." }, { status: 500 });
+  }
 }
 
 /** Public: anyone can apply. Input is validated and length-limited. */
@@ -55,31 +58,27 @@ export async function POST(req: Request) {
     );
   }
 
-  if (admissionsStore.some((r) => r.email.toLowerCase() === email)) {
-    // Do not reveal the status of an existing application to the public.
-    return NextResponse.json(
-      { error: "An application with this email already exists." },
-      { status: 409 }
-    );
+  try {
+    const application = await createAdmission({
+      full_name,
+      email,
+      target_cefr,
+      academic_background,
+      motivation,
+    });
+    if (!application) {
+      // Do not reveal the status of an existing application to the public.
+      return NextResponse.json({ error: "An application with this email already exists." }, { status: 409 });
+    }
+    return NextResponse.json({
+      success: true,
+      message: "Your application has been received and will be reviewed shortly.",
+      data: { id: application.id, status: application.status },
+    });
+  } catch (err) {
+    console.error("Could not save application:", err);
+    return NextResponse.json({ error: "Could not save your application. Please try again." }, { status: 500 });
   }
-
-  const application: AdmissionRequest = {
-    id: Math.max(0, ...admissionsStore.map((r) => r.id)) + 1,
-    full_name,
-    email,
-    target_cefr,
-    academic_background,
-    motivation,
-    status: "pending",
-    submitted_at: new Date().toISOString(),
-  };
-  admissionsStore.unshift(application);
-
-  return NextResponse.json({
-    success: true,
-    message: "Your application has been received and will be reviewed shortly.",
-    data: { id: application.id, status: application.status },
-  });
 }
 
 /** Admin only: approve or reject an application. */
@@ -104,18 +103,12 @@ export async function PATCH(req: Request) {
     );
   }
 
-  const index = admissionsStore.findIndex((r) => r.id === id);
-  if (index === -1) {
-    return NextResponse.json({ error: "Application not found." }, { status: 404 });
+  try {
+    const updated = await decideAdmission(id, status, clean(body.rejection_reason, 500));
+    if (!updated) return NextResponse.json({ error: "Application not found." }, { status: 404 });
+    return NextResponse.json({ success: true, data: updated });
+  } catch (err) {
+    console.error("Could not update application:", err);
+    return NextResponse.json({ error: "Storage error." }, { status: 500 });
   }
-
-  admissionsStore[index] = {
-    ...admissionsStore[index],
-    status,
-    reviewed_at: new Date().toISOString(),
-    rejection_reason:
-      clean(body.rejection_reason, 500) || admissionsStore[index].rejection_reason,
-  };
-
-  return NextResponse.json({ success: true, data: admissionsStore[index] });
 }
