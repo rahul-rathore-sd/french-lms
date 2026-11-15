@@ -1,10 +1,11 @@
 import type { Lesson, VocabularyWord } from "./types";
+import { moreRows } from "./content-more";
 
 /**
  * Core everyday vocabulary (A1–B1). Compact tuple form keeps the file readable;
  * `core()` expands each row into a full VocabularyWord.
  */
-type Row = [
+export type Row = [
   french: string,
   ipa: string,
   pos: string,
@@ -100,7 +101,7 @@ const rows: Row[] = [
   ["Bientôt", "/bjɛ̃.to/", "adverbe", "Soon", "जल्द ही", "A2", "Connectors", "À bientôt !", "See you soon!", "जल्द मिलेंगे!"],
 ];
 
-export const coreVocabulary: VocabularyWord[] = rows.map(
+export const coreVocabulary: VocabularyWord[] = [...rows, ...moreRows].map(
   ([french, ipa, pos, en, hi, level, category, exFr, exEn, exHi], i) => ({
     id: 100 + i,
     word: french,

@@ -172,6 +172,8 @@ function LearnTab() {
   const openLesson = (c: Course, l: Lesson) => {
     setCourseId(c.id);
     setLessonId(l.id);
+    // On phones the reader sits above the course list, so bring it into view.
+    if (typeof window !== "undefined" && window.innerWidth < 1024) window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const next = (() => {
@@ -182,7 +184,7 @@ function LearnTab() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
-      <aside className="space-y-2" aria-label="Courses">
+      <aside className="order-2 space-y-2 lg:order-1" aria-label="Courses">
         {initialCourses.map((c) => {
           const finished = c.lessons.filter((l) => progress.completedLessons.includes(l.id)).length;
           const open = c.id === courseId;
@@ -228,12 +230,14 @@ function LearnTab() {
         })}
       </aside>
 
-      <LessonReader
-        key={lesson.id}
-        course={course}
-        lesson={lesson}
-        onNext={next ? () => openLesson(next[0], next[1]) : undefined}
-      />
+      <div className="order-1 min-w-0 lg:order-2">
+        <LessonReader
+          key={lesson.id}
+          course={course}
+          lesson={lesson}
+          onNext={next ? () => openLesson(next[0], next[1]) : undefined}
+        />
+      </div>
     </div>
   );
 }
@@ -270,7 +274,7 @@ function LessonReader({ course, lesson, onNext }: { course: Course; lesson: Less
       <section className="relative overflow-hidden rounded-3xl border border-line bg-surface p-6 sm:p-8">
         <div className="ambient absolute inset-0 opacity-60" />
         <div className="relative">
-          <div className="flex items-start justify-between gap-4">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <p className="font-display text-2xl leading-relaxed sm:text-3xl">{lesson.content_fr}</p>
             <div className="flex shrink-0 gap-2">
               <button

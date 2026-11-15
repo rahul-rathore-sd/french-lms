@@ -10,6 +10,7 @@ export interface Progress {
   lastActive: string | null;
   activeDays: string[]; // YYYY-MM-DD, most recent last (max 120)
   completedLessons: number[];
+  completedItems: string[]; // library items (poems, stories, drills, grammar)
   quizzes: Record<number, boolean>; // lessonId -> answered correctly
   cards: Record<number, CardState>; // vocabulary id -> SRS state
   dailyXp: Record<string, number>; // YYYY-MM-DD -> xp earned
@@ -26,6 +27,7 @@ const EMPTY: Progress = {
   lastActive: null,
   activeDays: [],
   completedLessons: [],
+  completedItems: [],
   quizzes: {},
   cards: {},
   dailyXp: {},
@@ -118,6 +120,19 @@ export const actions = {
     next.quizzes = { ...p.quizzes, [lessonId]: p.quizzes[lessonId] || quizCorrect };
     persist(next);
     return gained;
+  },
+  /** Marks a library item done once and awards XP only the first time. */
+  completeItem(id: string, xp: number) {
+    const p = cache;
+    const first = !p.completedItems.includes(id);
+    const next = award(p, first ? xp : 0);
+    next.completedItems = first ? [...p.completedItems, id] : p.completedItems;
+    persist(next);
+    return first ? xp : 0;
+  },
+  /** Awards XP for a repeatable drill (e.g. a translation session). */
+  addXp(xp: number) {
+    persist(award(cache, xp));
   },
   reviewCard(wordId: number, rating: Rating) {
     const p = cache;
