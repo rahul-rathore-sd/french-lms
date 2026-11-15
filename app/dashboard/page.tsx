@@ -1,764 +1,490 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import Link from "next/link";
-import { useUser, UserButton } from "@clerk/nextjs";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 import {
-  initialCourses,
-  initialVocabulary,
-  Course,
-  Lesson,
-  VocabularyWord
-} from "@/lib/data";
-import {
+  ArrowRight,
   BookOpen,
-  Volume2,
+  Check,
+  CheckCircle2,
+  ChevronDown,
   Flame,
-  CheckCircle,
-  HelpCircle,
-  Plus,
+  Layers,
   Search,
-  Globe2,
   Sparkles,
-  ShieldCheck,
-  Award,
-  ChevronRight,
-  ArrowLeft,
-  X,
-  Play
+  Volume2,
+  XCircle,
 } from "lucide-react";
+import SiteHeader from "@/components/SiteHeader";
+import ProgressRing from "@/components/ProgressRing";
+import { useSpeech } from "@/components/useSpeech";
+import { useLexicon } from "@/components/useLexicon";
+import { initialCourses, Course, Lesson } from "@/lib/data";
+import { actions, levelFromXp, liveStreak, useProgress } from "@/lib/progress";
+import { isDue, todayKey } from "@/lib/srs";
 
-export default function DashboardPage() {
+const LEVELS = ["ALL", "A1", "A2", "B1", "B2", "C1", "C2"];
+
+function lessonTitle(l: Lesson) {
+  return l.title_en ?? l.title;
+}
+
+function Dashboard() {
+  const router = useRouter();
+  const params = useSearchParams();
+  const tab = params.get("tab") === "lexicon" ? "lexicon" : "learn";
   const { user } = useUser();
+  const progress = useProgress();
+  const lexicon = useLexicon();
 
-  // State
-  const [courses, setCourses] = useState<Course[]>(initialCourses);
-  const [lexicon, setLexicon] = useState<VocabularyWord[]>(initialVocabulary);
-  const [selectedCourse, setSelectedCourse] = useState<Course>(initialCourses[0]);
-  const [selectedLesson, setSelectedLesson] = useState<Lesson>(initialCourses[0].lessons[0]);
-  const [activeTab, setActiveTab] = useState<"courses" | "lexicon">("courses");
-  
-  // Streak state (7-day activity)
-  const [streakDays, setStreakDays] = useState<number>(14);
-  const [completedDays, setCompletedDays] = useState<boolean[]>([
-    true, true, true, true, true, false, false,
-  ]);
-  const [todayCompleted, setTodayCompleted] = useState<boolean>(false);
+  const streak = liveStreak(progress);
+  const { level, into, needed } = levelFromXp(progress.xp);
+  const today = todayKey();
+  const todayXp = progress.dailyXp[today] ?? 0;
+  const goalPct = Math.min(1, todayXp / progress.dailyGoal);
+  const dueCount = lexicon.filter((w) => isDue(progress.cards[w.id], today) && progress.cards[w.id]).length;
+  const newCount = lexicon.filter((w) => !progress.cards[w.id]).length;
 
-  // Audio speech
-  const [activeSpeech, setActiveSpeech] = useState<string | null>(null);
+  const totalLessons = initialCourses.reduce((n, c) => n + c.lessons.length, 0);
+  const done = progress.completedLessons.length;
 
-  // Quiz state
-  const [selectedQuizAnswer, setSelectedQuizAnswer] = useState<number | null>(null);
-  const [quizSubmitted, setQuizSubmitted] = useState<boolean>(false);
-  const [quizCorrect, setQuizCorrect] = useState<boolean>(false);
+  const setTab = (t: "learn" | "lexicon") => router.replace(t === "learn" ? "/dashboard" : "/dashboard?tab=lexicon", { scroll: false });
 
-  // Lexicon search and filter
-  const [searchLexicon, setSearchLexicon] = useState<string>("");
-  const [selectedCefrFilter, setSelectedCefrFilter] = useState<string>("ALL");
-
-  // Add Term Modal
-  const [showAddModal, setShowAddModal] = useState<boolean>(false);
-  const [newWord, setNewWord] = useState({
-    french_word: "",
-    ipa_phonetic: "",
-    part_of_speech: "nom",
-    meaning_en: "",
-    meaning_hi: "",
-    use_case: "",
-    example_sentence: "",
-    category: "Littérature",
-    cefr_level: "B2",
-  });
-
-  const speakFrench = (text: string) => {
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "fr-FR";
-      utterance.rate = 0.85;
-
-      const voices = window.speechSynthesis.getVoices();
-      const frenchVoice = voices.find(
-        (v) => v.lang.includes("fr-FR") || v.lang.includes("fr-CA") || v.lang.includes("fr")
-      );
-      if (frenchVoice) {
-        utterance.voice = frenchVoice;
-      }
-
-      setActiveSpeech(text);
-      utterance.onend = () => setActiveSpeech(null);
-      utterance.onerror = () => setActiveSpeech(null);
-
-      window.speechSynthesis.speak(utterance);
-    }
-  };
-
-  const handleQuizAnswer = (index: number) => {
-    if (quizSubmitted) return;
-    setSelectedQuizAnswer(index);
-    setQuizSubmitted(true);
-    const isCorrect = index === selectedLesson.quiz.correct_index;
-    setQuizCorrect(isCorrect);
-
-    if (isCorrect && !todayCompleted) {
-      setTodayCompleted(true);
-      setStreakDays((prev) => prev + 1);
-      setCompletedDays((prev) => {
-        const next = [...prev];
-        next[5] = true;
-        return next;
-      });
-    }
-  };
-
-  const resetQuiz = (lesson: Lesson) => {
-    setSelectedLesson(lesson);
-    setSelectedQuizAnswer(null);
-    setQuizSubmitted(false);
-    setQuizCorrect(false);
-  };
-
-  const handleAddTerm = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newWord.french_word || !newWord.meaning_en || !newWord.meaning_hi || !newWord.use_case) {
-      alert("Veuillez remplir le mot français, les sens en anglais et हिन्दी, ainsi que le cas d'usage.");
-      return;
-    }
-
-    const created: VocabularyWord = {
-      id: lexicon.length + 1,
-      french_word: newWord.french_word,
-      ipa_phonetic: newWord.ipa_phonetic || "/.../",
-      part_of_speech: newWord.part_of_speech,
-      meaning_en: newWord.meaning_en,
-      meaning_hi: newWord.meaning_hi,
-      use_case: newWord.use_case,
-      example_sentence: newWord.example_sentence || newWord.french_word,
-      category: newWord.category,
-      cefr_level: newWord.cefr_level,
-      notes: "Ajouté manuellement par le Savant",
-      created_at: new Date().toISOString(),
-    };
-
-    setLexicon([created, ...lexicon]);
-    setShowAddModal(false);
-    setNewWord({
-      french_word: "",
-      ipa_phonetic: "",
-      part_of_speech: "nom",
-      meaning_en: "",
-      meaning_hi: "",
-      use_case: "",
-      example_sentence: "",
-      category: "Littérature",
-      cefr_level: "B2",
-    });
-  };
-
-  const filteredLexicon = lexicon.filter((word) => {
-    const q = searchLexicon.toLowerCase();
-    const matchesSearch =
-      word.french_word.toLowerCase().includes(q) ||
-      word.meaning_en.toLowerCase().includes(q) ||
-      word.meaning_hi.includes(searchLexicon) ||
-      word.use_case.toLowerCase().includes(q);
-    const matchesCefr = selectedCefrFilter === "ALL" || word.cefr_level === selectedCefrFilter;
-    return matchesSearch && matchesCefr;
-  });
-
-  const scholarName = user?.fullName || user?.firstName || user?.username || "Savant Académique";
-  const scholarEmail = user?.primaryEmailAddress?.emailAddress || "rrathore959910@gmail.com";
+  const name = user?.firstName ?? "there";
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#090d16] text-slate-900 dark:text-slate-100 transition-colors duration-300">
-      {/* Top Banner */}
-      <div className="bg-[#D52B1E] text-white text-xs font-medium py-1 px-4 text-center tracking-wide flex items-center justify-center gap-2">
-        <span>🍁 Académie de Français &bull; Sanctuaire d&apos;Immersion &bull; Ottawa &bull; Paris</span>
-      </div>
-
-      {/* Main Header */}
-      <header className="sticky top-0 z-40 backdrop-blur-md bg-white/85 dark:bg-[#090d16]/85 border-b border-slate-200 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#D52B1E] flex items-center justify-center text-white text-xl shadow-md shadow-red-500/20">
-                🍁
-              </div>
-              <div>
-                <span className="font-serif text-lg font-bold tracking-tight text-slate-900 dark:text-white block">
-                  Sanctuaire de l&apos;Académie
-                </span>
-                <span className="text-[10px] uppercase font-bold tracking-wider text-[#D52B1E]">
-                  Immersion CEFR &bull; Sans XP Clutter
-                </span>
-              </div>
-            </Link>
-          </div>
-
-          {/* Navigation Controls */}
-          <div className="flex items-center gap-4">
-            <div className="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-xl text-xs font-semibold">
-              <button
-                onClick={() => setActiveTab("courses")}
-                className={`py-1.5 px-3 rounded-lg transition-all flex items-center gap-1.5 ${
-                  activeTab === "courses"
-                    ? "bg-white dark:bg-slate-900 text-[#D52B1E] shadow-sm font-bold"
-                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-                }`}
-              >
-                <BookOpen className="w-3.5 h-3.5" />
-                Syllabi CEFR
-              </button>
-              <button
-                onClick={() => setActiveTab("lexicon")}
-                className={`py-1.5 px-3 rounded-lg transition-all flex items-center gap-1.5 ${
-                  activeTab === "lexicon"
-                    ? "bg-white dark:bg-slate-900 text-[#D52B1E] shadow-sm font-bold"
-                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-                }`}
-              >
-                <Globe2 className="w-3.5 h-3.5" />
-                Lexique Trilingue
-              </button>
-            </div>
-
-            <Link
-              href="/admin"
-              className="text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-[#D52B1E] hidden sm:flex items-center gap-1"
-            >
-              <ShieldCheck className="w-4 h-4 text-[#D52B1E]" />
-              Console Faculté
-            </Link>
-
-            <div className="h-6 w-px bg-slate-200 dark:bg-slate-800" />
-            <UserButton afterSignOutUrl="/" />
-          </div>
+    <div className="min-h-screen">
+      <SiteHeader />
+      <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+        {/* Greeting */}
+        <div className="animate-rise">
+          <p className="text-sm text-muted">{greeting()}</p>
+          <h1 className="mt-1 font-display text-4xl font-medium tracking-tight sm:text-5xl">
+            Bonjour, {name}.
+          </h1>
         </div>
-      </header>
 
-      {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Scholar Banner & Flame Activity Tracker */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm mb-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#D52B1E] to-[#8B180E] flex items-center justify-center text-white text-2xl font-serif font-bold shadow-md shadow-red-500/20">
-              {scholarName.charAt(0)}
+        {/* Stat row */}
+        <section className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="Your progress">
+          <Stat label="Day streak" icon={<Flame className={`h-5 w-5 ${streak ? "text-orange-500" : "text-muted"}`} />}>
+            <span className="font-display text-3xl font-semibold">{streak}</span>
+            <span className="ml-1 text-sm text-muted">{streak === 1 ? "day" : "days"}</span>
+          </Stat>
+
+          <Stat label={`Level ${level}`} icon={<Sparkles className="h-5 w-5 text-gold" />}>
+            <span className="font-display text-3xl font-semibold">{progress.xp}</span>
+            <span className="ml-1 text-sm text-muted">XP</span>
+            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-raised">
+              <div className="h-full rounded-full bg-gold transition-all duration-700" style={{ width: `${(into / needed) * 100}%` }} />
             </div>
+          </Stat>
+
+          <div className="flex items-center gap-4 rounded-2xl border border-line bg-surface p-5">
+            <ProgressRing value={goalPct} size={64}>
+              {goalPct >= 1 ? <Check className="h-5 w-5 text-success" /> : `${Math.round(goalPct * 100)}%`}
+            </ProgressRing>
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="font-serif text-xl font-bold text-slate-900 dark:text-white">
-                  {scholarName}
-                </h1>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-red-100 dark:bg-red-950/80 text-[#D52B1E] border border-red-200 dark:border-red-900/60">
-                  {selectedCourse.cefr_level} Fellow
-                </span>
-              </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                {scholarEmail} &bull; Profil vérifié Clerk
+              <p className="text-sm text-muted">Daily goal</p>
+              <p className="font-medium">{todayXp} / {progress.dailyGoal} XP</p>
+              <select
+                aria-label="Daily goal"
+                value={progress.dailyGoal}
+                onChange={(e) => actions.setDailyGoal(Number(e.target.value))}
+                className="mt-1 -ml-1 cursor-pointer rounded bg-transparent text-xs text-muted outline-none hover:text-fg"
+              >
+                {[15, 30, 50, 80].map((g) => (
+                  <option key={g} value={g} className="bg-surface text-fg">
+                    {g} XP · {g <= 15 ? "casual" : g <= 30 ? "regular" : g <= 50 ? "serious" : "intense"}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <Link
+            href="/practice"
+            className="group flex items-center justify-between rounded-2xl border border-accent/40 bg-accent/10 p-5 transition hover:bg-accent/15"
+          >
+            <div>
+              <p className="flex items-center gap-2 text-sm text-muted"><Layers className="h-4 w-4" /> Flashcards</p>
+              <p className="mt-1 font-display text-2xl font-semibold">
+                {dueCount + Math.min(newCount, 10)} <span className="text-sm font-normal text-muted">to review</span>
               </p>
             </div>
+            <ArrowRight className="h-5 w-5 text-accent transition group-hover:translate-x-1" />
+          </Link>
+        </section>
+
+        {/* Tabs */}
+        <div className="mt-10 flex items-center justify-between border-b border-line">
+          <div className="flex gap-1" role="tablist">
+            {(["learn", "lexicon"] as const).map((t) => (
+              <button
+                key={t}
+                role="tab"
+                aria-selected={tab === t}
+                onClick={() => setTab(t)}
+                className={`relative px-4 py-3 text-sm font-medium capitalize transition ${tab === t ? "text-fg" : "text-muted hover:text-fg"}`}
+              >
+                {t === "learn" ? "Courses" : "Lexicon"}
+                {tab === t && <span className="absolute inset-x-3 -bottom-px h-0.5 rounded bg-accent" />}
+              </button>
+            ))}
           </div>
+          <p className="hidden text-sm text-muted sm:block">{done} of {totalLessons} lessons completed</p>
+        </div>
 
-          {/* 7-Day Flame Tracker */}
-          <div className="flex items-center gap-6 bg-slate-50 dark:bg-slate-850/80 border border-slate-200 dark:border-slate-800 rounded-xl p-3 sm:px-5">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500">
-                <Flame className="w-6 h-6 animate-pulse" />
-              </div>
-              <div>
-                <div className="text-lg font-bold text-slate-900 dark:text-white leading-none">
-                  {streakDays} Jours
+        <div className="mt-8">{tab === "learn" ? <LearnTab /> : <LexiconTab />}</div>
+      </main>
+    </div>
+  );
+}
+
+function greeting() {
+  const h = new Date().getHours();
+  return h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
+}
+
+function Stat({ label, icon, children }: { label: string; icon: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <div className="rounded-2xl border border-line bg-surface p-5">
+      <div className="mb-2 flex items-center gap-2 text-sm text-muted">{icon}{label}</div>
+      {children}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Courses + lesson reader                                            */
+/* ------------------------------------------------------------------ */
+
+function LearnTab() {
+  const progress = useProgress();
+  const firstOpen = initialCourses.find((c) => c.lessons.some((l) => !progress.completedLessons.includes(l.id))) ?? initialCourses[0];
+  const [courseId, setCourseId] = useState<number>(firstOpen.id);
+  const course = initialCourses.find((c) => c.id === courseId) as Course;
+  const firstTodo = course.lessons.find((l) => !progress.completedLessons.includes(l.id)) ?? course.lessons[0];
+  const [lessonId, setLessonId] = useState<number>(firstTodo.id);
+  const lesson = course.lessons.find((l) => l.id === lessonId) ?? course.lessons[0];
+
+  const openLesson = (c: Course, l: Lesson) => {
+    setCourseId(c.id);
+    setLessonId(l.id);
+  };
+
+  const next = (() => {
+    const flat = initialCourses.flatMap((c) => c.lessons.map((l) => [c, l] as const));
+    const idx = flat.findIndex(([, l]) => l.id === lesson.id);
+    return flat[idx + 1];
+  })();
+
+  return (
+    <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
+      <aside className="space-y-2" aria-label="Courses">
+        {initialCourses.map((c) => {
+          const finished = c.lessons.filter((l) => progress.completedLessons.includes(l.id)).length;
+          const open = c.id === courseId;
+          return (
+            <div key={c.id} className="overflow-hidden rounded-2xl border border-line bg-surface">
+              <button
+                onClick={() => setCourseId(open ? -1 : c.id)}
+                aria-expanded={open}
+                className="flex w-full items-center gap-3 p-4 text-left transition hover:bg-raised/60"
+              >
+                <ProgressRing value={finished / c.lessons.length} size={44} stroke={4}>
+                  <span className="text-[11px]">{c.cefr_level}</span>
+                </ProgressRing>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-semibold">{c.title_en ?? c.title}</p>
+                  <p className="text-xs text-muted">{finished}/{c.lessons.length} lessons</p>
                 </div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
-                  Assiduité Continue
-                </div>
-              </div>
+                <ChevronDown className={`h-4 w-4 text-muted transition ${open ? "rotate-180" : ""}`} />
+              </button>
+              {open && (
+                <ul className="border-t border-line p-2">
+                  {c.lessons.map((l) => {
+                    const complete = progress.completedLessons.includes(l.id);
+                    const current = l.id === lesson.id;
+                    return (
+                      <li key={l.id}>
+                        <button
+                          onClick={() => openLesson(c, l)}
+                          className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition ${current ? "bg-accent/10 text-fg" : "text-muted hover:bg-raised hover:text-fg"}`}
+                        >
+                          <span className={`grid h-5 w-5 shrink-0 place-items-center rounded-full border text-[10px] ${complete ? "border-success bg-success text-bg" : "border-line"}`}>
+                            {complete ? <Check className="h-3 w-3" /> : l.order_num}
+                          </span>
+                          <span className="line-clamp-2">{lessonTitle(l)}</span>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
             </div>
+          );
+        })}
+      </aside>
 
-            <div className="h-8 w-px bg-slate-200 dark:border-slate-700" />
+      <LessonReader
+        key={lesson.id}
+        course={course}
+        lesson={lesson}
+        onNext={next ? () => openLesson(next[0], next[1]) : undefined}
+      />
+    </div>
+  );
+}
 
-            {/* 7-Day Dots */}
-            <div className="flex items-center gap-1.5">
-              {["L", "M", "M", "J", "V", "S", "D"].map((day, idx) => {
-                const isDone = completedDays[idx];
-                return (
-                  <div key={idx} className="flex flex-col items-center gap-1">
-                    <span className="text-[9px] font-semibold text-slate-400">{day}</span>
-                    <div
-                      className={`w-5 h-5 rounded-md flex items-center justify-center text-[10px] transition-all ${
-                        isDone
-                          ? "bg-amber-500 text-white shadow-sm shadow-amber-500/30"
-                          : "bg-slate-200 dark:bg-slate-800 text-slate-400 border border-slate-300 dark:border-slate-700"
-                      }`}
-                    >
-                      {isDone ? "🔥" : "·"}
-                    </div>
-                  </div>
-                );
-              })}
+function LessonReader({ course, lesson, onNext }: { course: Course; lesson: Lesson; onNext?: () => void }) {
+  const progress = useProgress();
+  const { speak, speaking } = useSpeech();
+  const [picked, setPicked] = useState<number | null>(null);
+  const [gained, setGained] = useState<number | null>(null);
+  const completed = progress.completedLessons.includes(lesson.id);
+  const answered = picked !== null;
+  const correct = picked === lesson.quiz.correct_index;
+
+  const choose = (i: number) => {
+    if (answered) return;
+    setPicked(i);
+    setGained(actions.completeLesson(lesson.id, i === lesson.quiz.correct_index));
+  };
+
+  const phrase = lesson.audio_phrase ?? lesson.content_fr;
+
+  return (
+    <article className="animate-rise space-y-5">
+      <header>
+        <p className="text-sm text-muted">
+          {course.cefr_level} · Lesson {lesson.order_num} · {lesson.duration_mins ?? 15} min
+          {completed && <span className="ml-2 inline-flex items-center gap-1 text-success"><CheckCircle2 className="h-3.5 w-3.5" /> Completed</span>}
+        </p>
+        <h2 className="mt-1 font-display text-3xl font-medium tracking-tight sm:text-4xl">{lessonTitle(lesson)}</h2>
+        {lesson.title_en && <p className="mt-1 text-muted">{lesson.title}</p>}
+      </header>
+
+      {/* Passage */}
+      <section className="relative overflow-hidden rounded-3xl border border-line bg-surface p-6 sm:p-8">
+        <div className="ambient absolute inset-0 opacity-60" />
+        <div className="relative">
+          <div className="flex items-start justify-between gap-4">
+            <p className="font-display text-2xl leading-relaxed sm:text-3xl">{lesson.content_fr}</p>
+            <div className="flex shrink-0 gap-2">
+              <button
+                onClick={() => speak(phrase)}
+                aria-label="Listen"
+                className={`grid h-11 w-11 place-items-center rounded-full bg-accent text-accent-fg transition hover:scale-105 ${speaking === phrase ? "shadow-glow" : ""}`}
+              >
+                <Volume2 className="h-5 w-5" />
+              </button>
+              <button
+                onClick={() => speak(phrase, 0.6)}
+                aria-label="Listen slowly"
+                title="Slow"
+                className="grid h-11 items-center rounded-full border border-line px-3.5 text-xs font-medium text-muted transition hover:border-accent hover:text-fg"
+              >
+                0.6×
+              </button>
+            </div>
+          </div>
+          <div className="mt-6 grid gap-4 border-t border-line pt-5 sm:grid-cols-2">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-wider text-muted">English</p>
+              <p className="mt-1.5 leading-relaxed">{lesson.content_en}</p>
+            </div>
+            <div>
+              <p className="text-xs font-medium uppercase tracking-wider text-muted">Focus</p>
+              <p className="mt-1.5 leading-relaxed text-muted">{lesson.section_title}</p>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Tab 1: CEFR Courses & Interactive Quizzes */}
-        {activeTab === "courses" && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Left Sidebar: CEFR Levels & Lessons List */}
-            <div className="lg:col-span-4 space-y-6">
-              {/* Level Selector */}
-              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-3">
-                  Niveaux du Cadre Européen (CEFR)
-                </span>
-                <div className="grid grid-cols-5 gap-1.5">
-                  {courses.map((course) => (
-                    <button
-                      key={course.id}
-                      onClick={() => {
-                        setSelectedCourse(course);
-                        resetQuiz(course.lessons[0]);
-                      }}
-                      className={`py-2 text-center rounded-xl font-bold text-xs transition-all ${
-                        selectedCourse.id === course.id
-                          ? "bg-[#D52B1E] text-white shadow-md shadow-red-500/20"
-                          : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
-                      }`}
-                    >
-                      {course.cefr_level}
-                    </button>
-                  ))}
-                </div>
-              </div>
+      {/* Quiz */}
+      <section className="rounded-3xl border border-line bg-surface p-6 sm:p-8">
+        <p className="flex items-center gap-2 text-sm font-medium text-accent"><BookOpen className="h-4 w-4" /> Check your understanding</p>
+        <h3 className="mt-3 font-display text-xl font-medium leading-snug sm:text-2xl">{lesson.quiz.question_en ?? lesson.quiz.question}</h3>
+        {lesson.quiz.question_en && <p className="mt-1 text-sm text-muted">{lesson.quiz.question}</p>}
 
-              {/* Course Title & Lessons */}
-              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
-                <div className="flex items-center justify-between mb-2">
-                  <h2 className="font-serif text-lg font-bold text-slate-900 dark:text-white">
-                    {selectedCourse.title}
-                  </h2>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded bg-red-100 dark:bg-red-950 text-[#D52B1E]">
-                    {selectedCourse.cefr_level}
-                  </span>
-                </div>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
-                  {selectedCourse.description}
-                </p>
+        <div className="mt-5 grid gap-2.5">
+          {lesson.quiz.options.map((o, i) => {
+            const isRight = i === lesson.quiz.correct_index;
+            const isPicked = i === picked;
+            const state = !answered
+              ? "border-line hover:border-accent/60 hover:bg-raised"
+              : isRight
+              ? "border-success bg-success/10"
+              : isPicked
+              ? "border-danger bg-danger/10"
+              : "border-line opacity-60";
+            return (
+              <button
+                key={i}
+                onClick={() => choose(i)}
+                disabled={answered}
+                className={`flex items-center justify-between gap-3 rounded-xl border px-4 py-3.5 text-left text-sm transition ${state}`}
+              >
+                <span>{o}</span>
+                {answered && isRight && <CheckCircle2 className="h-5 w-5 shrink-0 text-success" />}
+                {answered && isPicked && !isRight && <XCircle className="h-5 w-5 shrink-0 text-danger" />}
+              </button>
+            );
+          })}
+        </div>
 
-                <div className="space-y-2">
-                  {selectedCourse.lessons.map((lesson) => (
-                    <button
-                      key={lesson.id}
-                      onClick={() => resetQuiz(lesson)}
-                      className={`w-full text-left p-3 rounded-xl transition-all flex items-center justify-between border ${
-                        selectedLesson.id === lesson.id
-                          ? "bg-red-50 dark:bg-red-950/40 border-[#D52B1E] text-slate-900 dark:text-white font-medium"
-                          : "border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-300"
-                      }`}
-                    >
-                      <div className="flex items-center gap-2.5">
-                        <span className="w-6 h-6 rounded-lg bg-slate-200 dark:bg-slate-800 text-xs font-bold flex items-center justify-center text-slate-600 dark:text-slate-400">
-                          {lesson.order_num}
-                        </span>
-                        <div className="text-xs font-semibold">{lesson.title}</div>
-                      </div>
-                      <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Right Pane: Lesson Content & Acoustic Quiz */}
-            <div className="lg:col-span-8 space-y-6">
-              {/* Lesson Reader Card */}
-              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800 mb-6">
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#D52B1E] block mb-1">
-                      Leçon {selectedLesson.order_num} &bull; Niveau {selectedCourse.cefr_level}
-                    </span>
-                    <h3 className="font-serif text-2xl font-bold text-slate-900 dark:text-white">
-                      {selectedLesson.title}
-                    </h3>
-                  </div>
-
-                  <button
-                    onClick={() => speakFrench(selectedLesson.content_fr)}
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold border transition-all ${
-                      activeSpeech === selectedLesson.content_fr
-                        ? "bg-[#D52B1E] text-white border-[#D52B1E] animate-pulse"
-                        : "bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-[#D52B1E] hover:text-white"
-                    }`}
-                  >
-                    <Volume2 className="w-4 h-4" />
-                    Écouter la Synthèse Vocale
-                  </button>
-                </div>
-
-                {/* French Immersion Text */}
-                <div className="space-y-4 mb-8">
-                  <div className="bg-slate-50 dark:bg-slate-850/60 border border-slate-200 dark:border-slate-800 rounded-xl p-5">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
-                      Texte d&apos;Immersion Français (French Corpus)
-                    </span>
-                    <p className="font-serif text-base sm:text-lg text-slate-900 dark:text-slate-100 leading-relaxed italic">
-                      &ldquo;{selectedLesson.content_fr}&rdquo;
-                    </p>
-                  </div>
-
-                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
-                      Traduction Philologique (English Translation)
-                    </span>
-                    <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                      {selectedLesson.content_en}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Interactive Acoustic Quiz */}
-                <div className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <HelpCircle className="w-5 h-5 text-[#D52B1E]" />
-                      <h4 className="font-serif text-lg font-bold text-slate-900 dark:text-white">
-                        Contrôle de Compréhension Acoustique
-                      </h4>
-                    </div>
-                    <span className="text-xs text-slate-500 font-medium">Validation Immédiate</span>
-                  </div>
-
-                  <p className="text-sm font-medium text-slate-800 dark:text-slate-200 mb-4">
-                    {selectedLesson.quiz.question}
-                  </p>
-
-                  <div className="space-y-2.5 mb-6">
-                    {selectedLesson.quiz.options.map((opt, idx) => {
-                      let btnStyle =
-                        "bg-white dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-[#D52B1E]";
-                      if (quizSubmitted) {
-                        if (idx === selectedLesson.quiz.correct_index) {
-                          btnStyle =
-                            "bg-emerald-500/10 border-emerald-500 text-emerald-600 dark:text-emerald-400 font-bold";
-                        } else if (idx === selectedQuizAnswer) {
-                          btnStyle = "bg-red-500/10 border-red-500 text-red-600 dark:text-red-400";
-                        }
-                      } else if (selectedQuizAnswer === idx) {
-                        btnStyle = "border-[#D52B1E] bg-red-50 dark:bg-red-950/40 text-[#D52B1E]";
-                      }
-
-                      return (
-                        <button
-                          key={idx}
-                          onClick={() => handleQuizAnswer(idx)}
-                          disabled={quizSubmitted}
-                          className={`w-full text-left p-3 rounded-xl border text-xs sm:text-sm font-medium transition-all flex items-center justify-between ${btnStyle}`}
-                        >
-                          <span>{opt}</span>
-                          {quizSubmitted && idx === selectedLesson.quiz.correct_index && (
-                            <CheckCircle className="w-4 h-4 text-emerald-500" />
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  {quizSubmitted && (
-                    <div
-                      className={`p-4 rounded-xl border text-xs leading-relaxed ${
-                        quizCorrect
-                          ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-300"
-                          : "bg-red-500/10 border-red-500/30 text-red-700 dark:text-red-300"
-                      }`}
-                    >
-                      <div className="font-bold mb-1">
-                        {quizCorrect ? "Excellente réponse! 🍁" : "Réponse incorrecte."}
-                      </div>
-                      <p>{selectedLesson.quiz.explanation}</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
+        {answered && (
+          <div className="mt-5 animate-rise rounded-2xl bg-raised p-4 text-sm">
+            <p className={`font-medium ${correct ? "text-success" : "text-danger"}`}>
+              {correct ? "Correct!" : "Not quite."}
+              {gained ? <span className="ml-2 text-gold">+{gained} XP</span> : null}
+            </p>
+            <p className="mt-1.5 leading-relaxed text-muted">{lesson.quiz.explanation}</p>
           </div>
         )}
+      </section>
 
-        {/* Tab 2: Multilingual Lexicon Sanctuary */}
-        {activeTab === "lexicon" && (
-          <div className="space-y-6">
-            {/* Lexicon Controls & Search */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-[#D52B1E] block mb-1">
-                  Corpus Philologique
-                </span>
-                <h2 className="font-serif text-2xl font-bold text-slate-900 dark:text-white">
-                  Sanctuaire de Vocabulaire Trilingue (Français &bull; English &bull; हिन्दी)
-                </h2>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                  Tous les termes disposent de prononciation audio, sens en Devanagari et cas d&apos;usage pratiques.
-                </p>
-              </div>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        {!answered && !completed ? (
+          <button
+            onClick={() => setGained(actions.completeLesson(lesson.id, false))}
+            className="text-sm text-muted underline-offset-4 hover:text-fg hover:underline"
+          >
+            Mark as complete without the quiz
+          </button>
+        ) : (
+          <span />
+        )}
+        {onNext && (completed || answered) && (
+          <button
+            onClick={onNext}
+            className="inline-flex h-11 items-center gap-2 rounded-full bg-accent px-6 text-sm font-medium text-accent-fg shadow-glow transition hover:brightness-110"
+          >
+            Next lesson <ArrowRight className="h-4 w-4" />
+          </button>
+        )}
+      </div>
+    </article>
+  );
+}
 
-              <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
-                <div className="relative flex-1 sm:w-64">
-                  <Search className="w-4 h-4 absolute left-3 top-3 text-slate-400" />
-                  <input
-                    type="text"
-                    placeholder="Filtrer (mot, हिन्दी, english)..."
-                    value={searchLexicon}
-                    onChange={(e) => setSearchLexicon(e.target.value)}
-                    className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:ring-2 focus:ring-[#D52B1E] outline-none"
-                  />
+/* ------------------------------------------------------------------ */
+/* Lexicon                                                            */
+/* ------------------------------------------------------------------ */
+
+function LexiconTab() {
+  const lexicon = useLexicon();
+  const progress = useProgress();
+  const { speak, speaking } = useSpeech();
+  const [q, setQ] = useState("");
+  const [level, setLevel] = useState("ALL");
+  const [category, setCategory] = useState("All");
+
+  const categories = useMemo(() => ["All", ...Array.from(new Set(lexicon.map((w) => w.category)))], [lexicon]);
+
+  const words = useMemo(() => {
+    const s = q.trim().toLowerCase();
+    return lexicon.filter(
+      (w) =>
+        (level === "ALL" || w.cefr_level === level) &&
+        (category === "All" || w.category === category) &&
+        (!s ||
+          w.french_word.toLowerCase().includes(s) ||
+          w.meaning_en.toLowerCase().includes(s) ||
+          w.meaning_hi.includes(s) ||
+          w.use_case.toLowerCase().includes(s))
+    );
+  }, [lexicon, q, level, category]);
+
+  return (
+    <div>
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
+        <label className="relative flex-1">
+          <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
+          <input
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Search French, English or Hindi…"
+            className="h-12 w-full rounded-full border border-line bg-surface pl-11 pr-4 text-sm outline-none transition placeholder:text-muted focus:border-accent"
+          />
+        </label>
+        <div className="flex flex-wrap gap-1.5">
+          {LEVELS.map((l) => (
+            <button
+              key={l}
+              onClick={() => setLevel(l)}
+              className={`rounded-full px-3.5 py-2 text-xs font-medium transition ${level === l ? "bg-fg text-bg" : "border border-line text-muted hover:text-fg"}`}
+            >
+              {l === "ALL" ? "All" : l}
+            </button>
+          ))}
+        </div>
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          aria-label="Category"
+          className="h-12 rounded-full border border-line bg-surface px-4 text-sm outline-none focus:border-accent"
+        >
+          {categories.map((c) => <option key={c}>{c}</option>)}
+        </select>
+      </div>
+
+      <div className="mt-4 flex items-center justify-between text-sm text-muted">
+        <p>{words.length} {words.length === 1 ? "word" : "words"}</p>
+        <label className="flex cursor-pointer items-center gap-2">
+          <input type="checkbox" checked={progress.showHindi} onChange={(e) => actions.setShowHindi(e.target.checked)} className="accent-[rgb(var(--accent))]" />
+          Show Hindi
+        </label>
+      </div>
+
+      <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {words.map((w) => {
+          const card = progress.cards[w.id];
+          return (
+            <li key={`${w.id}-${w.french_word}`} className="flex flex-col rounded-2xl border border-line bg-surface p-5 transition hover:border-accent/40 hover:shadow-soft">
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <h3 className="font-display text-xl font-semibold">{w.french_word}</h3>
+                  <p className="mt-0.5 font-mono text-xs text-muted">{w.ipa_phonetic} · {w.part_of_speech}</p>
                 </div>
-
-                <select
-                  value={selectedCefrFilter}
-                  onChange={(e) => setSelectedCefrFilter(e.target.value)}
-                  className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-[#D52B1E] outline-none"
-                >
-                  <option value="ALL">Tous Niveaux</option>
-                  <option value="B1">B1</option>
-                  <option value="B2">B2</option>
-                  <option value="C1">C1</option>
-                  <option value="C2">C2</option>
-                </select>
-
                 <button
-                  onClick={() => setShowAddModal(true)}
-                  className="bg-[#D52B1E] hover:bg-[#B52419] text-white text-xs font-bold py-2 px-4 rounded-xl shadow-md shadow-red-500/20 transition-all flex items-center gap-1.5"
+                  onClick={() => speak(w.french_word)}
+                  aria-label={`Pronounce ${w.french_word}`}
+                  className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border border-line text-muted transition hover:border-accent hover:text-accent ${speaking === w.french_word ? "border-accent text-accent" : ""}`}
                 >
-                  <Plus className="w-4 h-4" />
-                  Nouveau Mot
+                  <Volume2 className="h-4 w-4" />
                 </button>
               </div>
-            </div>
-
-            {/* Vocabulary Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredLexicon.map((word) => (
-                <div
-                  key={word.id}
-                  className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex items-start justify-between gap-3 mb-4">
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h3 className="font-serif text-2xl font-bold text-slate-900 dark:text-white">
-                            {word.french_word}
-                          </h3>
-                          <button
-                            onClick={() => speakFrench(word.french_word)}
-                            className={`p-1.5 rounded-lg border transition-all ${
-                              activeSpeech === word.french_word
-                                ? "bg-[#D52B1E] text-white border-[#D52B1E] animate-pulse"
-                                : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-[#D52B1E] hover:text-white"
-                            }`}
-                            title="Écouter la prononciation"
-                          >
-                            <Volume2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                        <div className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-2">
-                          <span>{word.ipa_phonetic}</span>
-                          <span>&bull;</span>
-                          <span className="italic">{word.part_of_speech}</span>
-                        </div>
-                      </div>
-
-                      <span className="px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-red-100 dark:bg-red-950/80 text-[#D52B1E] border border-red-200 dark:border-red-900/60">
-                        {word.cefr_level}
-                      </span>
-                    </div>
-
-                    <div className="space-y-2.5 mb-4 pt-3 border-t border-slate-100 dark:border-slate-800">
-                      <div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
-                          English Meaning
-                        </span>
-                        <p className="text-sm font-medium text-slate-800 dark:text-slate-200">
-                          {word.meaning_en}
-                        </p>
-                      </div>
-
-                      {/* Hindi Translation in Devanagari */}
-                      <div className="bg-amber-500/5 dark:bg-amber-500/10 border border-amber-500/20 rounded-xl p-2.5">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 block mb-0.5">
-                          हिन्दी अर्थ (Hindi Meaning)
-                        </span>
-                        <p className="text-sm font-semibold text-slate-900 dark:text-amber-100">
-                          {word.meaning_hi}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Practical Use Case */}
-                    <div className="bg-slate-50 dark:bg-slate-850/60 border border-slate-200 dark:border-slate-800 rounded-xl p-3 mb-4">
-                      <div className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
-                        <Sparkles className="w-3 h-3 text-[#D52B1E]" />
-                        <span>Cas d&apos;Usage Pratique</span>
-                      </div>
-                      <p className="text-xs text-slate-700 dark:text-slate-300 italic">
-                        &ldquo;{word.use_case}&rdquo;
-                      </p>
-                    </div>
-
-                    <div className="text-xs text-slate-600 dark:text-slate-400">
-                      <span className="font-semibold text-slate-800 dark:text-slate-200">Exemple : </span>
-                      <span>{word.example_sentence}</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
-                    <span>{word.category}</span>
-                    <span className="text-slate-500 text-[10px]">Hermes Ingested</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Modal: Add New Classical Term */}
-        {showAddModal && (
-          <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl relative">
+              <p className="mt-3 text-sm">{w.meaning_en}</p>
+              {progress.showHindi && <p className="mt-1 text-sm text-muted">{w.meaning_hi}</p>}
               <button
-                onClick={() => setShowAddModal(false)}
-                className="absolute top-4 right-4 p-1.5 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                onClick={() => speak(w.example_sentence)}
+                className="mt-3 rounded-xl bg-raised px-3 py-2.5 text-left text-sm italic leading-relaxed text-muted transition hover:text-fg"
               >
-                <X className="w-5 h-5" />
+                “{w.example_sentence}”
               </button>
-
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-xl">🍁</span>
-                <h3 className="font-serif text-xl font-bold text-slate-900 dark:text-white">
-                  Ajouter un Terme au Sanctuaire
-                </h3>
+              <div className="mt-auto flex items-center gap-2 pt-4 text-[11px] font-medium text-muted">
+                <span className="rounded-full bg-raised px-2.5 py-1">{w.cefr_level}</span>
+                <span className="truncate rounded-full bg-raised px-2.5 py-1">{w.category}</span>
+                {card && <span className="ml-auto rounded-full bg-success/15 px-2.5 py-1 text-success">learning</span>}
               </div>
-
-              <form onSubmit={handleAddTerm} className="space-y-4">
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1">
-                      Mot Français *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="ex: Panacée"
-                      value={newWord.french_word}
-                      onChange={(e) => setNewWord({ ...newWord, french_word: e.target.value })}
-                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-[#D52B1E] outline-none"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1">
-                      Phonétique IPA
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="/pa.na.se/"
-                      value={newWord.ipa_phonetic}
-                      onChange={(e) => setNewWord({ ...newWord, ipa_phonetic: e.target.value })}
-                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-[#D52B1E] outline-none"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1">
-                    Sens en Anglais (Meaning EN) *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="ex: A solution or remedy for all difficulties"
-                    value={newWord.meaning_en}
-                    onChange={(e) => setNewWord({ ...newWord, meaning_en: e.target.value })}
-                    className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-[#D52B1E] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs font-semibold text-amber-600 dark:text-amber-400 block mb-1">
-                    हिन्दी अर्थ (Hindi Meaning in Devanagari) *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="ex: रामबाण / सभी रोगों का इलाज"
-                    value={newWord.meaning_hi}
-                    onChange={(e) => setNewWord({ ...newWord, meaning_hi: e.target.value })}
-                    className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-[#D52B1E] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1">
-                    Cas d&apos;Usage Pratique (Use Case) *
-                  </label>
-                  <textarea
-                    rows={2}
-                    required
-                    placeholder="Quand et comment utiliser ce mot dans une dissertation ou discussion littéraire..."
-                    value={newWord.use_case}
-                    onChange={(e) => setNewWord({ ...newWord, use_case: e.target.value })}
-                    className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-[#D52B1E] outline-none"
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1">
-                      Niveau CEFR
-                    </label>
-                    <select
-                      value={newWord.cefr_level}
-                      onChange={(e) => setNewWord({ ...newWord, cefr_level: e.target.value })}
-                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-[#D52B1E] outline-none"
-                    >
-                      <option value="B1">B1 Intermédiaire</option>
-                      <option value="B2">B2 Avancé</option>
-                      <option value="C1">C1 Autonome</option>
-                      <option value="C2">C2 Maîtrise</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1">
-                      Catégorie
-                    </label>
-                    <input
-                      type="text"
-                      value={newWord.category}
-                      onChange={(e) => setNewWord({ ...newWord, category: e.target.value })}
-                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-[#D52B1E] outline-none"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
-                  <button
-                    type="button"
-                    onClick={() => setShowAddModal(false)}
-                    className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
-                  >
-                    Annuler
-                  </button>
-                  <button
-                    type="submit"
-                    className="px-5 py-2 rounded-xl text-xs font-bold bg-[#D52B1E] hover:bg-[#B52419] text-white shadow-md shadow-red-500/20"
-                  >
-                    Enregistrer au Sanctuaire
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        )}
-      </main>
+            </li>
+          );
+        })}
+      </ul>
+      {words.length === 0 && (
+        <p className="mt-10 rounded-2xl border border-dashed border-line p-12 text-center text-sm text-muted">No words match your filters.</p>
+      )}
     </div>
+  );
+}
+
+export default function DashboardPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen" />}>
+      <Dashboard />
+    </Suspense>
   );
 }
