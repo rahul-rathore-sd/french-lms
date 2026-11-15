@@ -1,461 +1,149 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
-import { useUser, UserButton } from "@clerk/nextjs";
+import { ArrowRight, Headphones, BookOpenText, Repeat2, TrendingUp, Check } from "lucide-react";
+import SiteHeader from "@/components/SiteHeader";
+import HeroDemo from "@/components/HeroDemo";
+import LexiconPreview from "@/components/LexiconPreview";
 import { initialCourses, initialVocabulary } from "@/lib/data";
-import {
-  Volume2,
-  BookOpen,
-  Flame,
-  Award,
-  Globe2,
-  ChevronRight,
-  Sparkles,
-  ShieldCheck,
-  Moon,
-  Sun,
-  Layers,
-  ArrowRight,
-  Lock
-} from "lucide-react";
+
+const method = [
+  { icon: Headphones, title: "Listen first", body: "Every phrase has native-quality audio and IPA, so your ear is trained before your eyes." },
+  { icon: BookOpenText, title: "Read in context", body: "Short, literary and everyday passages with English and Hindi translations side by side." },
+  { icon: Repeat2, title: "Remember for good", body: "Spaced-repetition flashcards bring each word back right before you would forget it." },
+  { icon: TrendingUp, title: "See real progress", body: "Streaks, XP and a daily goal keep the habit alive, and every level maps to CEFR A1–C2." },
+];
 
 export default function HomePage() {
-  const { isSignedIn, user } = useUser();
-  const [activeSpeech, setActiveSpeech] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCefr, setSelectedCefr] = useState<string>("ALL");
-  const [isDark, setIsDark] = useState(true);
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    if (typeof document !== "undefined") {
-      document.documentElement.classList.toggle("dark");
-    }
-  };
-
-  const speakFrench = (text: string) => {
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "fr-FR";
-      utterance.rate = 0.85;
-
-      const voices = window.speechSynthesis.getVoices();
-      const frenchVoice = voices.find(
-        (v) => v.lang.includes("fr-FR") || v.lang.includes("fr-CA") || v.lang.includes("fr")
-      );
-      if (frenchVoice) {
-        utterance.voice = frenchVoice;
-      }
-
-      setActiveSpeech(text);
-      utterance.onend = () => setActiveSpeech(null);
-      utterance.onerror = () => setActiveSpeech(null);
-
-      window.speechSynthesis.speak(utterance);
-    }
-  };
-
-  const filteredWords = initialVocabulary.filter((word) => {
-    const matchesSearch =
-      word.french_word.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      word.meaning_en.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      word.meaning_hi.includes(searchQuery) ||
-      word.use_case.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCefr = selectedCefr === "ALL" || word.cefr_level === selectedCefr;
-    return matchesSearch && matchesCefr;
-  });
+  const lessons = initialCourses.reduce((n, c) => n + c.lessons.length, 0);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#090d16] text-slate-800 dark:text-slate-100 transition-colors duration-300">
-      {/* Top Canadian Heritage Bar */}
-      <div className="bg-[#D52B1E] text-white text-xs font-medium py-1.5 px-4 text-center tracking-wide flex items-center justify-center gap-2">
-        <span className="inline-block w-4 h-2.5 bg-white border border-red-700 relative overflow-hidden">
-          <span className="absolute inset-x-1 inset-y-0 bg-[#D52B1E] flex items-center justify-center text-[6px]">🍁</span>
-        </span>
-        <span>Académie de Français &bull; Sanctuaire d&apos;Immersion Classique CEFR &bull; Ottawa &bull; Paris</span>
-      </div>
+    <div className="min-h-screen">
+      <SiteHeader variant="marketing" />
 
-      {/* Main Navigation */}
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-[#090d16]/80 border-b border-slate-200 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-[#D52B1E] flex items-center justify-center text-white text-xl shadow-md shadow-red-500/20 group-hover:scale-105 transition-transform">
-              🍁
+      {/* Hero */}
+      <section className="ambient relative overflow-hidden">
+        <div className="mx-auto grid max-w-6xl gap-12 px-4 pb-20 pt-16 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:pb-28 lg:pt-24">
+          <div className="animate-rise">
+            <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/70 px-3.5 py-1.5 text-xs font-medium text-muted backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-success" /> CEFR A1 → C2 · Audio · Flashcards
+            </span>
+            <h1 className="mt-6 font-display text-5xl font-medium leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+              Learn French the way it is <span className="text-accent">actually spoken.</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+              A calm, beautifully designed place to go from first greetings to literary fluency. Structured courses, real pronunciation, and a lexicon that remembers what you forget.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link
+                href="/dashboard"
+                className="group inline-flex h-12 items-center gap-2 rounded-full bg-accent px-6 text-sm font-medium text-accent-fg shadow-glow transition hover:brightness-110"
+              >
+                Start learning <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+              </Link>
+              <Link href="/apply" className="inline-flex h-12 items-center rounded-full border border-line px-6 text-sm font-medium transition hover:border-accent/50">
+                Request an invitation
+              </Link>
             </div>
-            <div>
-              <span className="font-serif text-lg font-bold tracking-tight text-slate-900 dark:text-white block">
-                Académie de Français
-              </span>
-              <span className="text-[10px] tracking-widest uppercase font-semibold text-[#D52B1E]">
-                LMS & Lexique Sanctuary
-              </span>
-            </div>
-          </Link>
-
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
-            <a href="#lexicon" className="hover:text-[#D52B1E] transition-colors">
-              Lexique Classique
-            </a>
-            <a href="#syllabi" className="hover:text-[#D52B1E] transition-colors">
-              Niveaux CEFR (A1-C2)
-            </a>
-            <Link href="/admin" className="hover:text-[#D52B1E] transition-colors flex items-center gap-1">
-              <ShieldCheck className="w-4 h-4 text-[#D52B1E]" />
-              Console Faculté
-            </Link>
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              title="Changer de thème"
-            >
-              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
-
-            {isSignedIn ? (
-              <div className="flex items-center gap-3">
-                <Link
-                  href="/dashboard"
-                  className="bg-[#D52B1E] hover:bg-[#B52419] text-white text-sm font-semibold py-2 px-4 rounded-xl shadow-md shadow-red-500/20 transition-all flex items-center gap-1.5"
-                >
-                  <BookOpen className="w-4 h-4" />
-                  Sanctuaire
-                </Link>
-                <UserButton afterSignOutUrl="/" />
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <Link
-                  href="/sign-in"
-                  className="text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-[#D52B1E] py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                >
-                  Connexion
-                </Link>
-                <Link
-                  href="/apply"
-                  className="bg-[#D52B1E] hover:bg-[#B52419] text-white text-xs sm:text-sm font-semibold py-2 px-3 sm:px-4 rounded-xl shadow-md shadow-red-500/20 transition-all flex items-center gap-1.5"
-                >
-                  <span>Candidature</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            )}
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
+              {["Free to explore", "English & Hindi translations", "Works on any device"].map((t) => (
+                <li key={t} className="flex items-center gap-1.5"><Check className="h-4 w-4 text-success" />{t}</li>
+              ))}
+            </ul>
           </div>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 lg:py-24 border-b border-slate-200 dark:border-slate-800 bg-gradient-to-b from-white via-slate-50 to-slate-100 dark:from-[#0b101c] dark:via-[#090d16] dark:to-[#070a12]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 dark:bg-red-950/60 border border-red-300 dark:border-red-900/60 text-[#D52B1E] dark:text-red-400 text-xs font-semibold uppercase tracking-wider mb-6">
-            <Lock className="w-3.5 h-3.5" />
-            Accès Sélectif &bull; Admission sur Candidature Philologique
-          </div>
-
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white max-w-4xl mx-auto leading-tight">
-            L&apos;Immersion en Français Classique & le Sanctuaire CEFR
-          </h1>
-
-          <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Une méthodologie académique pure du niveau débutant A1 à la haute maîtrise C2.
-            Découvrez nos modules littéraires, notre synthèse vocale native et notre lexique trilingue{" "}
-            <span className="font-semibold text-slate-900 dark:text-white">Français &bull; English &bull; हिन्दी (Devanagari)</span>.
-          </p>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
-              href={isSignedIn ? "/dashboard" : "/apply"}
-              className="bg-[#D52B1E] hover:bg-[#B52419] text-white text-base font-semibold py-3 px-8 rounded-xl shadow-lg shadow-red-500/25 transition-all flex items-center gap-2 hover:scale-[1.02]"
-            >
-              <BookOpen className="w-5 h-5" />
-              {isSignedIn ? "Ouvrir mon Sanctuaire" : "Déposer ma Candidature d'Admission"}
-            </Link>
-            <a
-              href="#lexicon"
-              className="bg-white dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-white border border-slate-300 dark:border-slate-700 text-base font-medium py-3 px-8 rounded-xl transition-all flex items-center gap-2"
-            >
-              <Volume2 className="w-5 h-5 text-[#D52B1E]" />
-              Écouter le Lexique
-            </a>
-          </div>
-
-          {/* Real Canadian Flag & Streak Indicator Strip */}
-          <div className="mt-14 max-w-3xl mx-auto bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-6 backdrop-blur-sm shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-8 rounded-md bg-[#D52B1E] flex items-center justify-center text-white text-lg font-bold shadow-inner border border-red-700 relative overflow-hidden">
-                <span className="text-xl">🍁</span>
-              </div>
-              <div className="text-left">
-                <div className="text-xs uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400">
-                  Norme Académique Canadienne
-                </div>
-                <div className="text-sm font-semibold text-slate-900 dark:text-white">
-                  Bilinguisme Fédéral &bull; Ottawa & Paris
-                </div>
-              </div>
-            </div>
-
-            <div className="h-8 w-px bg-slate-200 dark:bg-slate-800 hidden sm:block" />
-
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500">
-                <Flame className="w-5 h-5 animate-pulse" />
-              </div>
-              <div className="text-left">
-                <div className="text-xs uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400">
-                  Indicateur d&apos;Assiduité (Streak)
-                </div>
-                <div className="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-                  <span>Cycle 7-Jours Actif</span>
-                  <span className="text-xs bg-emerald-500/10 text-emerald-500 font-bold px-2 py-0.5 rounded-full border border-emerald-500/20">
-                    Sans XP Fictif
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <HeroDemo />
         </div>
       </section>
 
-      {/* Classical Immersion Lexicon Sanctuary */}
-      <section id="lexicon" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div>
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#D52B1E] mb-2">
-              <Globe2 className="w-4 h-4" />
-              Sanctuaire Philologique Trilingue
+      {/* Stats */}
+      <section className="border-y border-line/70 bg-surface/50">
+        <dl className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-8 text-center sm:px-6 md:grid-cols-4">
+          {[
+            [String(initialCourses.length), "Structured courses"],
+            [String(lessons), "Guided lessons"],
+            [String(initialVocabulary.length), "Lexicon words"],
+            ["A1–C2", "CEFR coverage"],
+          ].map(([v, l]) => (
+            <div key={l}>
+              <dt className="font-display text-3xl font-semibold">{v}</dt>
+              <dd className="mt-1 text-sm text-muted">{l}</dd>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
-              Vocabulaire Classique avec Prononciation & Traduction हिन्दी
-            </h2>
-            <p className="mt-2 text-slate-600 dark:text-slate-400 text-sm max-w-xl">
-              Chaque mot intègre sa phonétique IPA, son audio de synthèse vocale native, sa signification en anglais, son sens en{" "}
-              <span className="font-semibold text-slate-900 dark:text-white">हिन्दी (Devanagari)</span> et un exemple d&apos;usage contextuel.
-            </p>
-          </div>
+          ))}
+        </dl>
+      </section>
 
-          {/* Search & CEFR filter */}
-          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-            <input
-              type="text"
-              placeholder="Rechercher (Français, हिन्दी, English)..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#D52B1E] w-full sm:w-64"
-            />
-            <select
-              value={selectedCefr}
-              onChange={(e) => setSelectedCefr(e.target.value)}
-              className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#D52B1E]"
-            >
-              <option value="ALL">Tous les Niveaux CEFR</option>
-              <option value="B1">B1 Intermédiaire</option>
-              <option value="B2">B2 Avancé</option>
-              <option value="C1">C1 Autonome</option>
-              <option value="C2">C2 Maîtrise</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Vocabulary Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredWords.map((word) => (
+      {/* Method */}
+      <section id="method" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-24 sm:px-6">
+        <p className="text-sm font-medium text-accent">The method</p>
+        <h2 className="mt-3 max-w-2xl font-display text-4xl font-medium tracking-tight sm:text-5xl">Four habits that make French stick.</h2>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {method.map(({ icon: Icon, title, body }, i) => (
             <div
-              key={word.id}
-              className="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:border-[#D52B1E]/40 transition-all group flex flex-col justify-between"
+              key={title}
+              className="animate-rise rounded-2xl border border-line bg-surface p-6 transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-soft"
+              style={{ animationDelay: `${i * 70}ms` }}
             >
-              <div>
-                {/* Header: Word + IPA + Audio + CEFR Badge */}
-                <div className="flex items-start justify-between gap-3 mb-4">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-serif text-2xl font-bold text-slate-900 dark:text-white group-hover:text-[#D52B1E] transition-colors">
-                        {word.french_word}
-                      </h3>
-                      <button
-                        onClick={() => speakFrench(word.french_word)}
-                        className={`p-1.5 rounded-lg border transition-all ${
-                          activeSpeech === word.french_word
-                            ? "bg-[#D52B1E] text-white border-[#D52B1E] animate-pulse"
-                            : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-[#D52B1E] hover:text-white hover:border-[#D52B1E]"
-                        }`}
-                        title="Écouter la prononciation française"
-                      >
-                        <Volume2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                    <div className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-2">
-                      <span>{word.ipa_phonetic}</span>
-                      <span>&bull;</span>
-                      <span className="italic">{word.part_of_speech}</span>
-                    </div>
-                  </div>
-
-                  <span className="px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-red-100 dark:bg-red-950/80 text-[#D52B1E] border border-red-200 dark:border-red-900/60">
-                    {word.cefr_level}
-                  </span>
-                </div>
-
-                {/* Meanings */}
-                <div className="space-y-2.5 mb-5 pt-3 border-t border-slate-100 dark:border-slate-800/80">
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
-                      English Meaning
-                    </span>
-                    <p className="text-sm font-medium text-slate-800 dark:text-slate-200">
-                      {word.meaning_en}
-                    </p>
-                  </div>
-
-                  {/* Hindi Meaning in Devanagari */}
-                  <div className="bg-amber-500/5 dark:bg-amber-500/10 border border-amber-500/20 rounded-xl p-2.5">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 block mb-0.5">
-                      हिन्दी अर्थ (Hindi Translation)
-                    </span>
-                    <p className="text-sm font-semibold text-slate-900 dark:text-amber-100">
-                      {word.meaning_hi}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Practical Use Case */}
-                <div className="bg-slate-50 dark:bg-slate-850/60 border border-slate-200 dark:border-slate-800 rounded-xl p-3 mb-4">
-                  <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
-                    <Sparkles className="w-3 h-3 text-[#D52B1E]" />
-                    <span>Usage Contextuel & Pratique</span>
-                  </div>
-                  <p className="text-xs text-slate-700 dark:text-slate-300 italic">
-                    &ldquo;{word.use_case}&rdquo;
-                  </p>
-                </div>
-
-                {/* Example sentence */}
-                <div className="text-xs text-slate-600 dark:text-slate-400">
-                  <span className="font-semibold text-slate-800 dark:text-slate-200">Exemple : </span>
-                  <span>{word.example_sentence}</span>
-                </div>
-              </div>
-
-              {/* Card Footer Tag */}
-              <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
-                <span>{word.category}</span>
-                <span className="text-[#D52B1E] font-medium flex items-center gap-1">
-                  Immersion 🍁
-                </span>
-              </div>
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent/10 text-accent"><Icon className="h-5 w-5" /></span>
+              <h3 className="mt-5 text-lg font-semibold">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{body}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* CEFR Syllabi Overview Section */}
-      <section id="syllabi" className="py-16 bg-white dark:bg-[#070a12] border-t border-slate-200 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#D52B1E] block mb-2">
-              Cadre Européen Commun de Référence
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
-              Syllabi Officiels du Niveau A1 au C2
-            </h2>
-            <p className="mt-3 text-slate-600 dark:text-slate-400 text-sm">
-              Chaque cours est structuré avec des leçons bilingues immersives, des exercices acoustiques interactifs et un suivi d&apos;assiduité rigoureux.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {initialCourses.map((course) => (
-              <div
-                key={course.id}
-                className="bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-[#D52B1E]/50 transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 rounded-xl text-sm font-bold bg-[#D52B1E] text-white">
-                      {course.cefr_level}
-                    </span>
-                    <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
-                      {course.lessons.length} Leçons Immersion
-                    </span>
-                  </div>
-                  <h3 className="font-serif text-xl font-bold text-slate-900 dark:text-white mb-2">
-                    {course.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                    {course.description}
-                  </p>
-                  <ul className="space-y-2 mb-6">
-                    {course.lessons.slice(0, 3).map((l, i) => (
-                      <li key={i} className="text-xs text-slate-700 dark:text-slate-300 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#D52B1E]" />
-                        <span className="font-medium">{l.title}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
+      {/* Levels */}
+      <section id="levels" className="scroll-mt-20 border-y border-line/70 bg-surface/40">
+        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+          <p className="text-sm font-medium text-accent">Your path</p>
+          <h2 className="mt-3 max-w-2xl font-display text-4xl font-medium tracking-tight sm:text-5xl">From bonjour to Balzac.</h2>
+          <ol className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {initialCourses.map((c) => (
+              <li key={c.id}>
                 <Link
-                  href={isSignedIn ? "/dashboard" : "/apply"}
-                  className="w-full text-center text-xs font-semibold py-2.5 px-4 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-[#D52B1E] hover:text-white hover:border-[#D52B1E] transition-all flex items-center justify-center gap-1.5"
+                  href="/dashboard"
+                  className="group flex h-full flex-col rounded-2xl border border-line bg-surface p-6 transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-soft"
                 >
-                  Étudier ce Niveau
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-full bg-fg px-3 py-1 text-xs font-semibold text-bg">{c.cefr_level}</span>
+                    <span className="text-xs text-muted">{c.lessons.length} lessons</span>
+                  </div>
+                  <h3 className="mt-5 font-display text-xl font-semibold leading-snug">{c.title}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{c.description}</p>
+                  <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-accent">
+                    Explore <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                  </span>
                 </Link>
-              </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
-      {/* Autonomous Hermes API Section */}
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-200 dark:border-slate-800">
-        <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-2xl border border-slate-800">
-          <div className="relative z-10 max-w-3xl">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-emerald-400 mb-3">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              Hermes Autonomous Agent Ingestion API Active
-            </div>
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold mb-3">
-              API REST d&apos;Ingestion Quotidienne de Vocabulaire
-            </h3>
-            <p className="text-slate-300 text-sm leading-relaxed mb-6">
-              L&apos;agent autonome Hermes synchronise chaque jour de nouveaux termes classiques avec leurs phonétiques IPA, leurs sens en anglais et हिन्दी (Devanagari), ainsi que leurs cas d&apos;usage pratiques.
-            </p>
-            <div className="bg-black/60 rounded-xl p-4 font-mono text-xs text-slate-300 border border-slate-800 overflow-x-auto">
-              <p className="text-emerald-400"># Ingestion de nouveau mot via Hermes</p>
-              <p>POST /api/v1/vocabulary</p>
-              <p>Authorization: Bearer &lt;HERMES_API_KEY&gt;</p>
-              <p>Content-Type: application/json</p>
-              <p className="text-slate-400 mt-2">
-                &#123; &quot;french_word&quot;: &quot;...&quot;, &quot;ipa_phonetic&quot;: &quot;...&quot;, &quot;meaning_en&quot;: &quot;...&quot;, &quot;meaning_hi&quot;: &quot;...&quot;, &quot;use_case&quot;: &quot;...&quot; &#125;
-              </p>
-            </div>
-          </div>
+      {/* Lexicon */}
+      <section id="lexicon" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-24 sm:px-6">
+        <p className="text-sm font-medium text-accent">The lexicon</p>
+        <h2 className="mt-3 max-w-2xl font-display text-4xl font-medium tracking-tight sm:text-5xl">A living dictionary, with sound.</h2>
+        <p className="mt-4 max-w-xl text-muted">Search by French, English or Hindi. Tap the speaker to hear the word.</p>
+        <div className="mt-10"><LexiconPreview /></div>
+      </section>
+
+      {/* CTA */}
+      <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
+        <div className="relative overflow-hidden rounded-3xl border border-line bg-surface px-6 py-16 text-center sm:px-12">
+          <div className="ambient absolute inset-0" />
+          <h2 className="relative font-display text-4xl font-medium tracking-tight sm:text-5xl">Ten minutes a day is enough.</h2>
+          <p className="relative mx-auto mt-4 max-w-lg text-muted">Pick up where you left off on any device. Your streak, XP and flashcards are always waiting.</p>
+          <Link
+            href="/dashboard"
+            className="relative mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-accent px-7 text-sm font-medium text-accent-fg shadow-glow transition hover:brightness-110"
+          >
+            Begin your first lesson <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-slate-200 dark:border-slate-800 py-10 bg-slate-100 dark:bg-[#06080e] text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="text-lg">🍁</span>
-            <span>Académie de Français &bull; Sanctuaire d&apos;Immersion & Philologie &bull; 2026</span>
-          </div>
-          <div className="flex items-center gap-6">
-            <Link href="/sign-in" className="hover:text-slate-900 dark:hover:text-white transition-colors">
-              Connexion Savant
-            </Link>
-            <Link href="/admin" className="hover:text-slate-900 dark:hover:text-white transition-colors">
-              Console Faculté
-            </Link>
-            <a href="/api/v1/status" className="hover:text-slate-900 dark:hover:text-white transition-colors">
-              Statut API
-            </a>
-          </div>
+      <footer className="border-t border-line/70">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-8 text-sm text-muted sm:flex-row sm:px-6">
+          <p>© {new Date().getFullYear()} Académie de Français</p>
+          <p>Bonne continuation.</p>
         </div>
       </footer>
     </div>
