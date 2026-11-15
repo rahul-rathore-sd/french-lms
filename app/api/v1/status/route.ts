@@ -3,8 +3,8 @@ import { initialCourses, initialVocabulary, mockScholars } from "@/lib/data";
 
 export async function GET() {
   return NextResponse.json({
-    name: "Académie de Français - Classical LMS & Lexicon Sanctuary",
-    version: "2.0.0 (Next.js App Router)",
+    name: "Académie de Français - French learning platform",
+    version: "3.0.0",
     status: "operational",
     statistics: {
       total_courses: initialCourses.length,
