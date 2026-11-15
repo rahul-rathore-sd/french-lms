@@ -14,6 +14,11 @@ spaced-repetition flashcards and a lexicon with English and Hindi translations.
 - Admin console (`/admin`) to review applications, restricted to admins
 - Hermes ingestion API to add words automatically
 
+## Grammar and exams (Library)
+- 50+ grammar topics A1 → C1 with Hindi meaning, tables and quizzes (aligned with a progressive grammar syllabus)
+- Exams tab: TEF Canada, TCF Canada, DELF/DALF formats, NCLC score table, 0 → C1 roadmap, reading/listening practice, writing and speaking tasks
+- Content checks: `node --experimental-strip-types scripts/check-content.mjs`
+
 ## Getting started
 ```bash
 npm install

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import GrammarQuiz from "./GrammarQuiz";
 import { CheckCircle2, ChevronDown, Lightbulb, Volume2 } from "lucide-react";
 import { useSpeech } from "@/components/useSpeech";
 import { actions, useProgress } from "@/lib/progress";
@@ -31,6 +32,7 @@ export default function GrammarView({ topics }: { topics: GrammarTopic[] }) {
               <span className="rounded-full bg-fg px-2.5 py-1 text-xs font-semibold text-bg">{t.level}</span>
               <span className="min-w-0 flex-1">
                 <span className="block font-semibold leading-snug">{t.title}</span>
+                {progress.showHindi && t.title_hi && <span className="block text-sm text-accent">{t.title_hi}</span>}
                 <span className="mt-0.5 line-clamp-2 block text-sm text-muted">{t.summary}</span>
               </span>
               {done && <CheckCircle2 className="h-5 w-5 shrink-0 text-success" />}
@@ -42,6 +44,7 @@ export default function GrammarView({ topics }: { topics: GrammarTopic[] }) {
                 {t.rules.map((r, i) => (
                   <div key={i}>
                     <p className="font-medium leading-relaxed">{r.rule}</p>
+                    {progress.showHindi && r.rule_hi && <p className="mt-0.5 text-sm leading-relaxed text-accent">{r.rule_hi}</p>}
                     <ul className="mt-3 space-y-2">
                       {r.examples.map((e) => (
                         <li key={e.fr}>
@@ -52,6 +55,7 @@ export default function GrammarView({ topics }: { topics: GrammarTopic[] }) {
                             <span className="min-w-0">
                               <span className="block font-display text-lg">{e.fr}</span>
                               <span className="block text-sm text-muted">{e.en}</span>
+                              {progress.showHindi && e.hi && <span className="block text-sm text-accent">{e.hi}</span>}
                             </span>
                             <Volume2 className="h-4 w-4 shrink-0 text-muted" />
                           </button>
@@ -86,9 +90,16 @@ export default function GrammarView({ topics }: { topics: GrammarTopic[] }) {
                 <div className="rounded-2xl border border-gold/30 bg-gold/10 p-4">
                   <p className="flex items-center gap-2 text-sm font-semibold text-gold"><Lightbulb className="h-4 w-4" /> Tips</p>
                   <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-muted">
-                    {t.tips.map((tip) => <li key={tip}>{tip}</li>)}
+                    {t.tips.map((tip, i) => (
+                      <li key={tip}>
+                        {tip}
+                        {progress.showHindi && t.tips_hi?.[i] && <span className="block text-accent">{t.tips_hi[i]}</span>}
+                      </li>
+                    ))}
                   </ul>
                 </div>
+
+                {t.quiz && t.quiz.length > 0 && <GrammarQuiz questions={t.quiz} />}
 
                 <button
                   onClick={() => actions.completeItem(doneId, 10)}

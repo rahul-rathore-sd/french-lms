@@ -48,6 +48,7 @@ export interface TranslationPair {
 export interface GrammarExample {
   fr: string;
   en: string;
+  hi?: string;
 }
 
 export interface GrammarTable {
@@ -60,8 +61,13 @@ export interface GrammarTopic {
   slug: string;
   level: Level;
   title: string;
+  title_hi?: string;
   summary: string;
-  rules: { rule: string; examples: GrammarExample[] }[];
+  summary_hi?: string;
+  rules: { rule: string; rule_hi?: string; examples: GrammarExample[] }[];
   tables?: GrammarTable[];
   tips: string[];
+  tips_hi?: string[];
+  /** Self-check questions shown at the end of the topic. */
+  quiz?: Question[];
 }

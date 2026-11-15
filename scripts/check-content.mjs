@@ -2,7 +2,12 @@
 import { poems } from "../lib/library/poems.ts";
 import { literature } from "../lib/library/literature.ts";
 import { translationBank } from "../lib/library/translation.ts";
-import { grammar } from "../lib/library/grammar.ts";
+import { grammar as g1 } from "../lib/library/grammar.ts";
+import { grammarA } from "../lib/library/grammar-a.ts";
+import { grammarB1 } from "../lib/library/grammar-b.ts";
+import { grammarC } from "../lib/library/grammar-c.ts";
+import { practice } from "../lib/library/exams.ts";
+const grammar = [...g1, ...grammarA, ...grammarB1, ...grammarC];
 
 const problems = [];
 const slugs = new Set();
@@ -33,6 +38,8 @@ for (const g of grammar) {
   }
 }
 
+for (const g of grammar) for (const qu of g.quiz ?? []) if (qu.correct < 0 || qu.correct >= qu.options.length) problems.push(`${g.slug}: bad quiz index`);
+for (const e of practice) for (const qu of e.questions) if (qu.correct < 0 || qu.correct >= qu.options.length) problems.push(`${e.id}: bad exam index`);
 const byLevel = (arr) => Object.fromEntries(["A1", "A2", "B1", "B2", "C1"].map((l) => [l, arr.filter((x) => x.level === l).length]));
 console.log("poems", byLevel(poems));
 console.log("literature", byLevel(literature));

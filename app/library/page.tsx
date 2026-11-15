@@ -2,12 +2,13 @@
 
 import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { BookOpenText, CheckCircle2, Feather, Languages, ScrollText } from "lucide-react";
+import { BookOpenText, CheckCircle2, Feather, GraduationCap, Languages, ScrollText } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import MobileTabBar from "@/components/MobileTabBar";
 import TextReader from "@/components/library/TextReader";
 import TranslateDrill from "@/components/library/TranslateDrill";
 import GrammarView from "@/components/library/GrammarView";
+import ExamsView from "@/components/library/ExamsView";
 import { useProgress } from "@/lib/progress";
 import { LEVELS, Level, SECTIONS, Section, countByLevel, grammar, textsFor } from "@/lib/library";
 
@@ -16,6 +17,7 @@ const ICONS: Record<Section, React.ComponentType<{ className?: string }>> = {
   literature: BookOpenText,
   translate: Languages,
   grammar: ScrollText,
+  exams: GraduationCap,
 };
 
 const isSection = (v: string | null): v is Section => SECTIONS.some((s) => s.id === v);
@@ -109,6 +111,8 @@ function Library() {
                   {level === "ALL" && <p className="mb-4 text-center text-sm text-muted">Showing A1. Pick a level above to change difficulty.</p>}
                   <TranslateDrill key={drillLevel} level={drillLevel} />
                 </>
+              ) : section === "exams" ? (
+                <ExamsView level={level} />
               ) : section === "grammar" ? (
                 <GrammarView key={level} topics={topics} />
               ) : texts.length === 0 ? (
