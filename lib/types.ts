@@ -1,5 +1,6 @@
 export interface QuizData {
   question: string;
+  question_en?: string;
   options: string[];
   correct_index: number;
   explanation: string;
@@ -11,6 +12,7 @@ export interface Lesson {
   order?: number;
   order_num: number;
   title: string;
+  title_en?: string;
   section_title?: string;
   duration_mins?: number;
   french_text?: string;
@@ -27,6 +29,7 @@ export interface Lesson {
 export interface Course {
   id: number;
   title: string;
+  title_en?: string;
   slug?: string;
   level?: "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
   cefr_level: "A1" | "A2" | "B1" | "B2" | "C1" | "C2";

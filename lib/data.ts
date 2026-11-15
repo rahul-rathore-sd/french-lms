@@ -1,4 +1,5 @@
 import { Course, Lesson, VocabularyWord, Scholar, AdmissionRequest } from "./types";
+import { coreVocabulary, extraLessons } from "./content-core";
 
 export type { Course, Lesson, VocabularyWord, Scholar, AdmissionRequest };
 
@@ -207,6 +208,7 @@ export const initialCourses: Course[] = [
   {
     id: 1,
     title: "A1: Fondements & Phonétique Acoustique",
+    title_en: "Foundations & Pronunciation",
     slug: "a1-fondements",
     level: "A1",
     cefr_level: "A1",
@@ -224,6 +226,7 @@ export const initialCourses: Course[] = [
         order: 1,
         order_num: 1,
         title: "Les Salutations et Présentations Canoniques",
+        title_en: "Greetings and Introductions",
         section_title: "Acoustics & Greetings",
         duration_mins: 15,
         french_text: "Bonjour ! Je m'appelle Alexandre. Je suis ravi de faire votre connaissance.",
@@ -236,6 +239,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 0,
         quiz: {
           question: "Comment répond-on poliment à une nouvelle présentation en français soigné ?",
+          question_en: "How do you politely respond when meeting someone new, in refined French?",
           options: ["Enchanté(e) de faire votre connaissance", "À plus tard", "Au revoir", "De rien"],
           correct_index: 0,
           explanation: "« Enchanté(e) de faire votre connaissance » est la formule de politesse canonique pour répondre lors d'une première rencontre.",
@@ -247,6 +251,7 @@ export const initialCourses: Course[] = [
         order: 2,
         order_num: 2,
         title: "Les Voyelles Nasales : Le Son [ɑ̃], [ɔ̃], [ɛ̃]",
+        title_en: "Nasal Vowels: [ɑ̃], [ɔ̃], [ɛ̃]",
         section_title: "Phonetic Mastery",
         duration_mins: 20,
         french_text: "Un bon vin blanc et un croissant chaud le matin.",
@@ -259,6 +264,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 0,
         quiz: {
           question: "Quel mot contient la voyelle nasale [ɔ̃] ?",
+          question_en: "Which word contains the nasal vowel [ɔ̃]?",
           options: ["Bon", "Pain", "Vin", "Blanc"],
           correct_index: 0,
           explanation: "« Bon » [bɔ̃] contient la voyelle nasale fermée arrière, tandis que pain/vin contiennent [ɛ̃] et blanc contient [ɑ̃].",
@@ -270,6 +276,7 @@ export const initialCourses: Course[] = [
         order: 3,
         order_num: 3,
         title: "La Liaison et l’Enchaînement Vocalique",
+        title_en: "Liaison and Smooth Linking",
         section_title: "Euphony & Flow",
         duration_mins: 18,
         french_text: "Les amis arrivent chez un vieil ami pour le dîner.",
@@ -282,6 +289,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 0,
         quiz: {
           question: "Dans quelle phrase la liaison en [z] est-elle obligatoire ?",
+          question_en: "In which phrase is the [z] liaison mandatory?",
           options: ["Les amis [le.z‿a.mi]", "Un chat", "Le livre", "Par hasard"],
           correct_index: 0,
           explanation: "Entre le déterminant pluriel et le nom débutant par une voyelle (« Les amis »), la liaison en [z] est obligatoire en français canonique.",
@@ -292,6 +300,7 @@ export const initialCourses: Course[] = [
   {
     id: 2,
     title: "A2: Vie Quotidienne & Narration au Passé",
+    title_en: "Everyday Life & Telling Stories",
     slug: "a2-narration",
     level: "A2",
     cefr_level: "A2",
@@ -309,6 +318,7 @@ export const initialCourses: Course[] = [
         order: 1,
         order_num: 1,
         title: "Le Passé Composé vs l’Imparfait : L’Art du Récit",
+        title_en: "Passé Composé vs Imparfait: The Art of Storytelling",
         section_title: "Past Narrative",
         duration_mins: 25,
         french_text: "Il pleuvait sur les quais de la Seine quand soudain le bateau-mouche a fait son apparition.",
@@ -321,6 +331,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 0,
         quiz: {
           question: "Dans quel cas utilise-t-on l'imparfait dans un récit historique ou littéraire ?",
+          question_en: "When do you use the imparfait in a historical or literary narrative?",
           options: ["Pour planter le décor et décrire un état continu", "Pour une action ponctuelle et soudaine", "Pour ordonner une consigne", "Pour le futur"],
           correct_index: 0,
           explanation: "L'imparfait sert à peindre le tableau d'arrière-plan (durée, décor, état), tandis que le passé composé exprime la rupture événementielle.",
@@ -332,6 +343,7 @@ export const initialCourses: Course[] = [
         order: 2,
         order_num: 2,
         title: "Commander avec Élégance au Bistro Parisien",
+        title_en: "Ordering Elegantly at a Paris Bistro",
         section_title: "Bistro Etiquette",
         duration_mins: 20,
         french_text: "Garçon, je prendrais bien le menu du jour avec un verre de Bourgogne, s'il vous plaît.",
@@ -344,6 +356,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 0,
         quiz: {
           question: "Quelle forme verbale marque la politesse la plus élégante pour commander ?",
+          question_en: "Which verb form is the most elegantly polite way to order?",
           options: ["Le conditionnel présent (« Je prendrais »)", "Le présent indicatif (« Je veux »)", "L'impératif (« Donnez »)", "Le subjonctif"],
           correct_index: 0,
           explanation: "Le conditionnel de politesse (« je prendrais », « je voudrais ») adoucit la demande et constitue la marque d'un registre soigné.",
@@ -355,6 +368,7 @@ export const initialCourses: Course[] = [
         order: 3,
         order_num: 3,
         title: "Donner son Opinion et Nuancer son Propos",
+        title_en: "Giving Opinions and Adding Nuance",
         section_title: "Debate Foundations",
         duration_mins: 22,
         french_text: "À mon humble avis, cette exposition impressionniste capture l'essence même de la lumière normande.",
@@ -367,6 +381,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 0,
         quiz: {
           question: "Quelle locution permet d'introduire un avis personnel avec modestie académique ?",
+          question_en: "Which expression introduces a personal opinion with scholarly modesty?",
           options: ["À mon humble avis", "C'est une certitude", "Tout le monde sait que", "Évidemment"],
           correct_index: 0,
           explanation: "« À mon humble avis » introduit une thèse avec la retenue et la courtoisie caractéristiques de la rhétorique classique.",
@@ -377,6 +392,7 @@ export const initialCourses: Course[] = [
   {
     id: 3,
     title: "B1: Argumentation & Débat d'Idées",
+    title_en: "Arguing & Debating Ideas",
     slug: "b1-argumentation",
     level: "B1",
     cefr_level: "B1",
@@ -394,6 +410,7 @@ export const initialCourses: Course[] = [
         order: 1,
         order_num: 1,
         title: "Le Subjonctif Présent : L’Expression du Doute et de la Nécessité",
+        title_en: "The Present Subjunctive: Doubt and Necessity",
         section_title: "Subjunctive Precision",
         duration_mins: 30,
         french_text: "Il est impératif que nous prenions le temps de peser chaque argument avant de conclure.",
@@ -406,6 +423,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 0,
         quiz: {
           question: "Quelle proposition déclenche obligatoirement le mode subjonctif ?",
+          question_en: "Which clause necessarily triggers the subjunctive mood?",
           options: ["Il est nécessaire que...", "Je constate que...", "Il est clair que...", "On sait que..."],
           correct_index: 0,
           explanation: "« Il est nécessaire que » exprime l'obligation ou la volonté, ce qui exige le subjonctif (« que nous prenions »).",
@@ -417,6 +435,7 @@ export const initialCourses: Course[] = [
         order: 2,
         order_num: 2,
         title: "Connecteurs Logiques et Rhétorique Française",
+        title_en: "Logical Connectors and French Rhetoric",
         section_title: "Rhetorical Connectors",
         duration_mins: 28,
         french_text: "Certes, les dépenses sont considérables ; néanmoins, les retombées culturelles à long terme seront inestimables.",
@@ -429,6 +448,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 0,
         quiz: {
           question: "Quel connecteur logique exprime une concession élégante suivie d'une antithèse ?",
+          question_en: "Which connector expresses an elegant concession followed by a contrast?",
           options: ["Certes... néanmoins...", "Par conséquent... donc...", "En outre... de plus...", "Car... parce que..."],
           correct_index: 0,
           explanation: "« Certes... néanmoins » est la structure par excellence de la concession équilibrée en dissertation française.",
@@ -440,6 +460,7 @@ export const initialCourses: Course[] = [
         order: 3,
         order_num: 3,
         title: "Analyser une Page Choisie de Victor Hugo",
+        title_en: "Analysing a Page by Victor Hugo",
         section_title: "Literary Analysis",
         duration_mins: 35,
         french_text: "« Ouvrir une école, c'est fermer une prison. » — Victor Hugo.",
@@ -452,6 +473,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 0,
         quiz: {
           question: "Quelle figure de style caractérise cette célèbre maxime de Victor Hugo ?",
+          question_en: "Which figure of speech characterises this famous maxim by Victor Hugo?",
           options: ["L'antithèse", "L'hyperbole", "La litote", "L'onomatopée"],
           correct_index: 0,
           explanation: "Hugo oppose deux réalités contradictoires (« école » vs « prison », « ouvrir » vs « fermer ») pour créer un contraste percutant : une antithèse.",
@@ -462,6 +484,7 @@ export const initialCourses: Course[] = [
   {
     id: 4,
     title: "B2: Éloquence, Littérature & Société",
+    title_en: "Eloquence, Literature & Society",
     slug: "b2-eloquence",
     level: "B2",
     cefr_level: "B2",
@@ -479,6 +502,7 @@ export const initialCourses: Course[] = [
         order: 1,
         order_num: 1,
         title: "La Madeleine de Proust : La Mémoire Involontaire",
+        title_en: "Proust's Madeleine: Involuntary Memory",
         section_title: "Proustian Immersion",
         duration_mins: 40,
         french_text: "Mais à l'instant même où la gorgée mêlée des miettes du gâteau toucha mon palais, je tressaillis, attentif à ce qui se passait d'extraordinaire en moi.",
@@ -491,6 +515,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 0,
         quiz: {
           question: "Quel concept philosophique et littéraire majeur Marcel Proust illustre-t-il dans cet extrait ?",
+          question_en: "Which major philosophical and literary concept does Proust illustrate in this passage?",
           options: ["La mémoire involontaire", "L'existentialisme", "Le réalisme social", "Le surréalisme"],
           correct_index: 0,
           explanation: "La réminiscence sensorielle d'un souvenir d'enfance déclenchée spontanément par le goût de la madeleine trempée dans le thé définit la mémoire involontaire.",
@@ -502,6 +527,7 @@ export const initialCourses: Course[] = [
         order: 2,
         order_num: 2,
         title: "L'Absurde et la Clarté chez Albert Camus",
+        title_en: "Camus: The Absurd and Clarity",
         section_title: "Existential Clarity",
         duration_mins: 35,
         french_text: "Au milieu de l'hiver, j'ai découvert en moi un invincible été.",
@@ -514,6 +540,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 0,
         quiz: {
           question: "De quel essai d'Albert Camus est tirée cette célèbre réflexion sur la résilience ?",
+          question_en: "Which essay by Albert Camus does this famous reflection on resilience come from?",
           options: ["Retour à Tipasa", "L'Étranger", "La Peste", "Le Mythe de Sisyphe"],
           correct_index: 0,
           explanation: "Cette phrase poétique et stoïcienne est extraite de « Retour à Tipasa » (1952), recueil « L'Été ».",
@@ -525,6 +552,7 @@ export const initialCourses: Course[] = [
         order: 3,
         order_num: 3,
         title: "Le Protocole Épistolaire de Haute Administration",
+        title_en: "Formal Letters and Administrative Protocol",
         section_title: "Administrative Protocol",
         duration_mins: 30,
         french_text: "Je vous prie d'agréer, Monsieur le Ministre, l'expression de ma très haute considération.",
@@ -537,6 +565,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 0,
         quiz: {
           question: "Quelle formule finale sied à une correspondance adressée à un dignitaire d'État ?",
+          question_en: "Which closing formula suits a letter addressed to a state dignitary?",
           options: ["L'expression de ma très haute considération", "Mes salutations cordiales", "Bien à vous", "À bientôt"],
           correct_index: 0,
           explanation: "« L'expression de ma très haute considération » est la formule protocolaire consacrée dans la diplomatie et la haute fonction publique.",
@@ -547,6 +576,7 @@ export const initialCourses: Course[] = [
   {
     id: 5,
     title: "C1: Maîtrise Stylistique, Subjonctif Imparfait & Philologie",
+    title_en: "Style Mastery & Classical French",
     slug: "c1-maitrise",
     level: "C1",
     cefr_level: "C1",
@@ -564,6 +594,7 @@ export const initialCourses: Course[] = [
         order: 1,
         order_num: 1,
         title: "Le Subjonctif Imparfait dans le Style Classique",
+        title_en: "The Imperfect Subjunctive in Classical Style",
         section_title: "Classical Subjunctive",
         duration_mins: 45,
         french_text: "Il eût fallu que nous sussions la vérité avant qu'il ne fût trop tard pour agir avec équité.",
@@ -576,6 +607,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 0,
         quiz: {
           question: "Quelle est la valeur stylistique du subjonctif imparfait dans un texte contemporain soigné ?",
+          question_en: "What is the stylistic value of the imperfect subjunctive in refined contemporary writing?",
           options: ["Une recherche d'harmonie littéraire classique et de concordance des temps rigoureuse", "Une faute de grammaire obsolète", "Une forme réservée aux dialogues oraux", "Un néologisme"],
           correct_index: 0,
           explanation: "Le subjonctif imparfait relève du registre le plus soutenu de la langue française écrite, attestant d'une maîtrise philologique approfondie.",
@@ -587,6 +619,7 @@ export const initialCourses: Course[] = [
         order: 2,
         order_num: 2,
         title: "La Rythmique de la Phrase Complexe chez Flaubert",
+        title_en: "Flaubert's Rhythm: The Complex Sentence",
         section_title: "Flaubertian Cadence",
         duration_mins: 45,
         french_text: "Il voyagea. Il connut la mélancolie des paquebots, les froids réveils sous la tente, l'étourdissement des paysages et des ruines...",
@@ -599,6 +632,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 0,
         quiz: {
           question: "Quelle technique stylistique Flaubert emploie-t-il dans cette célèbre clausule de L'Éducation sentimentale ?",
+          question_en: "Which stylistic technique does Flaubert use in this famous closing line of L'Éducation sentimentale?",
           options: ["L'asindète ternaire au passé simple créant un effet de défilement mélancolique", "La métaphore filée guerrière", "L'anaphore burlesque", "La rime embrassée"],
           correct_index: 0,
           explanation: "Flaubert juxtapose les propositions sans conjonctions superflues (asindète) pour traduire l'usure du temps et le désenchantement d'une vie entière.",
@@ -609,7 +643,8 @@ export const initialCourses: Course[] = [
         course_id: 5,
         order: 3,
         order_num: 3,
-        title: "Rhétorique Juridique et Rdaction d'un Mémoire Magistral",
+        title: "Rhétorique Juridique et Rédaction d'un Mémoire Magistral",
+        title_en: "Legal Rhetoric and Writing a Master's Thesis",
         section_title: "Master Thesis Composition",
         duration_mins: 50,
         french_text: "Attendu que la préservation du patrimoine linguistique engage l'avenir même de la pensée critique...",
@@ -622,6 +657,7 @@ export const initialCourses: Course[] = [
         quiz_correct_index: 2,
         quiz: {
           question: "Quel mot ouvre traditionnellement chaque attendu des arrêts de la haute juridiction française ?",
+          question_en: "Which word traditionally opens each recital in rulings of France's highest court?",
           options: ["Considérant que...", "Puisque...", "Attendu que...", "Vu que..."],
           correct_index: 2,
           explanation: "« Attendu que » est la formule consacrée ouvrant les attendus de principe de la Cour de cassation et de la jurisprudence classique française.",
@@ -719,6 +755,17 @@ export const mockScholars: Scholar[] = [
 ];
 
 // Aliases for compatibility
+// Merge the core A1–B1 curriculum into the base content.
+initialVocabulary.push(...coreVocabulary);
+for (const l of extraLessons) {
+  const course = initialCourses.find((c) => c.id === l.course_id);
+  if (course) course.lessons.push(l);
+}
+for (const c of initialCourses) {
+  c.lessons.sort((a, b) => a.order_num - b.order_num);
+  c.lessons_count = c.lessons.length;
+}
+
 export const INITIAL_VOCABULARY = initialVocabulary;
 export const INITIAL_COURSES = initialCourses;
 export const INITIAL_SCHOLARS = mockScholars;

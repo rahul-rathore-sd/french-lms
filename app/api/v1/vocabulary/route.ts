@@ -88,7 +88,7 @@ export async function POST(req: Request) {
     );
 
     const newWord: VocabularyWord = {
-      id: existingIndex >= 0 ? lexiconMemory[existingIndex].id : lexiconMemory.length + 1,
+      id: existingIndex >= 0 ? lexiconMemory[existingIndex].id : Math.max(0, ...lexiconMemory.map((w) => w.id)) + 1,
       french_word,
       ipa_phonetic: ipa_phonetic || "/.../",
       part_of_speech: part_of_speech || "nom",
