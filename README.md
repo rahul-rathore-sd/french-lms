@@ -47,3 +47,12 @@ which is fine for local development.
 On Render: create a **PostgreSQL** instance, copy its **Internal Database URL** and add it to the
 web service as `DATABASE_URL`. Learner progress (XP, streaks, flashcards) is stored in the
 learner's browser, not in the database.
+
+## Deploying on Render
+This repo includes a `Dockerfile` (Next.js standalone build), so a Render **Docker** web service works out of the box.
+
+1. Web Service, Runtime **Docker**, branch `main`, auto-deploy on.
+2. Add the environment variables listed above. `NEXT_PUBLIC_*` values are baked into the browser bundle at **build** time, so set them before the first deploy and trigger a new deploy if you change them.
+3. The container listens on `$PORT` (default 10000).
+
+If the dashboard shows an old version of the site, open the service **Events/Logs** in Render: a failed build keeps the last successful deploy online.

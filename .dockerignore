@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+.agents
+.cursorrules
+GEMINI.md
+mcp.json
+scripts
+README.md
