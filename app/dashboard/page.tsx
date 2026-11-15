@@ -67,8 +67,50 @@ function Dashboard() {
           </h1>
         </div>
 
-        {/* Stat row */}
-        <section className="mt-5 grid grid-cols-2 gap-2.5 sm:mt-8 sm:gap-3 lg:grid-cols-4" aria-label="Your progress">
+        {/* Phones: one compact summary card instead of four tall cards */}
+        {tab === "learn" && (
+          <section className="mt-4 space-y-2 sm:hidden" aria-label="Your progress">
+            <div className="grid grid-cols-3 divide-x divide-line rounded-2xl border border-line bg-surface py-3">
+              <div className="px-2 text-center">
+                <Flame className={`mx-auto h-4 w-4 ${streak ? "text-orange-500" : "text-muted"}`} />
+                <p className="mt-1 font-display text-xl font-semibold leading-none">{streak}</p>
+                <p className="mt-1 text-[11px] text-muted">day streak</p>
+              </div>
+              <div className="px-2 text-center">
+                <Sparkles className="mx-auto h-4 w-4 text-gold" />
+                <p className="mt-1 font-display text-xl font-semibold leading-none">{progress.xp}</p>
+                <p className="mt-1 text-[11px] text-muted">XP · Lv {level}</p>
+              </div>
+              <button
+                type="button"
+                aria-label={`Daily goal ${todayXp} of ${progress.dailyGoal} XP. Tap to change`}
+                onClick={() => {
+                  const goals = [15, 30, 50, 80];
+                  actions.setDailyGoal(goals[(goals.indexOf(progress.dailyGoal) + 1) % goals.length]);
+                }}
+                className="flex flex-col items-center px-2"
+              >
+                <ProgressRing value={goalPct} size={30} stroke={4}>
+                  {goalPct >= 1 ? <Check className="h-3 w-3 text-success" /> : null}
+                </ProgressRing>
+                <p className="mt-1 text-[11px] leading-tight text-muted">{todayXp}/{progress.dailyGoal} goal</p>
+              </button>
+            </div>
+            <Link
+              href="/practice"
+              className="flex h-12 items-center justify-between rounded-2xl border border-accent/40 bg-accent/10 px-4 text-sm"
+            >
+              <span className="flex items-center gap-2">
+                <Layers className="h-4 w-4 text-accent" />
+                <span><b>{dueCount + Math.min(newCount, 10)}</b> flashcards to review</span>
+              </span>
+              <ArrowRight className="h-4 w-4 text-accent" />
+            </Link>
+          </section>
+        )}
+
+        {/* Stat row (tablet and desktop) */}
+        <section className="mt-8 hidden gap-3 sm:grid sm:grid-cols-2 lg:grid-cols-4" aria-label="Your progress">
           <Stat label="Day streak" icon={<Flame className={`h-5 w-5 ${streak ? "text-orange-500" : "text-muted"}`} />}>
             <span className="font-display text-2xl font-semibold sm:text-3xl">{streak}</span>
             <span className="ml-1 text-sm text-muted">{streak === 1 ? "day" : "days"}</span>
@@ -137,7 +179,7 @@ function Dashboard() {
           <p className="hidden text-sm text-muted sm:block">{done} of {totalLessons} lessons completed</p>
         </div>
 
-        <div className="mt-8">{tab === "learn" ? <LearnTab /> : <LexiconTab />}</div>
+        <div className="mt-5 sm:mt-8">{tab === "learn" ? <LearnTab /> : <LexiconTab />}</div>
       </main>
       <MobileTabBar />
     </div>
@@ -186,7 +228,7 @@ function LearnTab() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
-      <aside className="order-2 space-y-2 lg:order-1" aria-label="Courses">
+      <aside className="order-2 hidden space-y-2 lg:order-1 lg:block" aria-label="Courses">
         {initialCourses.map((c) => {
           const finished = c.lessons.filter((l) => progress.completedLessons.includes(l.id)).length;
           const open = c.id === courseId;
