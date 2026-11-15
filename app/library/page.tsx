@@ -2,12 +2,13 @@
 
 import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { BookOpenText, CheckCircle2, Feather, GraduationCap, Languages, ScrollText } from "lucide-react";
+import { BookOpenText, CheckCircle2, Feather, GraduationCap, Languages, Library as LibraryIcon, ScrollText } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import MobileTabBar from "@/components/MobileTabBar";
 import TextReader from "@/components/library/TextReader";
 import TranslateDrill from "@/components/library/TranslateDrill";
 import GrammarView from "@/components/library/GrammarView";
+import ResourcesView from "@/components/library/ResourcesView";
 import ExamsView from "@/components/library/ExamsView";
 import { useProgress } from "@/lib/progress";
 import { LEVELS, Level, SECTIONS, Section, countByLevel, grammar, textsFor } from "@/lib/library";
@@ -18,6 +19,7 @@ const ICONS: Record<Section, React.ComponentType<{ className?: string }>> = {
   translate: Languages,
   grammar: ScrollText,
   exams: GraduationCap,
+  resources: LibraryIcon,
 };
 
 const isSection = (v: string | null): v is Section => SECTIONS.some((s) => s.id === v);
@@ -84,7 +86,7 @@ function Library() {
             </div>
 
             {/* Levels */}
-            <div className="-mx-4 mt-3 overflow-x-auto px-4 sm:mx-0 sm:px-0" role="tablist" aria-label="Level">
+            {section !== "resources" && <div className="-mx-4 mt-3 overflow-x-auto px-4 sm:mx-0 sm:px-0" role="tablist" aria-label="Level">
               <div className="flex min-w-max gap-1.5 sm:min-w-0 sm:flex-wrap">
                 {(["ALL", ...LEVELS] as const).map((l) => {
                   const active = l === level;
@@ -103,7 +105,7 @@ function Library() {
                   );
                 })}
               </div>
-            </div>
+            </div>}
 
             <div className="mt-8">
               {section === "translate" ? (
@@ -111,6 +113,8 @@ function Library() {
                   {level === "ALL" && <p className="mb-4 text-center text-sm text-muted">Showing A1. Pick a level above to change difficulty.</p>}
                   <TranslateDrill key={drillLevel} level={drillLevel} />
                 </>
+              ) : section === "resources" ? (
+                <ResourcesView />
               ) : section === "exams" ? (
                 <ExamsView level={level} />
               ) : section === "grammar" ? (

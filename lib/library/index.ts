@@ -22,7 +22,7 @@ export const grammar: GrammarTopic[] = [
 
 export { poems, literature, translationBank, examGuides, nclcTable, roadmap, practice, writingTasks, speakingTasks };
 
-export type Section = "poetry" | "literature" | "translate" | "grammar" | "exams";
+export type Section = "poetry" | "literature" | "translate" | "grammar" | "exams" | "resources";
 
 export const SECTIONS: { id: Section; label: string; blurb: string }[] = [
   { id: "poetry", label: "Poetry", blurb: "Songs, fables and verse from Ronsard to Baudelaire, with line-by-line translation." },
@@ -30,6 +30,7 @@ export const SECTIONS: { id: Section; label: string; blurb: string }[] = [
   { id: "translate", label: "Translate", blurb: "Build French sentences and decode them back to English, by level." },
   { id: "grammar", label: "Grammar", blurb: "Simple rules with Hindi meaning, examples, tables and quizzes: from zero to C1." },
   { id: "exams", label: "Exams", blurb: "TEF Canada, TCF Canada and DELF/DALF: formats, NCLC scores, practice and a roadmap beyond NCLC 7." },
+  { id: "resources", label: "Resources", blurb: "Your books with covers, plus the best free websites, podcasts and tools for learning French." },
 ];
 
 export const textsFor = (section: Section): TextItem[] =>
@@ -45,6 +46,8 @@ export const countByLevel = (section: Section, level: Level): number => {
       return translationBank.filter((t) => t.level === level).length;
     case "grammar":
       return grammar.filter((t) => t.level === level).length;
+    case "resources":
+      return 0;
     case "exams":
       return practice.filter((t) => t.level === level).length + writingTasks.filter((t) => t.level === level).length + speakingTasks.filter((t) => t.level === level).length;
   }
