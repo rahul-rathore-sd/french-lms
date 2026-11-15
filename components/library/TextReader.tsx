@@ -79,7 +79,7 @@ export default function TextReader({ item, onBack }: { item: TextItem; onBack: (
         {item.passages.map((p, i) => (
           <section key={i} className="rounded-3xl border border-line bg-surface p-5 sm:p-7">
             <div className="flex items-start justify-between gap-3">
-              <p className={`whitespace-pre-line font-display leading-relaxed ${isPoem ? "text-xl sm:text-2xl" : "text-lg sm:text-xl"}`}>{p.fr}</p>
+              <p className={`whitespace-pre-line font-display leading-relaxed ${isPoem ? "text-[1.05rem] sm:text-2xl" : "text-lg sm:text-xl"}`}>{p.fr}</p>
               <button
                 onClick={() => speak(p.fr, 0.8)}
                 aria-label="Listen to this passage"

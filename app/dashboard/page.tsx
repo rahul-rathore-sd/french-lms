@@ -53,37 +53,37 @@ function Dashboard() {
 
   const setTab = (t: "learn" | "lexicon") => router.replace(t === "learn" ? "/dashboard" : "/dashboard?tab=lexicon", { scroll: false });
 
-  const name = user?.firstName ?? "there";
+  const name = user?.firstName ?? null;
 
   return (
     <div className="min-h-screen">
       <SiteHeader />
-      <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
         {/* Greeting */}
         <div className="animate-rise">
           <p className="text-sm text-muted">{greeting()}</p>
-          <h1 className="mt-1 font-display text-4xl font-medium tracking-tight sm:text-5xl">
-            Bonjour, {name}.
+          <h1 className="mt-1 font-display text-3xl font-medium tracking-tight sm:text-5xl">
+            {name ? `Bonjour, ${name}.` : "Bonjour !"}
           </h1>
         </div>
 
         {/* Stat row */}
-        <section className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="Your progress">
+        <section className="mt-5 grid grid-cols-2 gap-2.5 sm:mt-8 sm:gap-3 lg:grid-cols-4" aria-label="Your progress">
           <Stat label="Day streak" icon={<Flame className={`h-5 w-5 ${streak ? "text-orange-500" : "text-muted"}`} />}>
-            <span className="font-display text-3xl font-semibold">{streak}</span>
+            <span className="font-display text-2xl font-semibold sm:text-3xl">{streak}</span>
             <span className="ml-1 text-sm text-muted">{streak === 1 ? "day" : "days"}</span>
           </Stat>
 
           <Stat label={`Level ${level}`} icon={<Sparkles className="h-5 w-5 text-gold" />}>
-            <span className="font-display text-3xl font-semibold">{progress.xp}</span>
+            <span className="font-display text-2xl font-semibold sm:text-3xl">{progress.xp}</span>
             <span className="ml-1 text-sm text-muted">XP</span>
             <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-raised">
               <div className="h-full rounded-full bg-gold transition-all duration-700" style={{ width: `${(into / needed) * 100}%` }} />
             </div>
           </Stat>
 
-          <div className="flex items-center gap-4 rounded-2xl border border-line bg-surface p-5">
-            <ProgressRing value={goalPct} size={64}>
+          <div className="flex flex-col items-start gap-2 rounded-2xl border border-line bg-surface p-4 sm:flex-row sm:items-center sm:gap-4 sm:p-5">
+            <ProgressRing value={goalPct} size={52}>
               {goalPct >= 1 ? <Check className="h-5 w-5 text-success" /> : `${Math.round(goalPct * 100)}%`}
             </ProgressRing>
             <div>
@@ -106,11 +106,11 @@ function Dashboard() {
 
           <Link
             href="/practice"
-            className="group flex items-center justify-between rounded-2xl border border-accent/40 bg-accent/10 p-5 transition hover:bg-accent/15"
+            className="group flex items-center justify-between gap-2 rounded-2xl border border-accent/40 bg-accent/10 p-4 transition hover:bg-accent/15 sm:p-5"
           >
             <div>
               <p className="flex items-center gap-2 text-sm text-muted"><Layers className="h-4 w-4" /> Flashcards</p>
-              <p className="mt-1 font-display text-2xl font-semibold">
+              <p className="mt-1 font-display text-xl font-semibold sm:text-2xl">
                 {dueCount + Math.min(newCount, 10)} <span className="text-sm font-normal text-muted">to review</span>
               </p>
             </div>
@@ -119,7 +119,7 @@ function Dashboard() {
         </section>
 
         {/* Tabs */}
-        <div className="mt-10 flex items-center justify-between border-b border-line">
+        <div className="mt-7 flex items-center justify-between border-b border-line sm:mt-10">
           <div className="flex gap-1" role="tablist">
             {(["learn", "lexicon"] as const).map((t) => (
               <button
@@ -151,8 +151,8 @@ function greeting() {
 
 function Stat({ label, icon, children }: { label: string; icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-line bg-surface p-5">
-      <div className="mb-2 flex items-center gap-2 text-sm text-muted">{icon}{label}</div>
+    <div className="rounded-2xl border border-line bg-surface p-4 sm:p-5">
+      <div className="mb-1.5 flex items-center gap-2 text-sm text-muted sm:mb-2">{icon}{label}</div>
       {children}
     </div>
   );
@@ -233,6 +233,31 @@ function LearnTab() {
       </aside>
 
       <div className="order-1 min-w-0 lg:order-2">
+        {/* Phones: quick lesson picker above the reader (the full list sits below). */}
+        <label className="mb-4 block lg:hidden">
+          <span className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-muted">Lesson</span>
+          <select
+            value={lesson.id}
+            onChange={(e) => {
+              const id = Number(e.target.value);
+              const c = initialCourses.find((x) => x.lessons.some((l) => l.id === id));
+              const l = c?.lessons.find((x) => x.id === id);
+              if (c && l) openLesson(c, l);
+            }}
+            className="h-12 w-full rounded-xl border border-line bg-surface px-3 text-base outline-none focus:border-accent"
+          >
+            {initialCourses.map((c) => (
+              <optgroup key={c.id} label={`${c.cefr_level} · ${c.title_en ?? c.title}`}>
+                {c.lessons.map((l) => (
+                  <option key={l.id} value={l.id}>
+                    {progress.completedLessons.includes(l.id) ? "✓ " : ""}
+                    {l.order_num}. {lessonTitle(l)}
+                  </option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
+        </label>
         <LessonReader
           key={lesson.id}
           course={course}

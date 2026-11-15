@@ -141,7 +141,7 @@ export default function PracticePage() {
                   >
                     <Volume2 className="h-5 w-5" />
                   </button>
-                  <p className="absolute bottom-5 text-xs text-muted">Tap or press Space to reveal</p>
+                  <p className="absolute bottom-5 text-xs text-muted">Tap to reveal</p>
                 </div>
 
                 {/* Back */}
@@ -178,7 +178,7 @@ export default function PracticePage() {
                 </button>
               ))}
             </div>
-            <p className="mt-4 text-center text-xs text-muted">Shortcuts: Space flip · 1–4 rate · P pronounce</p>
+            <p className="mt-4 hidden text-center text-xs text-muted md:block">Shortcuts: Space flip · 1–4 rate · P pronounce</p>
           </>
         )}
       </main>
