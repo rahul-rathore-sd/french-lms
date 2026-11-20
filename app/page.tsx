@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { ArrowRight, Headphones, BookOpenText, Repeat2, TrendingUp, Check, Feather, Languages, ScrollText } from "lucide-react";
+import { ArrowRight, Headphones, BookOpen, BookOpenText, Repeat2, TrendingUp, Check, Feather, Languages, ScrollText } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import HeroDemo from "@/components/HeroDemo";
 import LexiconPreview from "@/components/LexiconPreview";
+import LatestPosts from "@/components/LatestPosts";
 import { initialCourses, initialVocabulary } from "@/lib/data";
 
 const method = [
@@ -40,7 +41,7 @@ export default function HomePage() {
                 Start learning <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
               </Link>
               <Link href="/apply" className="inline-flex h-12 items-center rounded-full border border-line px-6 text-sm font-medium transition hover:border-accent/50">
-                Request an invitation
+                Talk to us
               </Link>
             </div>
             <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
@@ -93,10 +94,11 @@ export default function HomePage() {
       <section id="library" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
         <p className="text-sm font-medium text-accent">The library</p>
         <h2 className="mt-3 max-w-2xl font-display text-3xl font-medium tracking-tight sm:text-5xl">Learn from real French, level by level.</h2>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
             { icon: Feather, title: "Poetry", body: "From Frère Jacques to Baudelaire, with translation and audio.", href: "/library?s=poetry" },
             { icon: BookOpenText, title: "Literature", body: "Graded stories, then Voltaire, Flaubert and Maupassant.", href: "/library?s=literature" },
+            { icon: BookOpen, title: "Books", body: "Grammar books, manuals, and PDFs with covers and bilingual blurbs.", href: "/books" },
             { icon: Languages, title: "Translate", body: "Build sentences word by word and decode French to English.", href: "/library?s=translate" },
             { icon: ScrollText, title: "Grammar", body: "Clear rules, examples and verb tables from A1 to C1.", href: "/library?s=grammar" },
           ].map(({ icon: Icon, title, body, href }) => (
@@ -145,6 +147,8 @@ export default function HomePage() {
         <p className="mt-4 max-w-xl text-muted">Search by French, English or Hindi. Tap the speaker to hear the word.</p>
         <div className="mt-10"><LexiconPreview /></div>
       </section>
+
+      <LatestPosts />
 
       {/* CTA */}
       <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">

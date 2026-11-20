@@ -1,27 +1,14 @@
 import type { NextConfig } from "next";
 
-const securityHeaders = [
-  { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "X-Frame-Options", value: "SAMEORIGIN" },
-  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  { key: "Permissions-Policy", value: "camera=(), geolocation=(), microphone=(self)" },
-];
-
+// Static export: `next build` writes plain HTML/JS/CSS to ./out, which is uploaded
+// to shared hosting together with the PHP API in ./server (see build-deploy.py).
 const nextConfig: NextConfig = {
-  output: "standalone",
+  output: "export",
+  trailingSlash: true,
   reactStrictMode: true,
   poweredByHeader: false,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
-  },
-  async redirects() {
-    return [
-      { source: "/register", destination: "/apply", permanent: false },
-    ];
-  },
+  images: { unoptimized: true },
+  eslint: { ignoreDuringBuilds: true },
 };
 
 export default nextConfig;

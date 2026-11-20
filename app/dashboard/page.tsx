@@ -3,7 +3,6 @@
 import { Suspense, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useUser } from "@clerk/nextjs";
 import {
   ArrowRight,
   BookOpen,
@@ -37,7 +36,6 @@ function Dashboard() {
   const router = useRouter();
   const params = useSearchParams();
   const tab = params.get("tab") === "lexicon" ? "lexicon" : "learn";
-  const { user } = useUser();
   const progress = useProgress();
   const lexicon = useLexicon();
 
@@ -54,7 +52,7 @@ function Dashboard() {
 
   const setTab = (t: "learn" | "lexicon") => router.replace(t === "learn" ? "/dashboard" : "/dashboard?tab=lexicon", { scroll: false });
 
-  const name = user?.firstName ?? null;
+  const name: string | null = null;
 
   return (
     <div className="min-h-screen">

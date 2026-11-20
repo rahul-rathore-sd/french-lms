@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
 const sans = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-sans", display: "swap" });
@@ -26,25 +25,15 @@ export const viewport: Viewport = {
   ],
 };
 
-// Render the layout per request so the publishable key is read from the live
-// environment (not frozen into the build). The placeholder only lets `next build`
-// run without secrets; it is never used when the real key is set.
-export const dynamic = "force-dynamic";
-const PUBLISHABLE_KEY_ENV = "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY";
-const PLACEHOLDER_KEY = "pk_test_Y2xlcmsuYWNhZGVtaWUuZnIk";
-
 const themeScript = `(function(){try{var t=localStorage.getItem('academie.theme');if(!t){t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme='dark'}})();`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const publishableKey = process.env[PUBLISHABLE_KEY_ENV] || PLACEHOLDER_KEY;
   return (
-    <ClerkProvider publishableKey={publishableKey}>
       <html lang="en" data-theme="dark" className={`${sans.variable} ${display.variable}`} suppressHydrationWarning>
         <head>
           <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         </head>
         <body>{children}</body>
       </html>
-    </ClerkProvider>
   );
 }
