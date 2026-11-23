@@ -27,7 +27,7 @@ class LearnController extends Controller
             'items' => $items->groupBy('level'),
             'kind' => $kind, 'level' => $level,
             'kinds' => self::KINDS, 'levels' => self::LEVELS,
-            'currentLevel' => Plan::summary()['stage']['level'],
+            'currentLevel' => Plan::for($request->attributes->get('learner'))->summary()['stage']['level'],
         ]);
     }
 

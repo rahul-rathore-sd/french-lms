@@ -11,6 +11,12 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%238ba1f2'/%3E%3Ctext x='50' y='72' font-size='62' text-anchor='middle' fill='%23111219' font-family='serif'%3E%C3%89%3C/text%3E%3C/svg%3E">
 {{-- Dark by default on every device, whatever the system setting is; only an explicit "light" choice switches it off. --}}
 <script>(function(){var t='dark';try{if(localStorage.getItem('tcf.theme')==='light')t='light'}catch(e){}document.documentElement.dataset.theme=t;if(t==='light'){var m=document.querySelector('meta[name=theme-color]');if(m)m.content='#f8f6f1'}})();</script>
+@php($me = $learner ?? null)
+@if ($me)
+    @php($stateKeys = $needKeys ?? ['progress'])
+    @php($state = $me->states()->whereIn('key', $stateKeys)->get()->mapWithKeys(fn ($st) => [$st->key => json_decode($st->value)])->all())
+    <script type="application/json" id="me">{!! json_encode(['id' => $me->id, 'name' => $me->name, 'keys' => $stateKeys, 'state' => (object) $state], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG) !!}</script>
+@endif
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
@@ -20,13 +26,16 @@
             <span class="font-display grid h-9 w-9 place-items-center rounded-xl bg-accent text-lg font-semibold text-accent-fg">É</span>
             <span class="font-display hidden text-lg font-semibold sm:block">TCF Canada Prep</span>
         </a>
-        <nav class="hidden items-center gap-1 md:flex" aria-label="Main">
+        @if ($me)<nav class="hidden items-center gap-1 md:flex" aria-label="Main">
             @foreach ([['/', 'Today'], ['/learn', 'Learn'], ['/practice', 'Cards'], ['/tcf', 'TCF Canada'], ['/words', 'Words'], ['/level-check', 'Level check']] as [$href, $label])
                 <a href="{{ $href }}" class="rounded-full px-3.5 py-2 text-sm transition {{ request()->is(ltrim($href, '/') ?: '/') ? 'bg-raised text-fg' : 'text-muted hover:text-fg' }}">{{ $label }}</a>
             @endforeach
-        </nav>
+        </nav>@endif
         <div class="flex items-center gap-2">
-            <span class="chip" title="Day streak">🔥 <b data-streak>0</b></span>
+            @if ($me)
+                <span class="chip" title="Day streak">🔥 <b data-streak>0</b></span>
+                <a href="/me" class="chip hidden max-w-[9rem] truncate sm:inline-flex" title="Your profile">👤 {{ $me->name }}</a>
+            @endif
             <div class="theme-switch" role="group" aria-label="Colour theme">
                 <span class="thumb" aria-hidden="true"></span>
                 <button type="button" data-theme-set="dark" aria-label="Dark mode" title="Dark mode (easy on the eyes)">
@@ -39,11 +48,12 @@
         </div>
     </div>
     {{-- mobile nav: scrollable pill row --}}
-    <nav class="no-scrollbar flex gap-1 overflow-x-auto px-4 pb-2 md:hidden" aria-label="Main (mobile)">
+    @if ($me)<nav class="no-scrollbar flex gap-1 overflow-x-auto px-4 pb-2 md:hidden" aria-label="Main (mobile)">
         @foreach ([['/', 'Today'], ['/learn', 'Learn'], ['/practice', 'Cards'], ['/tcf', 'TCF'], ['/words', 'Words'], ['/level-check', 'Level']] as [$href, $label])
             <a href="{{ $href }}" class="shrink-0 rounded-full px-3.5 py-1.5 text-sm {{ request()->is(ltrim($href, '/') ?: '/') ? 'bg-raised text-fg' : 'text-muted' }}">{{ $label }}</a>
         @endforeach
-    </nav>
+        <a href="/me" class="shrink-0 rounded-full px-3.5 py-1.5 text-sm {{ request()->is('me') ? 'bg-raised text-fg' : 'text-muted' }}">Profile</a>
+    </nav>@endif
 </header>
 
 <main class="mx-auto max-w-5xl px-4 py-8 sm:py-10">

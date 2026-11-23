@@ -4,8 +4,13 @@ A personal, private study site to reach **NCLC 7 (about CEFR B2) in TCF Canada**
 listening, reading, writing and speaking practice, spaced-repetition flashcards and a searchable lexicon.
 Dark mode is the default (easy on the eyes) with a light-mode switch.
 
-**Stack:** Laravel 13 (PHP 8.3+), Blade, Tailwind (compiled), about 4 KB of vanilla JS. No Node.js on the server,
-no sessions, no cookies. Page weight is roughly 9 KB of CSS and JS (gzip).
+**Stack:** Laravel 13 (PHP 8.3+), Blade, Tailwind (compiled), about 4.5 KB of vanilla JS. No Node.js on the server.
+Page weight is roughly 10 KB of CSS and JS (gzip).
+
+**Several learners, one site:** each person creates a profile (name + PIN) and gets their own plan (start date, level,
+minutes per day), progress, streak and flashcard schedule, synced to the server so it follows them to every device.
+Login uses a small token cookie (only a hash is stored), PIN attempts are rate-limited, and the web server's password
+still keeps strangers out.
 
 ## What is where
 
@@ -18,18 +23,19 @@ no sessions, no cookies. Page weight is roughly 9 KB of CSS and JS (gzip).
 | `/tcf` | TCF Canada format, NCLC 7 target numbers and an honest timeline |
 | `/level-check` | A1/A2 can-do checklists and a mini quiz |
 
-Progress, streak and card schedule are stored in the browser (`localStorage`), so the server is stateless.
+Progress, streak and card schedule are cached in the browser and synced to the server per learner (`learner_states`).
 
 ## The plan engine
 
-`config/tcf.php` holds the start date, minutes per day and the hours per stage (about 470 h from zero to NCLC 7).
-`App\Support\Plan` turns that into "day N, stage X". Change `TCF_START_DATE` / `TCF_DAILY_MINUTES` in `.env`.
+`config/tcf.php` holds the default start date, minutes per day and the hours per stage (about 470 h from zero to NCLC 7).
+`App\Support\Plan` turns a learner's own settings (start date, minutes, "credit" hours for a higher starting level) into
+"day N, stage X". Defaults for new profiles come from `TCF_START_DATE` / `TCF_DAILY_MINUTES` / `TCF_WISH_MONTHS`; `TCF_MAX_LEARNERS` limits profiles.
 
 ## Daily resources (automation)
 
 A scheduled job adds new material every day through the API (bearer key `HERMES_API_KEY`):
 
-- `GET  /api/v1/plan/today` : today's stage, quotas and what already exists (avoids repeats)
+- `GET  /api/v1/plan/today` : the levels learners are on today (`levels_needed`), quotas, and what already exists per level (avoids repeats). No names or PINs
 - `POST /api/v1/materials`  : add one item. `kind` is `grammar | reading | listening | writing | speaking | vocab` (validated strictly)
 - `GET  /api/v1/materials`, `DELETE /api/v1/materials/{slug}`, `GET|POST /api/v1/vocabulary`
 

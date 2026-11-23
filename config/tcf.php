@@ -17,6 +17,9 @@ return [
 
     'target' => 'NCLC 7',
 
+    // How many people can have a profile on this private site.
+    'max_learners' => (int) env('TCF_MAX_LEARNERS', 6),
+
     'stages' => [
         ['level' => 'A1', 'nclc' => 'NCLC 1-3', 'hours' => 70],
         ['level' => 'A2', 'nclc' => 'NCLC 4', 'hours' => 90],

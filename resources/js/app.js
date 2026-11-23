@@ -1,5 +1,7 @@
-// TCF Canada Prep: tiny vanilla JS, no framework. Everything personal (progress, streak, card
-// schedule) lives in localStorage, so the server stays stateless and fast.
+// TCF Canada Prep: tiny vanilla JS, no framework.
+// Progress, streak and the flashcard schedule are kept per learner: they are cached in localStorage
+// (namespaced by learner id, so two people can share one browser) and synced to the server, so they
+// follow the learner to every device.
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -9,13 +11,71 @@ const LS = {
 };
 const todayStr = () => new Date().toLocaleDateString('en-CA'); // local YYYY-MM-DD
 const addDays = (d, n) => { const x = new Date(d + 'T00:00:00'); x.setDate(x.getDate() + n); return x.toLocaleDateString('en-CA'); };
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+/* ------------------------------------------------------------ requests --- */
+async function post(url, body = {}, method = 'POST') {
+    try {
+        const r = await fetch(url, {
+            method, credentials: 'same-origin',
+            headers: { 'X-Requested-With': 'fetch', 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify(body),
+        });
+        const j = await r.json().catch(() => ({ ok: false, error: 'Unexpected response from the server.' }));
+        if (r.status === 401 && !location.pathname.startsWith('/login')) location.href = '/login';
+        return j;
+    } catch { return { ok: false, error: 'No connection. Try again.' }; }
+}
+
+/* --------------------------------------------------- per-learner storage --- */
+const meEl = $('#me');
+const ME = meEl ? JSON.parse(meEl.textContent) : null;
+const NS = ME ? `tcf.${ME.id}.` : 'tcf.';
+const K = (k) => NS + k;
+const dirty = () => LS.get(NS + 'dirty', {});
+const timers = {};
+
+function push(key) {
+    const value = LS.get(K(key), null);
+    if (!ME || value === null) return;
+    post(`/me/state/${key}`, { value }, 'PUT').then((j) => {
+        if (j.ok) { const d = dirty(); delete d[key]; LS.set(NS + 'dirty', d); }
+    });
+}
+function save(key, value) {
+    LS.set(K(key), value);
+    if (!ME) return;
+    const d = dirty(); d[key] = 1; LS.set(NS + 'dirty', d);
+    clearTimeout(timers[key]);
+    timers[key] = setTimeout(() => push(key), 700);
+}
+function flush() { Object.keys(dirty()).forEach((k) => { clearTimeout(timers[k]); push(k); }); }
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flush(); });
+addEventListener('pagehide', flush);
+
+/** Server wins on load (unless this device has unsent changes); an empty server gets this browser's old data once. */
+function hydrate() {
+    if (!ME) return;
+    for (const key of ME.keys || []) {
+        const server = ME.state[key];
+        if (dirty()[key]) { push(key); continue; }
+        if (server !== undefined) { LS.set(K(key), server); continue; }
+        const legacy = LS.get('tcf.' + key, null);                 // data from before profiles existed
+        if (legacy && !LS.get('tcf.legacy.claimed', false)) { LS.set(K(key), legacy); LS.set('tcf.legacy.claimed', true); save(key, legacy); }
+    }
+}
+hydrate();
 
 /* ------------------------------------------------------------ progress --- */
-const progress = () => LS.get('tcf.progress', { done: {}, days: {}, checks: {} });
+const progress = () => {
+    const p = LS.get(K('progress'), {});
+    for (const k of ['done', 'days', 'checks']) if (!p[k] || Array.isArray(p[k])) p[k] = {}; // an empty {} can come back as []
+    return p;
+};
 function markActive() {
     const p = progress();
     p.days[todayStr()] = true;
-    LS.set('tcf.progress', p);
+    save('progress', p);
     renderStreak();
 }
 function streak() {
@@ -34,6 +94,25 @@ $$('[data-theme-set]').forEach((b) => b.addEventListener('click', () => {
     const m = $('meta[name=theme-color]');
     if (m) m.content = t === 'light' ? '#f8f6f1' : '#111219';
     try { localStorage.setItem('tcf.theme', t); } catch { /* ignore */ }
+}));
+
+/* ------------------------------------------------- forms and post buttons --- */
+$$('form[data-ajax]').forEach((f) => f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (f.dataset.confirm && !confirm(f.dataset.confirm)) return;
+    const err = $('[data-error]', f), btn = $('[type=submit]', f);
+    const show = (msg, ok) => { if (!err) return; err.textContent = msg; err.classList.remove('hidden', 'text-danger', 'text-success'); err.classList.add(ok ? 'text-success' : 'text-danger'); };
+    err?.classList.add('hidden'); btn && (btn.disabled = true);
+    const j = await post(f.dataset.ajax, Object.fromEntries(new FormData(f)));
+    if (j.ok && j.redirect) { location.href = j.redirect; return; }
+    show(j.ok ? j.message || 'Saved.' : j.error || 'Something went wrong.', j.ok);
+    btn && (btn.disabled = false);
+}));
+$$('[data-post]').forEach((b) => b.addEventListener('click', async () => {
+    if (b.dataset.confirm && !confirm(b.dataset.confirm)) return;
+    flush();
+    const j = await post(b.dataset.post, JSON.parse(b.dataset.body || '{}'));
+    if (j.ok && j.redirect) location.href = j.redirect; else if (!j.ok) alert(j.error || 'Something went wrong.');
 }));
 
 /* ---------------------------------------------------------- speech (TTS) --- */
@@ -90,7 +169,7 @@ $$('[data-done]').forEach((b) => {
     b.addEventListener('click', () => {
         const p = progress();
         if (p.done[slug]) delete p.done[slug]; else { p.done[slug] = todayStr(); p.days[todayStr()] = true; }
-        LS.set('tcf.progress', p); paint(); renderStreak();
+        save('progress', p); paint(); renderStreak();
     });
 });
 $$('[data-check]').forEach((c) => {
@@ -100,7 +179,7 @@ $$('[data-check]').forEach((c) => {
         const p = progress();
         (p.checks[d] ||= {})[key] = c.checked;
         if (c.checked) p.days[d] = true;
-        LS.set('tcf.progress', p); renderStreak(); renderChecklist();
+        save('progress', p); renderStreak(); renderChecklist();
     });
 });
 function renderChecklist() {
@@ -154,7 +233,7 @@ if (lc) {
         if (a1 < 4) msg = 'Start at A1: you are at the beginning, which is exactly where the plan starts.';
         else if (a2 < 4) msg = 'A1 is solid. Move to A2 material (passé composé, daily-life topics).';
         else msg = 'You can already do A2 things. Try the B1 grammar and the quiz below to confirm.';
-        out.textContent = msg; LS.set('tcf.level', { a1, a2, at: todayStr() });
+        out.textContent = msg;
     };
     $$('input[type=checkbox]', lc).forEach((c) => c.addEventListener('change', run));
     run();
@@ -179,15 +258,15 @@ if (wordsEl) {
     $$('[data-lvl]').forEach((b) => b.addEventListener('click', () => { lvl = b.dataset.lvl; $$('[data-lvl]').forEach((x) => x.classList.toggle('chip-accent', x === b)); render(); }));
     render();
 }
-function esc(s) { return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
 /* ------------------------------------------------------ flashcards (SM-2 lite) --- */
 const deckEl = $('#deck');
 if (deckEl) {
     const all = JSON.parse($('#deck-data').textContent);
     const levels = (deckEl.dataset.levels || 'A1').split(',');
-    const state = LS.get('tcf.srs', {});            // word -> {ease, interval, due, reps, lapses}
-    const intro = LS.get('tcf.srs.new', { date: '', n: 0 });
+    let state = LS.get(K('srs'), {});                // word -> {ease, interval, due, reps, lapses}
+    if (Array.isArray(state)) state = {};
+    const intro = LS.get(K('srs.new'), { date: '', n: 0 });
     if (intro.date !== todayStr()) { intro.date = todayStr(); intro.n = 0; }
     const newLimit = parseInt(deckEl.dataset.new || '10', 10);
     const key = (w) => w.w;
@@ -198,7 +277,7 @@ if (deckEl) {
     const total0 = queue.length;
     let current = null, shown = false;
 
-    const front = $('#card-front'), back = $('#card-back'), stage = $('#card-stage'), done = $('#deck-done');
+    const back = $('#card-back'), stage = $('#card-stage'), done = $('#deck-done');
     const show = () => { shown = true; back.removeAttribute('hidden'); $('#btn-show').setAttribute('hidden', ''); $('#grades').removeAttribute('hidden'); };
     function next() {
         shown = false; current = queue.shift();
@@ -224,8 +303,8 @@ if (deckEl) {
             s.reps++;
         }
         s.due = addDays(todayStr(), s.interval);
-        state[k] = s; LS.set('tcf.srs', state);
-        if (isNew) { intro.n++; LS.set('tcf.srs.new', intro); }
+        state[k] = s; save('srs', state);
+        if (isNew) { intro.n++; save('srs.new', intro); }
         markActive(); next();
     }
     $('#btn-show').addEventListener('click', show);

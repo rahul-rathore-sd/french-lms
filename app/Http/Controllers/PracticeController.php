@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Vocabulary;
 use App\Support\Plan;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 /** Flashcards (spaced repetition, schedule kept in the browser) and the searchable word list. */
 class PracticeController extends Controller
 {
     private const ORDER = ['A1' => 1, 'A2' => 2, 'B1' => 3, 'B2' => 4, 'C1' => 5, 'C2' => 6];
 
-    public function cards(): View
+    public function cards(Request $request): View
     {
-        $plan = Plan::summary();
+        $plan = Plan::for($request->attributes->get('learner'))->summary();
         $upTo = self::ORDER[$plan['stage']['level']] ?? 1;
 
         return view('practice.cards', [
@@ -21,6 +22,8 @@ class PracticeController extends Controller
             'levels' => array_keys(array_filter(self::ORDER, fn ($n) => $n <= $upTo)),
             'newPerDay' => (int) $plan['quota']['vocab'],
             'plan' => $plan,
+            // the card schedule is only needed here, so it is only sent on this page
+            'needKeys' => ['progress', 'srs', 'srs.new'],
         ]);
     }
 

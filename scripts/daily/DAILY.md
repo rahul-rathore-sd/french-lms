@@ -2,7 +2,7 @@
 
 You add **one day of new TCF Canada study material** to the private study site, using only the API helper
 `scripts/daily/api.sh` (secrets are in `~/.french-lms/config.env`; never print them, never commit them).
-The learner starts at A1 and aims for **NCLC 7 (about CEFR B2)** in TCF Canada, studying 2 hours a day.
+A few learners use the site, each on their own level (now all start at A1). They aim for **NCLC 7 (about CEFR B2)** in TCF Canada, studying about 2 hours a day.
 The UI language is English with Hindi hints; the learning content is **French**.
 
 Work in this folder: `D:\french-lms-laravel`. Do not change code or any other file, except the log (step 6).
@@ -13,11 +13,13 @@ Work in this folder: `D:\french-lms-laravel`. Do not change code or any other fi
 bash scripts/daily/api.sh GET /api/v1/plan/today
 ```
 
-Read: `stage.level` (the level to write for), `stage.nclc`, `day_number`, `writing_or_speaking` ("writing" or "speaking"),
-`quota`, `already_added_today` (skip kinds that are already done today), `recent_titles` and `existing_words`
-(never repeat a topic or a word), `seed_grammar_slugs`.
+Read: `levels_needed` (every level that at least one learner is on today; usually one or two), and for each entry in
+`levels`: `level`, `nclc`, `learners`, `day_numbers` and `already_added_today` (what is already done for that level today).
+Also `writing_or_speaking` ("writing" or "speaking", the same for everyone today), `quota`, `recent_titles` and
+`existing_words` (never repeat a topic or a word), `seed_grammar_slugs`.
 
-If everything in the quota is already added today, stop and log "already done".
+**Repeat the whole job once for every level in `levels_needed`**, writing for that level. If everything in the quota is already
+added today for a level, skip that level. If all levels are done, stop and log "already done".
 
 ## 2. What to create today (the quota)
 
@@ -27,12 +29,12 @@ If everything in the quota is already added today, stop and log "already done".
 | `grammar` | 1 short lesson | a topic not yet in `recent_titles` or the seed topics; small and practical; 3-quiz questions |
 | `listening` | 1 | a short audio script (read aloud by the browser): announcement, voicemail, dialogue, radio snippet |
 | `reading` | 1 | notice, ad, email, article extract |
-| `writing` **or** `speaking` | 1 | the one named in `writing_or_speaking` |
+| `writing` **or** `speaking` | 1 | the one named in `writing_or_speaking` (per level) |
 
 Use Canada-relevant, everyday TCF themes: housing, jobs, public services, school, health, transport, weather, shopping,
 Quebec and Ontario life, immigration paperwork. **All texts must be original** (no copied articles, no real people).
 
-## 3. Level rules (write for `stage.level`; at most 20 percent of items may be one level higher)
+## 3. Level rules (write each set for its level in `levels_needed`; at most 20 percent of items may be one level higher)
 
 | level | texts | grammar & style |
 | --- | --- | --- |
@@ -66,7 +68,7 @@ bash scripts/daily/api.sh POST /api/v1/materials ~/.french-lms/work/<file>.json
 
 Success is HTTP 201 (created) or 200 (updated). On HTTP 422 read the `error` text, fix the JSON, post again (max 2 retries per item).
 Give every item a stable **slug** like `a1-d003-reading-le-marche` (lowercase letters, digits and hyphens;
-level + day number + kind + short topic). Do **not** set `publish_on` (it defaults to today).
+level + day number + kind + short topic; use the first number in that level's `day_numbers`, or today's date as `0123` for MMDD when you prefer). Do **not** set `publish_on` (it defaults to today).
 
 ### Schemas
 
@@ -128,7 +130,7 @@ At least 3 phrases.
 ```bash
 bash scripts/daily/api.sh GET /api/v1/plan/today
 ```
-Check `already_added_today` now matches the quota. Then append one line to `scripts/daily/log.md` (git-ignored):
-`YYYY-MM-DD · day N · level X · added: vocab 10, grammar 1, listening 1, reading 1, speaking 1 · problems: none`.
+For every level you worked on, check `already_added_today` now matches the quota. Then append one line to `scripts/daily/log.md` (git-ignored):
+`YYYY-MM-DD · level X (n learners) · added: vocab 10, grammar 1, listening 1, reading 1, speaking 1 · problems: none` (one line per level).
 Finish with a 3-line summary of what was added (titles) and anything that failed. Never leave half-created work silently: if the
 API is unreachable (HTTP error, timeout, 401), say so clearly and stop.

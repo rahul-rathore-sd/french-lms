@@ -29,6 +29,16 @@
 @include('learn.kinds.quiz', ['questions' => $quiz, 'quizTitle' => 'Mini quiz (mixed A1 to B1)'])
 <p id="quiz-result" class="mt-3 text-sm text-muted" aria-live="polite"></p>
 
+<div class="panel mt-6 p-5 text-sm">
+    <h2 class="font-display text-xl font-semibold">Set my plan level</h2>
+    <p class="mt-1 text-muted">If this check shows you are ahead of A1, restart your own plan from today at your real level (your cards and streak stay).</p>
+    <div class="mt-3 flex flex-wrap gap-2">
+        @foreach (['A1', 'A2', 'B1', 'B2'] as $lv)
+            <button type="button" class="btn btn-sm" data-post="/me/restart" data-body='{"level":"{{ $lv }}"}' data-confirm="Restart your plan from today at {{ $lv }}?">Start at {{ $lv }}</button>
+        @endforeach
+    </div>
+</div>
+
 <div class="panel mt-8 p-5 text-sm">
     <h2 class="font-display text-xl font-semibold">What the levels mean</h2>
     <div class="prose-box mt-3 overflow-x-auto">

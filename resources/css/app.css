@@ -83,6 +83,8 @@ h1 em, h2 em {
 ::selection { background: rgb(var(--accent) / 0.28); }
 :focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 2px; border-radius: 6px; }
 
+/* Component classes live in the components layer so Tailwind utilities (hidden, sm:inline-flex, ...) can override them. */
+@layer components {
 /* Premium surface: hairline highlight + soft depth. */
 .panel {
     position: relative;
@@ -146,11 +148,15 @@ h1 em, h2 em {
 .prose-box th, .prose-box td { padding: .5rem .7rem; border-bottom: 1px solid rgb(var(--line)); text-align: left; }
 .prose-box th { color: rgb(var(--muted)); font-weight: 600; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
 
+input:not([type='checkbox']):not([type='radio']), select, textarea { width: 100%; min-width: 0; max-width: 100%; }
+label { min-width: 0; }
+
 .no-scrollbar { scrollbar-width: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 
 .bar { height: .5rem; border-radius: 999px; background: rgb(var(--raised)); overflow: hidden; }
 .bar > i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, rgb(var(--accent)), rgb(var(--gold))); }
+}
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }

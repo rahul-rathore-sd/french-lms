@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\NoIndex;
+use App\Http\Middleware\RequireLearner;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -21,8 +22,11 @@ return Application::configure(basePath: dirname(__DIR__))
         // Private by default: tell search engines not to index anything (see FRENCH_NOINDEX).
         $middleware->append(NoIndex::class);
 
-        // Lightweight and stateless: no sessions, cookies or CSRF tokens anywhere. Progress is kept
-        // in the browser (localStorage); the API is protected by the bearer key.
+        // Pages for logged-in learners (name + PIN, own token cookie).
+        $middleware->alias(['learner' => RequireLearner::class]);
+
+        // Lightweight: no Laravel sessions or CSRF tokens. Login uses our own small token cookie
+        // (App\Support\LearnerAuth); the JSON API is protected by the bearer key.
         $middleware->web(remove: [
             \Illuminate\Cookie\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,

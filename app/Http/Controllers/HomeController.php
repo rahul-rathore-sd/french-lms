@@ -5,30 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\Material;
 use App\Support\Plan;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
-/** "Today": where the learner is in the plan and the 2-hour study checklist for the day. */
+/** "Today": where this learner is in their plan and the 2-hour study checklist for the day. */
 class HomeController extends Controller
 {
-    public function __invoke(): View
+    public function __invoke(Request $request): View
     {
-        $plan = Plan::summary();
+        $plan = Plan::for($request->attributes->get('learner'))->summary();
         $level = $plan['stage']['level'];
         $day = $plan['day_number'];
 
-        $daily = Material::where('source', 'daily')->whereDate('publish_on', $plan['date'])->get()->groupBy('kind');
-
-        // Today's item: the one the automation added today, else a starter item at (or just above) the current level.
-        $pick = function (string $kind) use ($daily, $level, $day): ?Material {
-            if ($daily->has($kind)) {
-                return $daily[$kind]->first();
+        // Today's item at the learner's level: the one the automation added today, else the newest earlier one,
+        // else a starter item at (or just above) the level.
+        $pick = function (string $kind) use ($plan, $level, $day): ?Material {
+            $daily = Material::available()->where('source', 'daily')->where('kind', $kind)->where('level', $level);
+            $today = (clone $daily)->whereDate('publish_on', $plan['date'])->orderByDesc('id')->first()
+                ?? (clone $daily)->orderByDesc('publish_on')->orderByDesc('id')->first();
+            if ($today) {
+                return $today;
             }
             $seed = Material::where('source', 'seed')->where('kind', $kind)->where('level', '>=', $level)
                 ->orderBy('level')->orderBy('id')->get();
             if ($seed->isEmpty()) {
                 return null;
             }
-            $first = $seed->first()->level;
-            $same = $seed->where('level', $first)->values();
+            $same = $seed->where('level', $seed->first()->level)->values();
 
             return $same[($day - 1) % $same->count()];
         };
@@ -44,8 +46,7 @@ class HomeController extends Controller
         return view('home', [
             'plan' => $plan,
             'blocks' => $blocks,
-            'latest' => Material::where('source', 'daily')->orderByDesc('publish_on')->orderByDesc('id')->limit(6)->get(),
-            'counts' => Material::selectRaw('kind, COUNT(*) as n')->groupBy('kind')->pluck('n', 'kind'),
+            'latest' => Material::available()->where('source', 'daily')->where('level', $level)->orderByDesc('publish_on')->orderByDesc('id')->limit(6)->get(),
         ]);
     }
 }
