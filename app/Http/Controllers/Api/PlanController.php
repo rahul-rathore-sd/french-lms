@@ -38,7 +38,8 @@ class PlanController extends Controller
             'counts' => $byKind,
             'recent_titles' => Material::where('source', 'daily')->orderByDesc('id')->limit(80)->get(['kind', 'level', 'title', 'slug'])
                 ->map(fn ($m) => "{$m->kind}/{$m->level}: {$m->title}")->all(),
-            'recent_words' => Vocabulary::orderByDesc('id')->limit(150)->pluck('french_word')->all(),
+            // every word already in the deck (core list + earlier daily sets), so new sets never repeat one
+            'existing_words' => Vocabulary::orderBy('id')->limit(5000)->pluck('french_word')->all(),
             'seed_grammar_slugs' => Material::where('kind', 'grammar')->where('source', 'seed')->pluck('slug')->all(),
         ]]);
     }

@@ -102,6 +102,12 @@ class SiteTest extends TestCase
             ->assertCreated()->assertJsonPath('data.added', 6);
         $this->getJson('/api/v1/vocabulary')->assertOk()->assertSee('motnouveau3');
         $this->get('/words')->assertOk()->assertSee('motnouveau1');
+
+        // a word from the core list (any letter case) is skipped and left unchanged
+        $set = array_merge($words, [['fr' => 'bonjour', 'en' => 'CHANGED', 'example_fr' => 'Bonjour !', 'example_en' => 'Hello!']]);
+        $this->postJson('/api/v1/materials', ['kind' => 'vocab', 'level' => 'A1', 'title' => 'Day 2', 'body' => ['words' => $set]], $this->key())
+            ->assertCreated()->assertJsonPath('data.skipped.0', 'bonjour')->assertJsonPath('data.updated', 6);
+        $this->getJson('/api/v1/vocabulary')->assertDontSee('CHANGED');
     }
 
     public function test_plan_endpoint_reports_the_stage_and_what_exists(): void

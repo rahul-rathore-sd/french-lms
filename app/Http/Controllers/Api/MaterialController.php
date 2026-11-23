@@ -94,6 +94,7 @@ class MaterialController extends Controller
     private function storeVocab(array $b, string $who): JsonResponse
     {
         $added = $updated = 0;
+        $skipped = [];
         foreach ($b['body']['words'] as $w) {
             $fr = Api::s($w['fr'], 120);
             $entry = [
@@ -105,8 +106,14 @@ class MaterialController extends Controller
                 'example_hi' => Api::s($w['example_hi'] ?? '', 300) ?: null, 'use_case' => 'TCF Canada daily vocabulary',
                 'source' => 'Daily', 'created_at' => Api::nowIso(),
             ];
-            $row = Vocabulary::where('french_word', $fr)->first();
+            $row = Vocabulary::whereRaw('LOWER(french_word) = ?', [mb_strtolower($fr)])->first();
             if ($row) {
+                // never overwrite the core curriculum: only words added by this automation can be updated
+                if ((json_decode($row->data, true)['source'] ?? '') !== 'Daily') {
+                    $skipped[] = $fr;
+
+                    continue;
+                }
                 $row->update(['data' => json_encode($entry, JSON_UNESCAPED_UNICODE)]);
                 $updated++;
             } else {
@@ -114,9 +121,10 @@ class MaterialController extends Controller
                 $added++;
             }
         }
-        Api::log($who, 'create', 'vocabulary', null, "daily set: +$added ~$updated");
+        Api::log($who, 'create', 'vocabulary', null, "daily set: +$added ~$updated skipped ".count($skipped));
 
-        return Api::json(['success' => true, 'data' => ['kind' => 'vocab', 'added' => $added, 'updated' => $updated]], 201);
+        return Api::json(['success' => true, 'data' => ['kind' => 'vocab', 'added' => $added, 'updated' => $updated, 'skipped' => $skipped,
+            'note' => $skipped ? 'These words already exist in the core list and were left unchanged. Post replacement words to reach 10.' : null]], 201);
     }
 
     private function rules(string $kind): array
