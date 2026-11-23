@@ -17,6 +17,9 @@
     @php($state = $me->states()->whereIn('key', $stateKeys)->get()->mapWithKeys(fn ($st) => [$st->key => json_decode($st->value)])->all())
     <script type="application/json" id="me">{!! json_encode(['id' => $me->id, 'name' => $me->name, 'keys' => $stateKeys, 'state' => (object) $state], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG) !!}</script>
 @endif
+@if ($me)
+    <script type="application/json" id="tts-cfg">{!! json_encode(['voice' => config('tts.enabled') ? $me->voice : 'browser'], JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) !!}</script>
+@endif
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>

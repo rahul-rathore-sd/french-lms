@@ -29,3 +29,6 @@ Thumbs.db
 
 # daily automation log (local only)
 /scripts/daily/log.md
+
+# cached text-to-speech audio (generated on the server)
+/public/audio

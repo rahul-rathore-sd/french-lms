@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Learner;
 use App\Support\LearnerAuth;
+use App\Support\Tts;
 use App\Support\Plan;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
@@ -18,18 +19,21 @@ class ProfileController extends Controller
         /** @var Learner $learner */
         $learner = $request->attributes->get('learner');
 
-        return view('profile', ['plan' => Plan::for($learner)->summary(), 'others' => Learner::where('id', '!=', $learner->id)->count()]);
+        return view('profile', ['plan' => Plan::for($learner)->summary(), 'others' => Learner::where('id', '!=', $learner->id)->count(), 'voices' => Tts::voices()]);
     }
 
     public function settings(Request $request): JsonResponse
     {
         $learner = $request->attributes->get('learner');
+        $voice = (string) $request->input('voice', $learner->voice);
         $learner->update([
             'daily_minutes' => max(30, min(300, (int) $request->input('minutes', $learner->daily_minutes))),
             'wish_months' => max(1, min(24, (int) $request->input('wish_months', $learner->wish_months))),
+            'voice' => Tts::isChoice($voice) ? $voice : $learner->voice,
         ]);
 
-        return response()->json(['ok' => true, 'message' => 'Saved.']);
+        // reload so the player picks up the new voice
+        return response()->json(['ok' => true, 'message' => 'Saved.', 'redirect' => '/me']);
     }
 
     /** "Start my plan again from today at level X" (e.g. after the level check shows you are further ahead). */

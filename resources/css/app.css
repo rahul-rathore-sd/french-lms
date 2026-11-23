@@ -151,6 +151,7 @@ h1 em, h2 em {
 input:not([type='checkbox']):not([type='radio']), select, textarea { width: 100%; min-width: 0; max-width: 100%; }
 label { min-width: 0; }
 
+.tts-loading, .tts-loading * { cursor: progress; }
 .no-scrollbar { scrollbar-width: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 

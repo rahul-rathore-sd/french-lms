@@ -8,6 +8,7 @@ use App\Http\Controllers\PracticeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\TcfController;
+use App\Http\Controllers\TtsController;
 use Illuminate\Support\Facades\Route;
 
 // public: sign in / create a profile (the web server's password already keeps strangers out)
@@ -25,6 +26,8 @@ Route::middleware('learner')->group(function () {
     Route::get('words', [PracticeController::class, 'words']);
     Route::get('tcf', TcfController::class);
     Route::get('level-check', LevelCheckController::class);
+
+    Route::post('tts', TtsController::class);
 
     Route::post('logout', [AuthController::class, 'logout']);
     Route::get('me', [ProfileController::class, 'show']);

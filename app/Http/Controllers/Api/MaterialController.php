@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Material;
 use App\Models\Vocabulary;
 use App\Support\Api;
+use App\Support\Tts;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -77,6 +78,7 @@ class MaterialController extends Controller
             'source' => 'daily', 'publish_on' => $b['publish_on'] ?? now()->toDateString(), 'body' => $b['body'],
         ]);
         Api::log($who, $existing ? 'update' : 'create', 'material', $material->id, "$kind $slug");
+        Tts::warmAsync(['--slug='.$slug]);
 
         return Api::json(['success' => true, 'data' => ['id' => $material->id, 'slug' => $slug, 'kind' => $kind, 'created' => ! $existing, 'url' => Api::siteUrl().'/r/'.$slug]], $existing ? 200 : 201);
     }
@@ -122,6 +124,7 @@ class MaterialController extends Controller
             }
         }
         Api::log($who, 'create', 'vocabulary', null, "daily set: +$added ~$updated skipped ".count($skipped));
+        Tts::warmAsync(['--recent='.max(1, $added + $updated)]);
 
         return Api::json(['success' => true, 'data' => ['kind' => 'vocab', 'added' => $added, 'updated' => $updated, 'skipped' => $skipped,
             'note' => $skipped ? 'These words already exist in the core list and were left unchanged. Post replacement words to reach 10.' : null]], 201);

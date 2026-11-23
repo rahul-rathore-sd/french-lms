@@ -18,7 +18,7 @@ ssh -o BatchMode=yes "$HOST" "DIR='$DIR' SITE_USER='$SITE_USER' bash -s" <<'REMO
 set -euo pipefail
 cp "$DIR/.env" "/root/backups/env-$(date +%F-%H%M).bak" 2>/dev/null || true
 rm -rf /root/app-new && mkdir /root/app-new && tar -xf /root/app-deploy.tar -C /root/app-new
-rsync -a --delete --exclude=.env --exclude=storage --exclude=vendor --exclude=bootstrap/cache /root/app-new/ "$DIR/"
+rsync -a --delete --exclude=.env --exclude=storage --exclude=vendor --exclude=bootstrap/cache --exclude=public/audio /root/app-new/ "$DIR/"
 chown -R "$SITE_USER:$SITE_USER" "$DIR"; chown "$SITE_USER:$SITE_USER" "$DIR/.env"
 cd "$DIR"
 run() { sudo -u "$SITE_USER" -H php8.3 "$@"; }

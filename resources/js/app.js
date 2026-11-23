@@ -115,27 +115,77 @@ $$('[data-post]').forEach((b) => b.addEventListener('click', async () => {
     if (j.ok && j.redirect) location.href = j.redirect; else if (!j.ok) alert(j.error || 'Something went wrong.');
 }));
 
-/* ---------------------------------------------------------- speech (TTS) --- */
+/* ------------------------------------------------------------- speech --- */
+// Natural voices (edge-tts, generated on the server and cached as MP3). If the server voice is not
+// available, or the learner chose "browser voice", the voices built into the browser are used.
+const TTS = JSON.parse($('#tts-cfg')?.textContent || 'null');
+const RATE = (r) => (r < 0.7 ? '-40%' : r < 0.95 ? '-25%' : '+0%');
+let playToken = 0, currentAudio = null, waiting = 0;
+
 let voices = [];
 const loadVoices = () => { voices = window.speechSynthesis ? speechSynthesis.getVoices() : []; };
 if ('speechSynthesis' in window) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
 
-function speak(text, rate = 1) {
-    if (!('speechSynthesis' in window)) return alert('Your browser has no text-to-speech.');
+const isSpeaking = () => !!currentAudio || waiting > 0 || ('speechSynthesis' in window && speechSynthesis.speaking);
+function stopSpeaking() {
+    playToken++;
+    if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
+}
+
+/** Voices built into the browser (fallback). Speaker labels of dialogues are not read. */
+function browserSpeak(text, rate = 1) {
+    if (!('speechSynthesis' in window)) return;
     speechSynthesis.cancel();
-    const v = voices.find((x) => /^fr[-_](FR|CA)/i.test(x.lang)) || voices.find((x) => /^fr/i.test(x.lang));
-    // long texts are read sentence by sentence (some browsers cut off long utterances)
-    text.split(/(?<=[.!?…])\s+|\n+/).map((s) => s.trim()).filter(Boolean).forEach((s) => {
-        const u = new SpeechSynthesisUtterance(s);
-        u.lang = 'fr-FR'; u.rate = rate; if (v) u.voice = v;
-        speechSynthesis.speak(u);
+    const v = voices.find((x) => /^fr[-_](CA)/i.test(x.lang)) || voices.find((x) => /^fr[-_](FR)/i.test(x.lang)) || voices.find((x) => /^fr/i.test(x.lang));
+    text.split(/\n+/).map((l) => l.replace(/^[^:：\n]{1,32}?\s*[:：]\s+/, '')).join('\n')
+        .split(/(?<=[.!?…])\s+|\n+/).map((x) => x.trim()).filter(Boolean).forEach((sentence) => {
+            const u = new SpeechSynthesisUtterance(sentence);
+            u.lang = 'fr-FR'; u.rate = rate; if (v) u.voice = v;
+            speechSynthesis.speak(u);
+        });
+}
+
+function playUrl(url) {
+    return new Promise((resolve) => {
+        const a = new Audio(url);
+        currentAudio = a;
+        const done = () => { if (currentAudio === a) currentAudio = null; resolve(); };
+        a.onended = done; a.onerror = done;
+        a.play().catch(done);
     });
 }
+
+async function speak(text, rate = 1, opts = {}) {
+    stopSpeaking();
+    const my = playToken;
+    const voice = opts.voice ?? TTS?.voice ?? 'browser';
+    if (voice === 'browser') return browserSpeak(text, rate);
+
+    waiting++; document.body.classList.add('tts-loading');
+    let j;
+    try { j = await post('/tts', { text, voice, rate: RATE(rate) }); }
+    finally { waiting--; if (!waiting) document.body.classList.remove('tts-loading'); }
+    if (my !== playToken) return;                      // the learner pressed stop or something else meanwhile
+    if (!j.ok) return browserSpeak(text, rate);        // server voice unavailable: use the browser voice
+    for (const url of j.parts) {
+        if (my !== playToken) return;
+        await playUrl(url);
+    }
+}
+/** Asks the server to prepare audio ahead of time (flashcards), without playing it. */
+function prefetch(text) {
+    if (!text || !TTS || TTS.voice === 'browser') return;
+    post('/tts', { text, voice: TTS.voice, rate: '+0%' });
+}
+
 document.addEventListener('click', (e) => {
+    const sample = e.target.closest('[data-voice-sample]');
+    if (sample) { speak(sample.dataset.voiceSample, 1, { voice: $(sample.dataset.target).value }); return; }
     const b = e.target.closest('[data-speak]');
     if (!b) return;
     const src = b.dataset.speakFrom ? $(b.dataset.speakFrom)?.textContent : b.dataset.speak;
-    if (b.dataset.stop === '1' && speechSynthesis.speaking) { speechSynthesis.cancel(); return; }
+    if (b.dataset.stop === '1' && isSpeaking()) { stopSpeaking(); return; }
     if (src) speak(src, parseFloat(b.dataset.rate || '1'));
 });
 
@@ -290,6 +340,8 @@ if (deckEl) {
         $('#c-ex').textContent = current.ex || ''; $('#c-exen').textContent = current.exen || '';
         $('#c-listen').dataset.speak = current.w; $('#c-listen-ex').dataset.speak = current.ex || current.w;
         speak(current.w);
+        queue.slice(0, 3).forEach((w) => prefetch(w.w));
+        prefetch(current.ex);
     }
     function grade(g) { // 1 again, 2 hard, 3 good, 4 easy
         if (!current || !shown) return;
