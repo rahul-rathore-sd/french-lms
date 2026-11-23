@@ -1,0 +1,76 @@
+[
+ {
+  "id": "ee-a2-message",
+  "exam": "TCF",
+  "level": "A2",
+  "nclc": "NCLC 4",
+  "title": "Message à un ami",
+  "minWords": 60,
+  "prompt": "Vous avez un nouvel appartement. Écrivez un message à un ami pour l’inviter à une fête samedi. Décrivez l’appartement et dites ce qu’il doit apporter.",
+  "prompt_hi": "आपका नया फ़्लैट है। दोस्त को शनिवार की पार्टी का निमंत्रण लिखें, फ़्लैट का वर्णन करें और बताएँ वह क्या लाए।",
+  "model": "Salut Paul,\nJ’ai enfin un nouvel appartement ! Il est petit mais lumineux, avec un grand balcon. Pour fêter ça, j’organise une fête samedi à 19 h. Peux-tu venir ? Apporte une boisson et ta bonne humeur !\nÀ bientôt,\nSara",
+  "model_en": "Hi Paul, I finally have a new flat! It is small but bright, with a large balcony. To celebrate I’m having a party Saturday at 7 pm. Can you come? Bring a drink and your good mood! See you soon, Sara",
+  "checklist": [
+   "Greeting + closing",
+   "Invitation (date, time)",
+   "Description (2 adjectives)",
+   "Instruction with the imperative"
+  ]
+ },
+ {
+  "id": "ee-b1-reclamation",
+  "exam": "TEF",
+  "level": "B1",
+  "nclc": "NCLC 5-6",
+  "title": "Lettre de réclamation",
+  "minWords": 120,
+  "prompt": "Vous avez acheté un ordinateur qui ne fonctionne pas. Écrivez au service client pour expliquer le problème et demander une solution.",
+  "prompt_hi": "आपने जो कंप्यूटर खरीदा वह काम नहीं करता। ग्राहक-सेवा को समस्या बताते हुए पत्र लिखें और समाधान माँगें।",
+  "model": "Madame, Monsieur,\nJe vous écris au sujet de l’ordinateur que j’ai acheté le 3 mars dans votre magasin. Dès la première utilisation, l’écran s’est éteint plusieurs fois et la batterie ne tient pas plus de vingt minutes. J’ai pourtant suivi toutes les instructions.\nC’est pourquoi je vous demande de bien vouloir remplacer l’appareil ou de me rembourser. Vous trouverez ci-joint la facture.\nDans l’attente de votre réponse, je vous prie d’agréer, Madame, Monsieur, mes salutations distinguées.\nA. Kumar",
+  "model_en": "I am writing regarding the computer I bought on 3 March in your shop. From first use the screen turned off several times and the battery lasts only twenty minutes… I therefore ask you to replace or refund it. Invoice attached. Yours faithfully.",
+  "checklist": [
+   "Formal opening/closing",
+   "Facts: date, problem, what you tried",
+   "Clear request (remplacer / rembourser)",
+   "Connectors: pourtant, c’est pourquoi"
+  ]
+ },
+ {
+  "id": "ee-b2-opinion",
+  "exam": "TEF",
+  "level": "B2",
+  "nclc": "NCLC 7",
+  "title": "Lettre d’opinion : les réseaux sociaux",
+  "minWords": 200,
+  "prompt": "Un journal local demande l’avis des lecteurs : les réseaux sociaux sont-ils bons pour les jeunes ? Écrivez une lettre (200 mots minimum) pour donner et justifier votre opinion.",
+  "prompt_hi": "स्थानीय अख़बार पूछता है: क्या सोशल मीडिया युवाओं के लिए अच्छा है? कम से कम 200 शब्दों में अपनी राय तर्क सहित लिखें।",
+  "model": "Madame, Monsieur,\nEn réponse à votre question, je pense que les réseaux sociaux présentent autant d’avantages que de risques pour les jeunes.\nD’une part, ils permettent de rester en contact avec ses proches, de s’informer rapidement et même de développer des compétences créatives. Par exemple, de nombreux adolescents apprennent les langues grâce à des vidéos.\nD’autre part, un usage excessif peut nuire au sommeil, à la concentration et à l’estime de soi, car on a tendance à se comparer aux autres. Bien que ces plateformes soient gratuites, elles collectent aussi beaucoup de données personnelles.\nÀ mon avis, il ne faut ni les interdire ni les laisser sans contrôle. Il est essentiel que les parents et l’école apprennent aux jeunes à les utiliser avec discernement.\nEn conclusion, c’est l’usage, et non l’outil, qui est bon ou mauvais.\nVeuillez agréer, Madame, Monsieur, mes salutations distinguées.",
+  "model_en": "Argues both sides: benefits (contact, information, skills) and risks (sleep, concentration, self-esteem, data), then concludes that education and supervision are the solution.",
+  "checklist": [
+   "Thesis in the first paragraph",
+   "D’une part… d’autre part…",
+   "At least one concession (bien que + subjonctif)",
+   "Example + conclusion",
+   "200+ words"
+  ]
+ },
+ {
+  "id": "ee-c1-argument",
+  "exam": "DELF",
+  "level": "C1",
+  "nclc": "NCLC 9-10",
+  "title": "Essai argumentatif : le télétravail généralisé",
+  "minWords": 250,
+  "prompt": "« Le télétravail devrait devenir la norme pour tous les emplois qui le permettent. » Discutez cette affirmation dans un essai structuré (250 mots).",
+  "prompt_hi": "« जिन नौकरियों में संभव है, उनके लिए घर से काम ही नियम बने। » इस कथन पर संरचित निबंध लिखें।",
+  "model": "Il est indéniable que le télétravail a bouleversé nos habitudes. Reste à savoir s’il doit devenir la norme.\nCertes, il offre une autonomie accrue et réduit l’empreinte écologique des déplacements. En outre, il élargit le recrutement à des candidats éloignés des grands centres.\nIl n’en reste pas moins que l’éloignement fragilise la cohésion d’équipe et la transmission des savoir-faire, surtout pour les jeunes recrues. De surcroît, tous les foyers ne disposent pas d’un espace de travail adéquat.\nÀ mon sens, la solution réside dans un modèle hybride, négocié au cas par cas. En définitive, force est de constater que la flexibilité vaut mieux que la norme unique.",
+  "model_en": "Thesis → concession → counter-argument → personal position (hybrid) → conclusion. Uses C1 linkers: il est indéniable que, certes, il n’en reste pas moins que, force est de constater.",
+  "checklist": [
+   "Problématique",
+   "Plan en 3 parties",
+   "Linkers C1",
+   "Nuanced personal position",
+   "Conclusion with opening"
+  ]
+ }
+]

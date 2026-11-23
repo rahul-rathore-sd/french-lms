@@ -1,0 +1,303 @@
+[
+ {
+  "id": "ce-a2-affiche",
+  "skill": "CE",
+  "level": "A2",
+  "nclc": "NCLC 4",
+  "title": "Affiche : cours de cuisine",
+  "title_en": "Poster: cooking class",
+  "fr": "Cours de cuisine française\nTous les samedis, de 10 h à 12 h, au centre culturel de la rue Victor-Hugo. Prix : 25 € par personne. Apportez un tablier. Inscription obligatoire avant le jeudi.",
+  "en": "French cooking class. Every Saturday, 10 am to 12 pm, at the cultural centre on Victor-Hugo Street. Price: €25 per person. Bring an apron. Registration required before Thursday.",
+  "hi": "फ़्रेंच खाना पकाने की क्लास। हर शनिवार सुबह 10 से 12 बजे, विक्टर-ह्यूगो गली के सांस्कृतिक केंद्र में। कीमत: 25 € प्रति व्यक्ति। एप्रन लाएँ। गुरुवार से पहले पंजीकरण ज़रूरी।",
+  "questions": [
+   {
+    "q": "Quand a lieu le cours ?",
+    "options": [
+     "Le jeudi matin",
+     "Le samedi matin",
+     "Le samedi soir"
+    ],
+    "correct": 1,
+    "explain": "Tous les samedis, 10 h-12 h."
+   },
+   {
+    "q": "Qu’est-ce qu’on doit apporter ?",
+    "options": [
+     "Un tablier",
+     "Des légumes",
+     "Un livre"
+    ],
+    "correct": 0,
+    "explain": "Apportez un tablier."
+   },
+   {
+    "q": "Avant quand faut-il s’inscrire ?",
+    "options": [
+     "Avant samedi",
+     "Avant jeudi",
+     "Avant lundi"
+    ],
+    "correct": 1,
+    "explain": "Inscription avant le jeudi."
+   }
+  ]
+ },
+ {
+  "id": "ce-b1-article",
+  "skill": "CE",
+  "level": "B1",
+  "nclc": "NCLC 5-6",
+  "title": "Article : le télétravail",
+  "title_en": "Article: remote work",
+  "fr": "Depuis la pandémie, le télétravail s’est installé dans de nombreuses entreprises. Les salariés apprécient de gagner du temps sur les trajets et de mieux organiser leur journée. Pourtant, certains se plaignent de l’isolement et de la difficulté à séparer vie privée et vie professionnelle. Beaucoup d’employeurs choisissent donc un système hybride : deux ou trois jours à la maison, le reste au bureau.",
+  "en": "Since the pandemic, remote work has become established in many companies. Employees appreciate saving commute time and organising their day better. However, some complain about isolation and difficulty separating private and professional life. Many employers therefore choose a hybrid system: two or three days at home, the rest at the office.",
+  "hi": "महामारी के बाद कई कंपनियों में घर से काम आम हो गया। कर्मचारियों को यात्रा का समय बचना पसंद है, पर कुछ अकेलेपन की शिकायत करते हैं। इसलिए कई नियोक्ता हाइब्रिड व्यवस्था चुनते हैं: 2-3 दिन घर, बाकी दफ़्तर।",
+  "questions": [
+   {
+    "q": "Quel est un avantage du télétravail ?",
+    "options": [
+     "Gagner du temps",
+     "Gagner plus d’argent",
+     "Voir ses collègues"
+    ],
+    "correct": 0,
+    "explain": "Gagner du temps sur les trajets."
+   },
+   {
+    "q": "Quel problème est mentionné ?",
+    "options": [
+     "Le bruit",
+     "L’isolement",
+     "Le salaire"
+    ],
+    "correct": 1,
+    "explain": "L’isolement."
+   },
+   {
+    "q": "Que choisissent beaucoup d’employeurs ?",
+    "options": [
+     "Un système hybride",
+     "Le bureau uniquement",
+     "Le télétravail total"
+    ],
+    "correct": 0,
+    "explain": "Un système hybride."
+   }
+  ]
+ },
+ {
+  "id": "ce-b2-opinion",
+  "skill": "CE",
+  "level": "B2",
+  "nclc": "NCLC 7",
+  "title": "Opinion : réduire la voiture en ville",
+  "title_en": "Opinion: reducing cars in cities",
+  "fr": "Interdire les voitures au centre-ville ne résoudra pas, à lui seul, le problème de la pollution. Certes, l’air y serait plus pur, mais encore faut-il que les transports en commun soient assez fréquents et abordables. Faute de quoi, les habitants des banlieues, qui n’ont souvent pas d’alternative, se sentiraient pénalisés. Il importe donc d’accompagner toute mesure restrictive d’un investissement massif dans les bus, le métro et les pistes cyclables.",
+  "en": "Banning cars from the city centre will not, on its own, solve pollution. Admittedly the air would be cleaner, but public transport must be frequent and affordable. Otherwise suburban residents, who often have no alternative, would feel penalised. Any restrictive measure should therefore come with massive investment in buses, metro and bike lanes.",
+  "hi": "शहर के केंद्र में गाड़ियों पर रोक लगाना अकेले प्रदूषण का हल नहीं है। हवा तो साफ़ होगी, पर सार्वजनिक परिवहन बार-बार चलने वाला और सस्ता होना चाहिए, वरना उपनगर वाले खुद को दंडित महसूस करेंगे। इसलिए हर पाबंदी के साथ बस, मेट्रो और साइकिल लेन में बड़ा निवेश चाहिए।",
+  "questions": [
+   {
+    "q": "Quelle est la thèse de l’auteur ?",
+    "options": [
+     "L’interdiction suffit",
+     "L’interdiction ne suffit pas seule",
+     "Il faut plus de voitures"
+    ],
+    "correct": 1,
+    "explain": "Elle ne résoudra pas à elle seule."
+   },
+   {
+    "q": "« Faute de quoi » signifie :",
+    "options": [
+     "Sinon",
+     "Parce que",
+     "Ensuite"
+    ],
+    "correct": 0,
+    "explain": "Faute de quoi = otherwise."
+   },
+   {
+    "q": "Que demande-t-il ?",
+    "options": [
+     "Moins de bus",
+     "Plus d’investissement dans les transports",
+     "Plus de parkings"
+    ],
+    "correct": 1,
+    "explain": "Investissement massif."
+   }
+  ]
+ },
+ {
+  "id": "ce-c1-editorial",
+  "skill": "CE",
+  "level": "C1",
+  "nclc": "NCLC 9-10",
+  "title": "Éditorial : l’intelligence artificielle",
+  "title_en": "Editorial: artificial intelligence",
+  "fr": "Qu’on s’en réjouisse ou qu’on le déplore, l’intelligence artificielle s’invite désormais dans la plupart des métiers. Si elle promet des gains de productivité substantiels, elle suscite aussi des inquiétudes légitimes quant à la place de l’humain. Reste à savoir si les pouvoirs publics sauront encadrer ces technologies sans en brider l’essor. Toujours est-il que l’éducation, plus que jamais, devra préparer chacun à travailler avec ces outils plutôt que contre eux.",
+  "en": "Whether we welcome or deplore it, artificial intelligence is now entering most professions. While promising substantial productivity gains, it raises legitimate concerns about the human role. It remains to be seen whether public authorities can regulate without stifling growth. Still, education must now prepare everyone to work with these tools, not against them.",
+  "hi": "चाहे स्वागत करें या अफ़सोस, AI अब ज़्यादातर पेशों में आ चुका है। यह उत्पादकता बढ़ाता है पर इंसान की जगह को लेकर चिंता भी पैदा करता है। देखना है कि सरकारें बिना विकास रोके नियमन कर पाती हैं या नहीं। शिक्षा को लोगों को इन औज़ारों के साथ काम करना सिखाना होगा।",
+  "questions": [
+   {
+    "q": "Quelle est la position de l’auteur ?",
+    "options": [
+     "Rejet total",
+     "Nuancée : promesses et risques",
+     "Enthousiasme sans réserve"
+    ],
+    "correct": 1,
+    "explain": "Il met en balance les gains et les inquiétudes."
+   },
+   {
+    "q": "« Brider l’essor » signifie :",
+    "options": [
+     "Freiner le développement",
+     "Accélérer",
+     "Financer"
+    ],
+    "correct": 0,
+    "explain": "Brider = to restrain."
+   },
+   {
+    "q": "Quel rôle pour l’éducation ?",
+    "options": [
+     "Interdire ces outils",
+     "Préparer à travailler avec eux",
+     "Ne rien changer"
+    ],
+    "correct": 1,
+    "explain": "Travailler avec plutôt que contre."
+   }
+  ]
+ },
+ {
+  "id": "co-a2-gare",
+  "skill": "CO",
+  "level": "A2",
+  "nclc": "NCLC 4",
+  "title": "Annonce en gare",
+  "title_en": "Station announcement",
+  "fr": "Mesdames et messieurs, le train à destination de Lyon, prévu à quatorze heures trente, partira avec vingt minutes de retard, voie numéro douze. Nous vous prions de nous excuser pour ce désagrément.",
+  "en": "Ladies and gentlemen, the train to Lyon, scheduled for 2:30 pm, will leave 20 minutes late from platform 12. We apologise for the inconvenience.",
+  "hi": "देवियो और सज्जनो, लियों जाने वाली ट्रेन जो 14:30 पर थी, 20 मिनट देरी से प्लेटफ़ॉर्म 12 से जाएगी। असुविधा के लिए खेद है।",
+  "questions": [
+   {
+    "q": "Quelle est la destination ?",
+    "options": [
+     "Lyon",
+     "Lille",
+     "Nice"
+    ],
+    "correct": 0,
+    "explain": "Lyon."
+   },
+   {
+    "q": "Quel est le retard ?",
+    "options": [
+     "10 minutes",
+     "20 minutes",
+     "30 minutes"
+    ],
+    "correct": 1,
+    "explain": "Vingt minutes."
+   },
+   {
+    "q": "Quelle voie ?",
+    "options": [
+     "2",
+     "12",
+     "20"
+    ],
+    "correct": 1,
+    "explain": "Voie douze."
+   }
+  ]
+ },
+ {
+  "id": "co-b1-message",
+  "skill": "CO",
+  "level": "B1",
+  "nclc": "NCLC 5-6",
+  "title": "Message vocal",
+  "title_en": "Voicemail",
+  "fr": "Bonjour Claire, c’est Marc. Je t’appelle parce que la réunion de demain est reportée à jeudi, à dix heures, en salle B. Comme ma voiture est au garage, je viendrai en métro. Peux-tu apporter les documents du client ? Merci et à bientôt !",
+  "en": "Hello Claire, it’s Marc. The meeting tomorrow is postponed to Thursday at ten, in room B. As my car is in the garage I’ll come by metro. Can you bring the client documents? Thanks and see you soon!",
+  "hi": "हैलो क्लेयर, मैं मार्क हूँ। कल की मीटिंग गुरुवार को दस बजे कमरा B में होगी। मेरी गाड़ी गैराज में है, इसलिए मैं मेट्रो से आऊँगा। क्या तुम क्लाइंट के दस्तावेज़ ला सकती हो?",
+  "questions": [
+   {
+    "q": "Quand a lieu la réunion ?",
+    "options": [
+     "Demain",
+     "Jeudi",
+     "Vendredi"
+    ],
+    "correct": 1,
+    "explain": "Reportée à jeudi."
+   },
+   {
+    "q": "Pourquoi Marc vient-il en métro ?",
+    "options": [
+     "Sa voiture est au garage",
+     "Il aime le métro",
+     "Il n’a pas de voiture"
+    ],
+    "correct": 0,
+    "explain": "Sa voiture est au garage."
+   },
+   {
+    "q": "Que doit apporter Claire ?",
+    "options": [
+     "Un café",
+     "Les documents du client",
+     "Son ordinateur"
+    ],
+    "correct": 1,
+    "explain": "Les documents du client."
+   }
+  ]
+ },
+ {
+  "id": "co-b2-radio",
+  "skill": "CO",
+  "level": "B2",
+  "nclc": "NCLC 7",
+  "title": "Interview radio : le bénévolat",
+  "title_en": "Radio interview: volunteering",
+  "fr": "Selon une étude récente, près d’un Français sur quatre s’engage dans une association. Ce qui motive les bénévoles, ce n’est pas seulement l’envie d’aider : c’est aussi le désir d’apprendre de nouvelles compétences et de créer des liens. Cependant, de plus en plus d’associations peinent à recruter des jeunes, qui manquent de temps à cause de leurs études.",
+  "en": "According to a recent study, nearly one French person in four volunteers in an association. Volunteers are motivated not only by the wish to help but also to learn skills and make connections. However, more associations struggle to recruit young people, who lack time because of their studies.",
+  "hi": "एक अध्ययन के अनुसार हर चार में से लगभग एक फ़्रेंच व्यक्ति किसी संस्था में स्वयंसेवा करता है। प्रेरणा सिर्फ़ मदद नहीं, कौशल सीखना और संबंध बनाना भी है। पर संस्थाओं को युवा नहीं मिल रहे क्योंकि उनके पास समय कम है।",
+  "questions": [
+   {
+    "q": "Quelle proportion de Français est bénévole ?",
+    "options": [
+     "1 sur 4",
+     "1 sur 10",
+     "1 sur 2"
+    ],
+    "correct": 0,
+    "explain": "Près d’un sur quatre."
+   },
+   {
+    "q": "Quelle motivation est citée ?",
+    "options": [
+     "L’argent",
+     "Apprendre de nouvelles compétences",
+     "Voyager"
+    ],
+    "correct": 1,
+    "explain": "Compétences et liens."
+   },
+   {
+    "q": "Quel est le problème pour les associations ?",
+    "options": [
+     "Recruter des jeunes",
+     "Trouver des salles",
+     "Payer les salariés"
+    ],
+    "correct": 0,
+    "explain": "Peinent à recruter des jeunes."
+   }
+  ]
+ }
+]

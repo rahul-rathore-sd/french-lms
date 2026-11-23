@@ -14,18 +14,13 @@
 /.zed
 /auth.json
 /node_modules
-/public/build
+# (public/build is committed on purpose: the server has no Node)
 /public/fonts-manifest.dev.json
 /public/hot
 /public/storage
 /storage/*.key
 /storage/pail
 /vendor
-/frontend/node_modules
-/frontend/.next
-/frontend/out
-/frontend/next-env.d.ts
-/frontend/*.tsbuildinfo
 /database/*.sqlite
 _ide_helper.php
 Homestead.json

@@ -8,6 +8,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call(DefaultBooksSeeder::class);
+        // Starter TCF Canada content: grammar, reading/listening, writing/speaking tasks, vocabulary.
+        $this->call(MaterialSeeder::class);
     }
 }

@@ -1,0 +1,3896 @@
+[
+ {
+  "slug": "etre-avoir",
+  "level": "A1",
+  "title": "Être and avoir (to be, to have)",
+  "summary": "The two most important verbs in French. They are irregular and also act as auxiliaries for past tenses.",
+  "rules": [
+   {
+    "rule": "Être describes who or what someone is: identity, job, nationality, state.",
+    "examples": [
+     {
+      "fr": "Je suis étudiant.",
+      "en": "I am a student."
+     },
+     {
+      "fr": "Elle est française.",
+      "en": "She is French."
+     }
+    ]
+   },
+   {
+    "rule": "Avoir expresses possession, and also age and some feelings (faim, soif, peur, chaud, froid).",
+    "examples": [
+     {
+      "fr": "J’ai vingt ans.",
+      "en": "I am twenty."
+     },
+     {
+      "fr": "Nous avons faim.",
+      "en": "We are hungry."
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Présent",
+    "headers": [
+     "Pronoun",
+     "être",
+     "avoir"
+    ],
+    "rows": [
+     [
+      "je / j’",
+      "suis",
+      "ai"
+     ],
+     [
+      "tu",
+      "es",
+      "as"
+     ],
+     [
+      "il / elle / on",
+      "est",
+      "a"
+     ],
+     [
+      "nous",
+      "sommes",
+      "avons"
+     ],
+     [
+      "vous",
+      "êtes",
+      "avez"
+     ],
+     [
+      "ils / elles",
+      "sont",
+      "ont"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "Age uses avoir: « J’ai 25 ans », never « je suis 25 ans ».",
+   "Liaison: « vous avez » is pronounced vou-z-avez."
+  ],
+  "title_hi": "être और avoir (होना, रखना)",
+  "summary_hi": "फ्रेंच की दो सबसे ज़रूरी क्रियाएँ। ये अनियमित हैं और बीते काल में सहायक क्रिया भी बनती हैं। उम्र बताने में avoir: J’ai 20 ans।"
+ },
+ {
+  "slug": "articles-gender",
+  "level": "A1",
+  "title": "Articles and gender",
+  "summary": "Every French noun is masculine or feminine, and the article tells you which.",
+  "rules": [
+   {
+    "rule": "Definite articles (the): le (m), la (f), l’ (before a vowel), les (plural).",
+    "examples": [
+     {
+      "fr": "le livre, la table, l’ami, les enfants",
+      "en": "the book, the table, the friend, the children"
+     }
+    ]
+   },
+   {
+    "rule": "Indefinite articles (a/an/some): un (m), une (f), des (plural).",
+    "examples": [
+     {
+      "fr": "Un café et une baguette, s’il vous plaît.",
+      "en": "A coffee and a baguette, please."
+     }
+    ]
+   },
+   {
+    "rule": "Partitive (some, an amount of): du, de la, de l’.",
+    "examples": [
+     {
+      "fr": "Je bois du café et de l’eau.",
+      "en": "I drink (some) coffee and water."
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Learn each noun with its article: la maison, le jardin.",
+   "Many nouns ending in -tion, -té, -ie are feminine; those ending in -age, -ment, -eau are often masculine."
+  ],
+  "title_hi": "Articles और लिंग",
+  "summary_hi": "हर संज्ञा पुल्लिंग या स्त्रीलिंग होती है और article उसे बताता है: le/la/les = the, un/une/des = a/some।"
+ },
+ {
+  "slug": "present-er-verbs",
+  "level": "A1",
+  "title": "Présent of regular -er verbs",
+  "summary": "About 90% of French verbs end in -er and follow one pattern.",
+  "rules": [
+   {
+    "rule": "Remove -er from the infinitive and add the endings -e, -es, -e, -ons, -ez, -ent.",
+    "examples": [
+     {
+      "fr": "Je parle français.",
+      "en": "I speak French."
+     },
+     {
+      "fr": "Nous habitons à Lyon.",
+      "en": "We live in Lyon."
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "parler (to speak)",
+    "headers": [
+     "Pronoun",
+     "Form"
+    ],
+    "rows": [
+     [
+      "je",
+      "parle"
+     ],
+     [
+      "tu",
+      "parles"
+     ],
+     [
+      "il / elle / on",
+      "parle"
+     ],
+     [
+      "nous",
+      "parlons"
+     ],
+     [
+      "vous",
+      "parlez"
+     ],
+     [
+      "ils / elles",
+      "parlent"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "The endings -e, -es, -ent are silent: je parle, tu parles and ils parlent sound the same.",
+   "Verbs in -ger and -cer add a letter before -ons: nous mangeons, nous commençons."
+  ],
+  "title_hi": "-er क्रियाओं का वर्तमान काल",
+  "summary_hi": "लगभग 90% क्रियाएँ -er पर खत्म होती हैं। -er हटाइए और -e, -es, -e, -ons, -ez, -ent जोड़िए।"
+ },
+ {
+  "slug": "negation-questions",
+  "level": "A1",
+  "title": "Negation and questions",
+  "summary": "Wrap the verb with ne… pas, and ask questions with est-ce que, intonation or inversion.",
+  "rules": [
+   {
+    "rule": "Negation: ne + verb + pas (ne becomes n’ before a vowel).",
+    "examples": [
+     {
+      "fr": "Je ne parle pas allemand.",
+      "en": "I do not speak German."
+     },
+     {
+      "fr": "Il n’est pas fatigué.",
+      "en": "He is not tired."
+     }
+    ]
+   },
+   {
+    "rule": "Questions: raise your voice, add est-ce que, or invert the verb and pronoun (more formal).",
+    "examples": [
+     {
+      "fr": "Tu viens ?",
+      "en": "Are you coming?"
+     },
+     {
+      "fr": "Est-ce que tu viens ?",
+      "en": "Are you coming?"
+     },
+     {
+      "fr": "Venez-vous ?",
+      "en": "Are you coming? (formal)"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "In speech, ne is often dropped: « Je sais pas ». Keep it in writing.",
+   "Question words: qui, que, où, quand, comment, pourquoi, combien."
+  ],
+  "title_hi": "निषेध और प्रश्न",
+  "summary_hi": "क्रिया को ne … pas से घेरिए: Je ne parle pas। प्रश्न: est-ce que, आवाज़ ऊँची करके, या inversion।"
+ },
+ {
+  "slug": "irregular-aller-faire",
+  "level": "A1",
+  "title": "Aller, faire, venir, prendre",
+  "summary": "Four irregular verbs you will use every day.",
+  "rules": [
+   {
+    "rule": "Aller (to go) also builds the near future: aller + infinitive.",
+    "examples": [
+     {
+      "fr": "Je vais à l’école.",
+      "en": "I go to school."
+     },
+     {
+      "fr": "Nous allons partir.",
+      "en": "We are going to leave."
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Présent",
+    "headers": [
+     "Pronoun",
+     "aller",
+     "faire",
+     "venir",
+     "prendre"
+    ],
+    "rows": [
+     [
+      "je",
+      "vais",
+      "fais",
+      "viens",
+      "prends"
+     ],
+     [
+      "tu",
+      "vas",
+      "fais",
+      "viens",
+      "prends"
+     ],
+     [
+      "il / elle / on",
+      "va",
+      "fait",
+      "vient",
+      "prend"
+     ],
+     [
+      "nous",
+      "allons",
+      "faisons",
+      "venons",
+      "prenons"
+     ],
+     [
+      "vous",
+      "allez",
+      "faites",
+      "venez",
+      "prenez"
+     ],
+     [
+      "ils / elles",
+      "vont",
+      "font",
+      "viennent",
+      "prennent"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "Faire appears in weather (il fait beau), activities (faire du sport) and chores (faire les courses)."
+  ],
+  "title_hi": "aller और faire",
+  "summary_hi": "aller (जाना) और faire (करना/बनाना) — बेहद आम अनियमित क्रियाएँ; इनसे futur proche भी बनता है।"
+ },
+ {
+  "slug": "adjectifs-accord",
+  "level": "A1",
+  "title": "Adjectives: gender and number",
+  "title_hi": "विशेषण: लिंग और वचन",
+  "summary": "Adjectives agree with the noun: add -e for feminine, -s for plural.",
+  "summary_hi": "विशेषण संज्ञा के अनुसार बदलता है: स्त्रीलिंग में -e, बहुवचन में -s जोड़ें।",
+  "rules": [
+   {
+    "rule": "Feminine: usually add -e. If it already ends in -e, nothing changes.",
+    "rule_hi": "स्त्रीलिंग: आमतौर पर -e जोड़ें। अगर पहले से -e है तो कुछ नहीं बदलता।",
+    "examples": [
+     {
+      "fr": "Il est grand. Elle est grande.",
+      "en": "He is tall. She is tall.",
+      "hi": "वह (पु.) लंबा है। वह (स्त्री) लंबी है।"
+     },
+     {
+      "fr": "Un garçon timide, une fille timide.",
+      "en": "A shy boy, a shy girl.",
+      "hi": "एक शर्मीला लड़का, एक शर्मीली लड़की।"
+     }
+    ]
+   },
+   {
+    "rule": "Plural: add -s (words ending in -s/-x stay the same). Most adjectives come AFTER the noun.",
+    "rule_hi": "बहुवचन: -s जोड़ें। ज़्यादातर विशेषण संज्ञा के बाद आते हैं।",
+    "examples": [
+     {
+      "fr": "Des voitures rouges.",
+      "en": "Red cars.",
+      "hi": "लाल गाड़ियाँ।"
+     },
+     {
+      "fr": "Un livre intéressant.",
+      "en": "An interesting book.",
+      "hi": "एक दिलचस्प किताब।"
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Irregular feminines",
+    "headers": [
+     "Masculine",
+     "Feminine",
+     "Hindi"
+    ],
+    "rows": [
+     [
+      "beau",
+      "belle",
+      "सुंदर"
+     ],
+     [
+      "nouveau",
+      "nouvelle",
+      "नया"
+     ],
+     [
+      "blanc",
+      "blanche",
+      "सफ़ेद"
+     ],
+     [
+      "heureux",
+      "heureuse",
+      "खुश"
+     ],
+     [
+      "sportif",
+      "sportive",
+      "खिलाड़ी/खेल-प्रेमी"
+     ],
+     [
+      "gentil",
+      "gentille",
+      "दयालु"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "Short common adjectives go BEFORE the noun: petit, grand, beau, bon, jeune, vieux, nouveau.",
+   "Colours and nationalities go after the noun: une robe bleue, un ami indien."
+  ],
+  "tips_hi": [
+   "छोटे आम विशेषण संज्ञा से पहले आते हैं (petit, grand, beau, bon)।",
+   "रंग और राष्ट्रीयता वाले विशेषण संज्ञा के बाद आते हैं।"
+  ],
+  "quiz": [
+   {
+    "q": "Elle est ___.",
+    "options": [
+     "content",
+     "contente",
+     "contents"
+    ],
+    "correct": 1,
+    "explain": "Feminine singular adds -e."
+   },
+   {
+    "q": "Des filles ___.",
+    "options": [
+     "heureux",
+     "heureuses",
+     "heureuse"
+    ],
+    "correct": 1,
+    "explain": "heureux → heureuse → heureuses (fem. plural)."
+   }
+  ]
+ },
+ {
+  "slug": "nombres-heure",
+  "level": "A1",
+  "title": "Numbers, date and time",
+  "title_hi": "संख्याएँ, तारीख़ और समय",
+  "summary": "Count, give the date and tell the time. French uses 'vingt' and 'quatre-vingts' patterns.",
+  "summary_hi": "गिनती, तारीख़ और समय बताना। फ्रेंच में 70 = 60+10 और 80 = 4×20 जैसे पैटर्न हैं।",
+  "rules": [
+   {
+    "rule": "Numbers 70–99 are built on 60 and 20.",
+    "rule_hi": "70–99 की संख्याएँ 60 और 20 पर बनती हैं।",
+    "examples": [
+     {
+      "fr": "soixante-dix (70), quatre-vingts (80), quatre-vingt-dix (90)",
+      "en": "seventy, eighty, ninety",
+      "hi": "सत्तर, अस्सी, नब्बे"
+     },
+     {
+      "fr": "quatre-vingt-quinze",
+      "en": "ninety-five (4×20 + 15)",
+      "hi": "पचानवे"
+     }
+    ]
+   },
+   {
+    "rule": "Time: « Il est + heure(s) ». Use 'et quart', 'et demie', 'moins le quart'.",
+    "rule_hi": "समय: « Il est + heure »। quart = सवा/पौन, demie = साढ़े।",
+    "examples": [
+     {
+      "fr": "Il est huit heures et quart.",
+      "en": "It is 8:15.",
+      "hi": "सवा आठ बजे हैं।"
+     },
+     {
+      "fr": "Il est midi moins le quart.",
+      "en": "It is 11:45.",
+      "hi": "पौने बारह बजे हैं।"
+     }
+    ]
+   },
+   {
+    "rule": "Date: le + number + month. Only the 1st uses 'premier'.",
+    "rule_hi": "तारीख़: le + संख्या + महीना। सिर्फ़ 1 के लिए premier।",
+    "examples": [
+     {
+      "fr": "Aujourd’hui, c’est le 1er mai.",
+      "en": "Today is 1 May.",
+      "hi": "आज 1 मई है।"
+     },
+     {
+      "fr": "Je suis né le 12 août.",
+      "en": "I was born on 12 August.",
+      "hi": "मेरा जन्म 12 अगस्त को हुआ।"
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Basics",
+    "headers": [
+     "Number",
+     "French",
+     "Hindi"
+    ],
+    "rows": [
+     [
+      "1",
+      "un / une",
+      "एक"
+     ],
+     [
+      "2",
+      "deux",
+      "दो"
+     ],
+     [
+      "3",
+      "trois",
+      "तीन"
+     ],
+     [
+      "4",
+      "quatre",
+      "चार"
+     ],
+     [
+      "5",
+      "cinq",
+      "पाँच"
+     ],
+     [
+      "10",
+      "dix",
+      "दस"
+     ],
+     [
+      "20",
+      "vingt",
+      "बीस"
+     ],
+     [
+      "100",
+      "cent",
+      "सौ"
+     ],
+     [
+      "1000",
+      "mille",
+      "हज़ार"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "TEF/TCF listening: practise hearing 60, 70, 80, 90 — they are the commonest traps.",
+   "Days and months are not capitalised in French: lundi, janvier."
+  ],
+  "tips_hi": [
+   "सुनने की परीक्षा में 60/70/80/90 सबसे बड़ा जाल हैं — रोज़ सुनने का अभ्यास करें।",
+   "दिन और महीने छोटे अक्षर से लिखे जाते हैं।"
+  ],
+  "quiz": [
+   {
+    "q": "80 en français :",
+    "options": [
+     "soixante-dix",
+     "quatre-vingts",
+     "huit-dix"
+    ],
+    "correct": 1,
+    "explain": "80 = 4 × 20."
+   },
+   {
+    "q": "8h45 :",
+    "options": [
+     "neuf heures moins le quart",
+     "huit heures et quart",
+     "neuf heures et quart"
+    ],
+    "correct": 0,
+    "explain": "8:45 = 9h moins le quart."
+   }
+  ]
+ },
+ {
+  "slug": "cest-il-est",
+  "level": "A1",
+  "title": "C’est vs Il est",
+  "title_hi": "C’est और Il est में फ़र्क",
+  "summary": "Use c’est to identify/present, il est to describe or give a profession without article.",
+  "summary_hi": "c’est = पहचान/परिचय (article के साथ), il est = वर्णन या पेशा (बिना article)।",
+  "rules": [
+   {
+    "rule": "C’est + article/name/stressed pronoun: identifies.",
+    "rule_hi": "c’est + article/नाम: किसी की पहचान बताता है।",
+    "examples": [
+     {
+      "fr": "C’est un médecin. C’est Paul. C’est moi.",
+      "en": "He is a doctor. It is Paul. It's me.",
+      "hi": "यह डॉक्टर है। यह पॉल है। यह मैं हूँ।"
+     }
+    ]
+   },
+   {
+    "rule": "Il/Elle est + profession or adjective (no article).",
+    "rule_hi": "il/elle est + पेशा या विशेषण (बिना article)।",
+    "examples": [
+     {
+      "fr": "Il est médecin. Elle est grande.",
+      "en": "He is a doctor. She is tall.",
+      "hi": "वह डॉक्टर है। वह लंबी है।"
+     }
+    ]
+   },
+   {
+    "rule": "C’est + adjective talks about an idea or situation (masculine).",
+    "rule_hi": "c’est + विशेषण किसी स्थिति के बारे में बोलता है।",
+    "examples": [
+     {
+      "fr": "C’est facile. C’est important.",
+      "en": "It's easy. It's important.",
+      "hi": "यह आसान है। यह ज़रूरी है।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "If there is an article (un, une, le), choose c’est.",
+   "Plural: ce sont des étudiants (but c’est is accepted in speech)."
+  ],
+  "tips_hi": [
+   "अगर article (un, une, le) है तो c’est चुनें।"
+  ],
+  "quiz": [
+   {
+    "q": "___ une actrice.",
+    "options": [
+     "Elle est",
+     "C’est"
+    ],
+    "correct": 1,
+    "explain": "Article 'une' → c’est."
+   },
+   {
+    "q": "___ avocat.",
+    "options": [
+     "Il est",
+     "C’est"
+    ],
+    "correct": 0,
+    "explain": "Profession without article → il est."
+   }
+  ]
+ },
+ {
+  "slug": "possessifs-demonstratifs",
+  "level": "A1",
+  "title": "Possessives and demonstratives",
+  "title_hi": "स्वामित्व और संकेतवाचक शब्द",
+  "summary": "mon/ma/mes (my) and ce/cet/cette/ces (this/these).",
+  "summary_hi": "mon/ma/mes = मेरा/मेरी, ce/cette/ces = यह/ये। ये संज्ञा के लिंग और वचन से तय होते हैं (मालिक के लिंग से नहीं)।",
+  "rules": [
+   {
+    "rule": "Possessives agree with the thing owned, not the owner.",
+    "rule_hi": "स्वामित्व शब्द वस्तु के लिंग से चलता है, मालिक से नहीं।",
+    "examples": [
+     {
+      "fr": "Sa mère (his or her mother).",
+      "en": "His/her mother.",
+      "hi": "उसकी माँ (लड़का या लड़की दोनों के लिए)।"
+     },
+     {
+      "fr": "Mon amie (before a vowel, feminine uses mon).",
+      "en": "My (female) friend.",
+      "hi": "मेरी सहेली।"
+     }
+    ]
+   },
+   {
+    "rule": "Demonstratives: ce (m), cet (m + vowel), cette (f), ces (pl). Add -ci / -là to contrast.",
+    "rule_hi": "ce/cet/cette/ces = यह/ये। -ci पास, -là दूर।",
+    "examples": [
+     {
+      "fr": "Ce livre-ci ou ce livre-là ?",
+      "en": "This book or that book?",
+      "hi": "यह किताब या वह किताब?"
+     },
+     {
+      "fr": "Cet homme et cette femme.",
+      "en": "This man and this woman.",
+      "hi": "यह आदमी और यह औरत।"
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Possessives",
+    "headers": [
+     "Owner",
+     "m. sg",
+     "f. sg",
+     "plural"
+    ],
+    "rows": [
+     [
+      "je",
+      "mon",
+      "ma",
+      "mes"
+     ],
+     [
+      "tu",
+      "ton",
+      "ta",
+      "tes"
+     ],
+     [
+      "il/elle",
+      "son",
+      "sa",
+      "ses"
+     ],
+     [
+      "nous",
+      "notre",
+      "notre",
+      "nos"
+     ],
+     [
+      "vous",
+      "votre",
+      "votre",
+      "vos"
+     ],
+     [
+      "ils/elles",
+      "leur",
+      "leur",
+      "leurs"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "Before a feminine noun starting with a vowel, use mon/ton/son: mon école."
+  ],
+  "tips_hi": [
+   "स्वर से शुरू होने वाली स्त्रीलिंग संज्ञा से पहले mon/ton/son लगता है: mon école।"
+  ],
+  "quiz": [
+   {
+    "q": "___ ami (f) s’appelle Julie.",
+    "options": [
+     "Ma",
+     "Mon",
+     "Mes"
+    ],
+    "correct": 1,
+    "explain": "Vowel start → mon."
+   },
+   {
+    "q": "___ arbre est grand.",
+    "options": [
+     "Ce",
+     "Cet",
+     "Cette"
+    ],
+    "correct": 1,
+    "explain": "cet before vowel (masculine)."
+   }
+  ]
+ },
+ {
+  "slug": "il-y-a-prepositions",
+  "level": "A1",
+  "title": "Il y a, places and prepositions",
+  "title_hi": "Il y a, जगह और prepositions",
+  "summary": "Say what exists and where things are. Countries use en/au/aux, cities use à.",
+  "summary_hi": "क्या कहाँ है बताना। देश के लिए en/au/aux, शहर के लिए à।",
+  "rules": [
+   {
+    "rule": "Il y a = there is / there are (never changes).",
+    "rule_hi": "il y a = है / हैं (कभी नहीं बदलता)।",
+    "examples": [
+     {
+      "fr": "Il y a un café près d’ici.",
+      "en": "There is a café nearby.",
+      "hi": "यहाँ पास में एक कैफ़े है।"
+     }
+    ]
+   },
+   {
+    "rule": "Cities: à. Feminine countries: en. Masculine countries: au. Plural: aux.",
+    "rule_hi": "शहर: à। स्त्रीलिंग देश: en। पुल्लिंग: au। बहुवचन: aux।",
+    "examples": [
+     {
+      "fr": "J’habite à Montréal, au Canada.",
+      "en": "I live in Montreal, in Canada.",
+      "hi": "मैं कनाडा के मॉन्ट्रियल में रहता हूँ।"
+     },
+     {
+      "fr": "Elle va en France et aux États-Unis.",
+      "en": "She goes to France and to the USA.",
+      "hi": "वह फ़्रांस और अमेरिका जा रही है।"
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Location words",
+    "headers": [
+     "French",
+     "English",
+     "Hindi"
+    ],
+    "rows": [
+     [
+      "devant / derrière",
+      "in front / behind",
+      "सामने / पीछे"
+     ],
+     [
+      "sur / sous",
+      "on / under",
+      "ऊपर / नीचे"
+     ],
+     [
+      "à côté de",
+      "next to",
+      "बगल में"
+     ],
+     [
+      "en face de",
+      "opposite",
+      "सामने (उल्टी तरफ़)"
+     ],
+     [
+      "près de / loin de",
+      "near / far",
+      "पास / दूर"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "Countries ending in -e are feminine (la France, l’Inde) except le Mexique."
+  ],
+  "tips_hi": [
+   "-e पर खत्म होने वाले देश स्त्रीलिंग होते हैं: l’Inde → en Inde।"
+  ],
+  "quiz": [
+   {
+    "q": "Je vais ___ Inde.",
+    "options": [
+     "à",
+     "en",
+     "au"
+    ],
+    "correct": 1,
+    "explain": "l’Inde is feminine → en Inde."
+   },
+   {
+    "q": "Il vit ___ Canada.",
+    "options": [
+     "en",
+     "au",
+     "à"
+    ],
+    "correct": 1,
+    "explain": "le Canada → au Canada."
+   }
+  ]
+ },
+ {
+  "slug": "verbes-ir-re",
+  "level": "A1",
+  "title": "Présent: -ir, -re and common irregular verbs",
+  "title_hi": "वर्तमान काल: -ir, -re और आम अनियमित क्रियाएँ",
+  "summary": "finir (-ir), vendre (-re), prendre, pouvoir, vouloir, devoir, savoir, venir.",
+  "summary_hi": "finir, vendre, prendre, pouvoir, vouloir, devoir, savoir, venir — रोज़मर्रा की सबसे ज़रूरी क्रियाएँ।",
+  "rules": [
+   {
+    "rule": "-ir verbs (finir): -is, -is, -it, -issons, -issez, -issent.",
+    "rule_hi": "-ir क्रियाएँ: -is, -is, -it, -issons, -issez, -issent।",
+    "examples": [
+     {
+      "fr": "Nous finissons à six heures.",
+      "en": "We finish at six.",
+      "hi": "हम छह बजे खत्म करते हैं।"
+     }
+    ]
+   },
+   {
+    "rule": "-re verbs (vendre): -s, -s, —, -ons, -ez, -ent.",
+    "rule_hi": "-re क्रियाएँ: -s, -s, (कुछ नहीं), -ons, -ez, -ent।",
+    "examples": [
+     {
+      "fr": "Il vend sa voiture.",
+      "en": "He sells his car.",
+      "hi": "वह अपनी गाड़ी बेच रहा है।"
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Key irregular verbs",
+    "headers": [
+     "",
+     "pouvoir",
+     "vouloir",
+     "devoir",
+     "prendre",
+     "venir",
+     "savoir"
+    ],
+    "rows": [
+     [
+      "je",
+      "peux",
+      "veux",
+      "dois",
+      "prends",
+      "viens",
+      "sais"
+     ],
+     [
+      "tu",
+      "peux",
+      "veux",
+      "dois",
+      "prends",
+      "viens",
+      "sais"
+     ],
+     [
+      "il",
+      "peut",
+      "veut",
+      "doit",
+      "prend",
+      "vient",
+      "sait"
+     ],
+     [
+      "nous",
+      "pouvons",
+      "voulons",
+      "devons",
+      "prenons",
+      "venons",
+      "savons"
+     ],
+     [
+      "vous",
+      "pouvez",
+      "voulez",
+      "devez",
+      "prenez",
+      "venez",
+      "savez"
+     ],
+     [
+      "ils",
+      "peuvent",
+      "veulent",
+      "doivent",
+      "prennent",
+      "viennent",
+      "savent"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "Modal verbs are followed by an infinitive: Je veux apprendre le français.",
+   "Savoir = know a fact/skill; connaître = know a person/place."
+  ],
+  "tips_hi": [
+   "pouvoir/vouloir/devoir के बाद क्रिया का infinitive आता है।",
+   "savoir = जानकारी/कौशल, connaître = व्यक्ति/जगह से परिचित होना।"
+  ],
+  "quiz": [
+   {
+    "q": "Ils ___ le bus.",
+    "options": [
+     "prend",
+     "prennent",
+     "prenent"
+    ],
+    "correct": 1,
+    "explain": "ils prennent."
+   },
+   {
+    "q": "Nous ___ partir.",
+    "options": [
+     "pouvons",
+     "pouvez",
+     "peuvent"
+    ],
+    "correct": 0,
+    "explain": "nous pouvons."
+   }
+  ]
+ },
+ {
+  "slug": "passe-compose",
+  "level": "A2",
+  "title": "Passé composé",
+  "summary": "The main tense for completed past actions: auxiliary (avoir or être) + past participle.",
+  "rules": [
+   {
+    "rule": "Most verbs use avoir: j’ai mangé, tu as fini, nous avons parlé.",
+    "examples": [
+     {
+      "fr": "Hier, j’ai visité le musée.",
+      "en": "Yesterday I visited the museum."
+     }
+    ]
+   },
+   {
+    "rule": "Verbs of motion and reflexive verbs use être, and the participle agrees with the subject.",
+    "examples": [
+     {
+      "fr": "Elle est arrivée à huit heures.",
+      "en": "She arrived at eight."
+     },
+     {
+      "fr": "Nous nous sommes levés tôt.",
+      "en": "We got up early."
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Irregular participles",
+    "headers": [
+     "Infinitive",
+     "Participle"
+    ],
+    "rows": [
+     [
+      "avoir",
+      "eu"
+     ],
+     [
+      "être",
+      "été"
+     ],
+     [
+      "faire",
+      "fait"
+     ],
+     [
+      "prendre",
+      "pris"
+     ],
+     [
+      "voir",
+      "vu"
+     ],
+     [
+      "pouvoir",
+      "pu"
+     ],
+     [
+      "vouloir",
+      "voulu"
+     ],
+     [
+      "écrire",
+      "écrit"
+     ]
+    ]
+   },
+   {
+    "caption": "Verbs that take être (DR MRS VANDERTRAMP)",
+    "headers": [
+     "Group",
+     "Examples"
+    ],
+    "rows": [
+     [
+      "Motion",
+      "aller, venir, arriver, partir, entrer, sortir"
+     ],
+     [
+      "Up / down",
+      "monter, descendre, tomber"
+     ],
+     [
+      "Life",
+      "naître, mourir, rester, devenir"
+     ],
+     [
+      "Return",
+      "rentrer, retourner"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "With être, agree the participle: elles sont parties.",
+   "Negation wraps the auxiliary: je n’ai pas mangé."
+  ],
+  "title_hi": "passé composé (बीता काल)",
+  "summary_hi": "avoir/être + participe passé। बीती हुई पूरी घटना बताने के लिए। गतिवाचक क्रियाएँ और आत्मवाचक क्रियाएँ être लेती हैं।"
+ },
+ {
+  "slug": "futur-proche-pronouns",
+  "level": "A2",
+  "title": "Near future and direct object pronouns",
+  "summary": "Talk about what you are about to do, and avoid repetition with le, la, les.",
+  "rules": [
+   {
+    "rule": "Futur proche: aller (présent) + infinitive.",
+    "examples": [
+     {
+      "fr": "Il va pleuvoir.",
+      "en": "It is going to rain."
+     }
+    ]
+   },
+   {
+    "rule": "Direct object pronouns: me, te, le/la, nous, vous, les — placed before the conjugated verb.",
+    "examples": [
+     {
+      "fr": "Je le vois.",
+      "en": "I see him / it."
+     },
+     {
+      "fr": "Je ne les connais pas.",
+      "en": "I do not know them."
+     },
+     {
+      "fr": "Je vais la voir demain.",
+      "en": "I am going to see her tomorrow."
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "In the passé composé, the pronoun goes before the auxiliary and the participle agrees: « Je l’ai vue »."
+  ],
+  "title_hi": "futur proche और सर्वनाम",
+  "summary_hi": "aller + infinitive = जल्द होने वाला काम। साथ ही सर्वनाम का स्थान।"
+ },
+ {
+  "slug": "cod-coi",
+  "level": "A2",
+  "title": "Object pronouns: le, la, les, lui, leur",
+  "title_hi": "कर्म सर्वनाम: le, la, les, lui, leur",
+  "summary": "Replace nouns so you don’t repeat them. The pronoun goes BEFORE the conjugated verb.",
+  "summary_hi": "संज्ञा को दोहराने से बचने के लिए सर्वनाम। यह क्रिया से पहले आता है।",
+  "rules": [
+   {
+    "rule": "COD (direct object, no preposition): me, te, le/la, nous, vous, les.",
+    "rule_hi": "COD (बिना preposition): le/la/les।",
+    "examples": [
+     {
+      "fr": "Je regarde le film. → Je le regarde.",
+      "en": "I watch it.",
+      "hi": "मैं इसे देखता हूँ।"
+     }
+    ]
+   },
+   {
+    "rule": "COI (person after à): me, te, lui, nous, vous, leur.",
+    "rule_hi": "COI (व्यक्ति + à): lui, leur।",
+    "examples": [
+     {
+      "fr": "Je parle à Marie. → Je lui parle.",
+      "en": "I speak to her.",
+      "hi": "मैं उससे बात करता हूँ।"
+     },
+     {
+      "fr": "Je ne leur téléphone pas.",
+      "en": "I don’t call them.",
+      "hi": "मैं उन्हें फ़ोन नहीं करता।"
+     }
+    ]
+   },
+   {
+    "rule": "In the passé composé the pronoun goes before the auxiliary; the participle agrees with a preceding COD.",
+    "rule_hi": "passé composé में सर्वनाम auxiliary से पहले; COD के साथ participle मेल खाता है।",
+    "examples": [
+     {
+      "fr": "Tu as vu Anna ? Oui, je l’ai vue.",
+      "en": "Did you see Anna? Yes, I saw her.",
+      "hi": "क्या तुमने अन्ना को देखा? हाँ, मैंने उसे देखा।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Imperative affirmative: pronoun AFTER the verb with hyphen: Donne-le-moi.",
+   "Verbs like téléphoner, répondre, parler take 'à' → lui/leur."
+  ],
+  "tips_hi": [
+   "आदेश (हाँ वाला): सर्वनाम क्रिया के बाद hyphen से: Donne-le-moi।"
+  ],
+  "quiz": [
+   {
+    "q": "Je ___ écris. (à mes parents)",
+    "options": [
+     "les",
+     "leur",
+     "lui"
+    ],
+    "correct": 1,
+    "explain": "à + people (plural) → leur."
+   },
+   {
+    "q": "Il aime Sophie. Il ___ aime.",
+    "options": [
+     "la",
+     "lui",
+     "le"
+    ],
+    "correct": 0,
+    "explain": "Direct object feminine → la."
+   }
+  ]
+ },
+ {
+  "slug": "en-y",
+  "level": "A2",
+  "title": "The pronouns en and y",
+  "title_hi": "सर्वनाम en और y",
+  "summary": "en replaces 'de + thing/quantity'; y replaces 'à + thing' or a place.",
+  "summary_hi": "en = de + वस्तु/मात्रा की जगह; y = à + वस्तु या जगह की जगह।",
+  "rules": [
+   {
+    "rule": "en = of it/of them/some. Keep the number or quantity word.",
+    "rule_hi": "en = उसमें से/कुछ। संख्या या मात्रा बनी रहती है।",
+    "examples": [
+     {
+      "fr": "Tu veux du pain ? Oui, j’en veux.",
+      "en": "Do you want some bread? Yes, I want some.",
+      "hi": "रोटी चाहिए? हाँ, मुझे चाहिए।"
+     },
+     {
+      "fr": "Elle a trois frères. Elle en a trois.",
+      "en": "She has three brothers.",
+      "hi": "उसके तीन भाई हैं।"
+     }
+    ]
+   },
+   {
+    "rule": "y = there / to it.",
+    "rule_hi": "y = वहाँ / उसे।",
+    "examples": [
+     {
+      "fr": "Tu vas à Paris ? Oui, j’y vais.",
+      "en": "Going to Paris? Yes, I’m going there.",
+      "hi": "पेरिस जा रहे हो? हाँ, मैं वहाँ जा रहा हूँ।"
+     },
+     {
+      "fr": "Je pense à mon examen. J’y pense.",
+      "en": "I think about it.",
+      "hi": "मैं इसके बारे में सोचता हूँ।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Order for two pronouns: me/te/nous/vous → le/la/les → lui/leur → y → en.",
+   "'penser à' + person uses stressed pronoun: je pense à lui."
+  ],
+  "tips_hi": [
+   "व्यक्ति के लिए y नहीं, लिखें: je pense à elle।"
+  ],
+  "quiz": [
+   {
+    "q": "Tu as des amis ici ? Oui, j’___ ai.",
+    "options": [
+     "y",
+     "en",
+     "les"
+    ],
+    "correct": 1,
+    "explain": "des amis → en."
+   },
+   {
+    "q": "Vous allez au cinéma ? Oui, nous ___ allons.",
+    "options": [
+     "y",
+     "en",
+     "le"
+    ],
+    "correct": 0,
+    "explain": "place → y."
+   }
+  ]
+ },
+ {
+  "slug": "comparatif-superlatif",
+  "level": "A2",
+  "title": "Comparatives and superlatives",
+  "title_hi": "तुलना और सर्वोत्तमता",
+  "summary": "plus / moins / aussi … que; le plus / le moins; meilleur and mieux.",
+  "summary_hi": "plus … que = ज़्यादा, moins … que = कम, aussi … que = बराबर; le plus = सबसे।",
+  "rules": [
+   {
+    "rule": "plus / moins / aussi + adjective + que.",
+    "rule_hi": "plus/moins/aussi + विशेषण + que।",
+    "examples": [
+     {
+      "fr": "Paris est plus grand que Lyon.",
+      "en": "Paris is bigger than Lyon.",
+      "hi": "पेरिस लियों से बड़ा है।"
+     },
+     {
+      "fr": "Elle est aussi rapide que lui.",
+      "en": "She is as fast as him.",
+      "hi": "वह उसके जितनी तेज़ है।"
+     }
+    ]
+   },
+   {
+    "rule": "Superlative: le/la/les plus/moins + adjective.",
+    "rule_hi": "सर्वोत्तम: le/la/les plus + विशेषण।",
+    "examples": [
+     {
+      "fr": "C’est la plus belle ville.",
+      "en": "It’s the most beautiful city.",
+      "hi": "यह सबसे सुंदर शहर है।"
+     }
+    ]
+   },
+   {
+    "rule": "bon → meilleur (adj.), bien → mieux (adv.).",
+    "rule_hi": "bon → meilleur (विशेषण), bien → mieux (क्रिया-विशेषण)।",
+    "examples": [
+     {
+      "fr": "Ce gâteau est meilleur. Il chante mieux.",
+      "en": "This cake is better. He sings better.",
+      "hi": "यह केक बेहतर है। वह बेहतर गाता है।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Never say 'plus bon'. Use meilleur.",
+   "Quantity: plus de / moins de / autant de + noun."
+  ],
+  "tips_hi": [
+   "'plus bon' कभी नहीं, हमेशा meilleur।"
+  ],
+  "quiz": [
+   {
+    "q": "Cette pizza est ___ que celle-là.",
+    "options": [
+     "plus bonne",
+     "meilleure",
+     "mieux"
+    ],
+    "correct": 1,
+    "explain": "bon → meilleur."
+   },
+   {
+    "q": "Il parle ___ que moi.",
+    "options": [
+     "meilleur",
+     "mieux",
+     "plus bon"
+    ],
+    "correct": 1,
+    "explain": "adverb of 'parler' → mieux."
+   }
+  ]
+ },
+ {
+  "slug": "interrogation-complete",
+  "level": "A2",
+  "title": "Asking questions: qui, que, où, quand, comment, pourquoi",
+  "title_hi": "प्रश्न पूछना: कौन, क्या, कहाँ, कब, कैसे, क्यों",
+  "summary": "Three styles: intonation, est-ce que, inversion.",
+  "summary_hi": "तीन तरीके: आवाज़ ऊँची करके, est-ce que लगाकर, या क्रिया-सर्वनाम उलटकर (औपचारिक)।",
+  "rules": [
+   {
+    "rule": "Question words: qui (who), que/quoi (what), où, quand, comment, pourquoi, combien.",
+    "rule_hi": "प्रश्नवाचक शब्द।",
+    "examples": [
+     {
+      "fr": "Où habites-tu ?",
+      "en": "Where do you live?",
+      "hi": "तुम कहाँ रहते हो?"
+     },
+     {
+      "fr": "Pourquoi est-ce que tu apprends le français ?",
+      "en": "Why are you learning French?",
+      "hi": "तुम फ़्रेंच क्यों सीख रहे हो?"
+     },
+     {
+      "fr": "Combien coûte ce billet ?",
+      "en": "How much is this ticket?",
+      "hi": "यह टिकट कितने का है?"
+     }
+    ]
+   },
+   {
+    "rule": "Inversion adds -t- between two vowels.",
+    "rule_hi": "दो स्वरों के बीच -t- जुड़ता है।",
+    "examples": [
+     {
+      "fr": "Parle-t-il anglais ?",
+      "en": "Does he speak English?",
+      "hi": "क्या वह अंग्रेज़ी बोलता है?"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Speaking exam: use est-ce que — safe and natural.",
+   "Writing formal letters: prefer inversion."
+  ],
+  "tips_hi": [
+   "बोलने की परीक्षा में est-ce que सुरक्षित है; औपचारिक पत्र में inversion।"
+  ],
+  "quiz": [
+   {
+    "q": "___ tu pars ? — Demain.",
+    "options": [
+     "Quand",
+     "Où",
+     "Qui"
+    ],
+    "correct": 0,
+    "explain": "Demain answers 'when'."
+   },
+   {
+    "q": "Inversion : A-___ mangé ?",
+    "options": [
+     "il t-",
+     "t-il",
+     "-il"
+    ],
+    "correct": 1,
+    "explain": "A-t-il mangé ?"
+   }
+  ]
+ },
+ {
+  "slug": "imperatif-pronominaux",
+  "level": "A2",
+  "title": "Imperative and reflexive verbs",
+  "title_hi": "आदेशसूचक और आत्मवाचक क्रियाएँ",
+  "summary": "Give orders/advice; talk about daily routine with se lever, se coucher…",
+  "summary_hi": "आदेश/सलाह देना और दिनचर्या बताना: se réveiller, se laver, se coucher।",
+  "rules": [
+   {
+    "rule": "Imperative = present without subject (tu form of -er verbs loses -s).",
+    "rule_hi": "आदेश = बिना subject के वर्तमान (-er में tu का -s हट जाता है)।",
+    "examples": [
+     {
+      "fr": "Parle plus lentement, s’il te plaît.",
+      "en": "Speak more slowly, please.",
+      "hi": "कृपया धीरे बोलो।"
+     },
+     {
+      "fr": "Allons-y !",
+      "en": "Let’s go!",
+      "hi": "चलो चलें!"
+     }
+    ]
+   },
+   {
+    "rule": "Reflexive verbs use me/te/se/nous/vous/se; passé composé uses être.",
+    "rule_hi": "आत्मवाचक क्रियाएँ me/te/se; passé composé में être।",
+    "examples": [
+     {
+      "fr": "Je me lève à sept heures.",
+      "en": "I get up at seven.",
+      "hi": "मैं सात बजे उठता हूँ।"
+     },
+     {
+      "fr": "Elle s’est couchée tard.",
+      "en": "She went to bed late.",
+      "hi": "वह देर से सोई।"
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Daily routine",
+    "headers": [
+     "French",
+     "English",
+     "Hindi"
+    ],
+    "rows": [
+     [
+      "se réveiller",
+      "to wake up",
+      "जागना"
+     ],
+     [
+      "se lever",
+      "to get up",
+      "उठना"
+     ],
+     [
+      "se doucher",
+      "to shower",
+      "नहाना"
+     ],
+     [
+      "s’habiller",
+      "to get dressed",
+      "कपड़े पहनना"
+     ],
+     [
+      "se coucher",
+      "to go to bed",
+      "सोने जाना"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "Negative imperative: Ne te dépêche pas ! Affirmative: Dépêche-toi !"
+  ],
+  "tips_hi": [
+   "निषेध में: Ne te dépêche pas! हाँ में: Dépêche-toi!"
+  ],
+  "quiz": [
+   {
+    "q": "(tu, parler) ___ plus fort !",
+    "options": [
+     "Parles",
+     "Parle",
+     "Parler"
+    ],
+    "correct": 1,
+    "explain": "-er imperative drops the -s."
+   },
+   {
+    "q": "Hier, elle ___ levée tôt.",
+    "options": [
+     "a",
+     "s’est",
+     "est"
+    ],
+    "correct": 1,
+    "explain": "elle s’est levée."
+   }
+  ]
+ },
+ {
+  "slug": "futur-simple",
+  "level": "A2",
+  "title": "Le futur simple",
+  "title_hi": "सामान्य भविष्य काल",
+  "summary": "Infinitive + -ai, -as, -a, -ons, -ez, -ont. Used for plans, promises and predictions.",
+  "summary_hi": "infinitive + -ai, -as, -a, -ons, -ez, -ont। योजना, वादे और भविष्यवाणी के लिए।",
+  "rules": [
+   {
+    "rule": "Regular: infinitive (drop final -e of -re) + endings.",
+    "rule_hi": "नियमित: infinitive + अंत।",
+    "examples": [
+     {
+      "fr": "Je parlerai demain.",
+      "en": "I will speak tomorrow.",
+      "hi": "मैं कल बोलूँगा।"
+     },
+     {
+      "fr": "Nous prendrons le train.",
+      "en": "We will take the train.",
+      "hi": "हम ट्रेन लेंगे।"
+     }
+    ]
+   },
+   {
+    "rule": "Irregular stems: être→ser-, avoir→aur-, aller→ir-, faire→fer-, pouvoir→pourr-, venir→viendr-, voir→verr-.",
+    "rule_hi": "अनियमित धातु (stem) याद करें।",
+    "examples": [
+     {
+      "fr": "Il sera là à huit heures.",
+      "en": "He will be there at 8.",
+      "hi": "वह आठ बजे वहाँ होगा।"
+     }
+    ]
+   },
+   {
+    "rule": "After quand/dès que/lorsque, French uses the future where Hindi/English use the present.",
+    "rule_hi": "quand/dès que के बाद फ़्रेंच में भविष्य काल आता है।",
+    "examples": [
+     {
+      "fr": "Quand j’aurai le temps, je viendrai.",
+      "en": "When I have time, I’ll come.",
+      "hi": "जब मेरे पास समय होगा, मैं आऊँगा।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Futur proche (aller + inf.) is more spoken; futur simple more written/formal."
+  ],
+  "tips_hi": [
+   "बोलचाल में aller + infinitive; लिखित/औपचारिक में futur simple।"
+  ],
+  "quiz": [
+   {
+    "q": "Demain, nous ___ à Lyon.",
+    "options": [
+     "irons",
+     "allons",
+     "aillons"
+    ],
+    "correct": 0,
+    "explain": "aller → ir-: nous irons."
+   },
+   {
+    "q": "Quand il ___ , on partira.",
+    "options": [
+     "arrivera",
+     "arrive",
+     "arriverait"
+    ],
+    "correct": 0,
+    "explain": "after quand → futur."
+   }
+  ]
+ },
+ {
+  "slug": "depuis-pendant",
+  "level": "A2",
+  "title": "Time expressions: depuis, pendant, il y a, dans, en",
+  "title_hi": "समय के शब्द: depuis, pendant, il y a, dans, en",
+  "summary": "Choose the right word for duration, origin and future delay.",
+  "summary_hi": "अवधि, शुरुआत और भविष्य की देरी के लिए सही शब्द चुनें।",
+  "rules": [
+   {
+    "rule": "depuis + present = since / for (still going on).",
+    "rule_hi": "depuis + वर्तमान = से (अब भी जारी)।",
+    "examples": [
+     {
+      "fr": "J’apprends le français depuis un an.",
+      "en": "I have been learning French for a year.",
+      "hi": "मैं एक साल से फ़्रेंच सीख रहा हूँ।"
+     }
+    ]
+   },
+   {
+    "rule": "pendant = for (a finished period). il y a = ago. dans = in (future).",
+    "rule_hi": "pendant = (पूरी हो चुकी) अवधि; il y a = पहले; dans = अब से इतने बाद।",
+    "examples": [
+     {
+      "fr": "J’ai vécu à Paris pendant deux ans.",
+      "en": "I lived in Paris for two years.",
+      "hi": "मैं दो साल पेरिस में रहा।"
+     },
+     {
+      "fr": "Il est arrivé il y a une heure.",
+      "en": "He arrived an hour ago.",
+      "hi": "वह एक घंटे पहले आया।"
+     },
+     {
+      "fr": "Le cours commence dans dix minutes.",
+      "en": "Class starts in ten minutes.",
+      "hi": "क्लास दस मिनट बाद शुरू होगी।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Never use the passé composé with depuis for an action still ongoing."
+  ],
+  "tips_hi": [
+   "जो काम अब भी जारी है, उसमें depuis के साथ présent लगाएँ।"
+  ],
+  "quiz": [
+   {
+    "q": "Je travaille ici ___ 2020.",
+    "options": [
+     "depuis",
+     "pendant",
+     "il y a"
+    ],
+    "correct": 0,
+    "explain": "since a starting point → depuis."
+   },
+   {
+    "q": "Il est parti ___ trois jours.",
+    "options": [
+     "depuis",
+     "il y a",
+     "dans"
+    ],
+    "correct": 1,
+    "explain": "ago → il y a."
+   }
+  ]
+ },
+ {
+  "slug": "adverbes-quantite",
+  "level": "A2",
+  "title": "Adverbs and quantity",
+  "title_hi": "क्रिया-विशेषण और मात्रा",
+  "summary": "-ment adverbs and expressions: beaucoup de, un peu de, assez de, trop de.",
+  "summary_hi": "-ment वाले क्रिया-विशेषण और मात्रा के शब्द: beaucoup de, un peu de, trop de।",
+  "rules": [
+   {
+    "rule": "Adverb from adjective: feminine form + -ment (lent → lentement). -ant/-ent → -amment/-emment.",
+    "rule_hi": "विशेषण के स्त्रीलिंग रूप + -ment।",
+    "examples": [
+     {
+      "fr": "Il parle lentement.",
+      "en": "He speaks slowly.",
+      "hi": "वह धीरे बोलता है।"
+     },
+     {
+      "fr": "Elle court rapidement.",
+      "en": "She runs quickly.",
+      "hi": "वह तेज़ दौड़ती है।"
+     }
+    ]
+   },
+   {
+    "rule": "Quantity + de + noun (no article).",
+    "rule_hi": "मात्रा + de + संज्ञा (बिना article)।",
+    "examples": [
+     {
+      "fr": "Il y a beaucoup de monde.",
+      "en": "There are a lot of people.",
+      "hi": "बहुत भीड़ है।"
+     },
+     {
+      "fr": "Je mange peu de viande.",
+      "en": "I eat little meat.",
+      "hi": "मैं कम मांस खाता हूँ।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "After a negative, du/de la/des → de: Je n’ai pas de temps."
+  ],
+  "tips_hi": [
+   "निषेध के बाद du/des की जगह de: Je n’ai pas de temps।"
+  ],
+  "quiz": [
+   {
+    "q": "Je n’ai pas ___ argent.",
+    "options": [
+     "de",
+     "d’",
+     "du"
+    ],
+    "correct": 1,
+    "explain": "negative + vowel → d’argent."
+   },
+   {
+    "q": "Adverbe de ‘doux’ :",
+    "options": [
+     "doucement",
+     "douxment",
+     "doucément"
+    ],
+    "correct": 0,
+    "explain": "doux → douce → doucement."
+   }
+  ]
+ },
+ {
+  "slug": "negation-avancee",
+  "level": "A2",
+  "title": "More negation: jamais, rien, personne, plus",
+  "title_hi": "और निषेध: jamais, rien, personne, plus",
+  "summary": "ne … jamais / rien / personne / plus / que / aucun.",
+  "summary_hi": "ne … jamais (कभी नहीं), ne … rien (कुछ नहीं), ne … personne (कोई नहीं), ne … plus (अब नहीं), ne … que (सिर्फ़)।",
+  "rules": [
+   {
+    "rule": "ne goes before the verb; the second word after (before the participle for 'personne').",
+    "rule_hi": "ne क्रिया से पहले; दूसरा शब्द क्रिया के बाद।",
+    "examples": [
+     {
+      "fr": "Je ne mange jamais de viande.",
+      "en": "I never eat meat.",
+      "hi": "मैं कभी मांस नहीं खाता।"
+     },
+     {
+      "fr": "Il n’y a plus de pain.",
+      "en": "There is no more bread.",
+      "hi": "अब रोटी नहीं बची।"
+     },
+     {
+      "fr": "Je n’ai vu personne.",
+      "en": "I saw nobody.",
+      "hi": "मैंने किसी को नहीं देखा।"
+     }
+    ]
+   },
+   {
+    "rule": "ne … que means 'only' (not a real negative).",
+    "rule_hi": "ne … que = सिर्फ़ (असल में निषेध नहीं)।",
+    "examples": [
+     {
+      "fr": "Il ne boit que de l’eau.",
+      "en": "He drinks only water.",
+      "hi": "वह सिर्फ़ पानी पीता है।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "In speech 'ne' disappears: J’sais pas. In writing and exams, keep ne."
+  ],
+  "tips_hi": [
+   "बोलचाल में ne गायब हो जाता है, पर लिखित परीक्षा में ne ज़रूर लिखें।"
+  ],
+  "quiz": [
+   {
+    "q": "Je ___ comprends rien.",
+    "options": [
+     "ne",
+     "pas",
+     "plus"
+    ],
+    "correct": 0,
+    "explain": "ne … rien."
+   },
+   {
+    "q": "Il n’y a ___ de lait.",
+    "options": [
+     "plus",
+     "jamais",
+     "que"
+    ],
+    "correct": 0,
+    "explain": "ne … plus de = no more."
+   }
+  ]
+ },
+ {
+  "slug": "imparfait",
+  "level": "B1",
+  "title": "Imparfait vs passé composé",
+  "summary": "Imparfait paints the scene and habits; passé composé tells the events.",
+  "rules": [
+   {
+    "rule": "Imparfait: stem of nous (présent) minus -ons + -ais, -ais, -ait, -ions, -iez, -aient.",
+    "examples": [
+     {
+      "fr": "Quand j’étais petit, nous allions à la mer.",
+      "en": "When I was little, we used to go to the sea."
+     }
+    ]
+   },
+   {
+    "rule": "Use imparfait for description, habits and ongoing background; use passé composé for a precise event that interrupts.",
+    "examples": [
+     {
+      "fr": "Il pleuvait quand nous sommes sortis.",
+      "en": "It was raining when we went out."
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "être, avoir, faire à l’imparfait",
+    "headers": [
+     "Pronoun",
+     "être",
+     "avoir",
+     "faire"
+    ],
+    "rows": [
+     [
+      "je",
+      "étais",
+      "avais",
+      "faisais"
+     ],
+     [
+      "tu",
+      "étais",
+      "avais",
+      "faisais"
+     ],
+     [
+      "il / elle",
+      "était",
+      "avait",
+      "faisait"
+     ],
+     [
+      "nous",
+      "étions",
+      "avions",
+      "faisions"
+     ],
+     [
+      "vous",
+      "étiez",
+      "aviez",
+      "faisiez"
+     ],
+     [
+      "ils / elles",
+      "étaient",
+      "avaient",
+      "faisaient"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "Trigger words for imparfait: souvent, toujours, d’habitude, chaque jour, à cette époque."
+  ],
+  "title_hi": "imparfait (अधूरा/आदत वाला भूतकाल)",
+  "summary_hi": "बीते समय का वर्णन, आदतें और पृष्ठभूमि: Quand j’étais petit, je jouais dehors।"
+ },
+ {
+  "slug": "futur-conditionnel",
+  "level": "B1",
+  "title": "Futur simple and conditionnel",
+  "summary": "Both are built on the infinitive (or irregular stem). Futur states facts to come; conditionnel states hypotheticals and politeness.",
+  "rules": [
+   {
+    "rule": "Futur: infinitive + -ai, -as, -a, -ons, -ez, -ont.",
+    "examples": [
+     {
+      "fr": "Demain, nous partirons tôt.",
+      "en": "Tomorrow we will leave early."
+     }
+    ]
+   },
+   {
+    "rule": "Conditionnel: the same stem + imparfait endings (-ais, -ait…). Used for polite requests and hypotheses.",
+    "examples": [
+     {
+      "fr": "Je voudrais un café.",
+      "en": "I would like a coffee."
+     },
+     {
+      "fr": "Si j’avais le temps, je voyagerais.",
+      "en": "If I had time, I would travel."
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Irregular stems (futur and conditionnel)",
+    "headers": [
+     "Verb",
+     "Stem",
+     "Example"
+    ],
+    "rows": [
+     [
+      "être",
+      "ser-",
+      "je serai / je serais"
+     ],
+     [
+      "avoir",
+      "aur-",
+      "j’aurai / j’aurais"
+     ],
+     [
+      "aller",
+      "ir-",
+      "j’irai / j’irais"
+     ],
+     [
+      "faire",
+      "fer-",
+      "je ferai / je ferais"
+     ],
+     [
+      "pouvoir",
+      "pourr-",
+      "je pourrai / je pourrais"
+     ],
+     [
+      "venir",
+      "viendr-",
+      "je viendrai / je viendrais"
+     ],
+     [
+      "voir",
+      "verr-",
+      "je verrai / je verrais"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "If-clauses: si + présent → futur; si + imparfait → conditionnel."
+  ],
+  "title_hi": "futur और conditionnel",
+  "summary_hi": "भविष्य (-rai) और सशर्त/शिष्ट रूप (-rais)।"
+ },
+ {
+  "slug": "subjonctif-present",
+  "level": "B1",
+  "title": "Subjonctif présent",
+  "summary": "The mood of doubt, wish, necessity and emotion, used after que.",
+  "rules": [
+   {
+    "rule": "Triggers: il faut que, vouloir que, bien que, pour que, avant que, douter que, être content que…",
+    "examples": [
+     {
+      "fr": "Il faut que tu viennes.",
+      "en": "You must come."
+     },
+     {
+      "fr": "Bien qu’il soit fatigué, il travaille.",
+      "en": "Although he is tired, he is working."
+     }
+    ]
+   },
+   {
+    "rule": "Formation: ils-stem of the présent + -e, -es, -e, -ions, -iez, -ent.",
+    "examples": [
+     {
+      "fr": "que je parle, que nous finissions",
+      "en": "that I speak, that we finish"
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Irregular subjunctives",
+    "headers": [
+     "Pronoun",
+     "être",
+     "avoir",
+     "faire",
+     "aller"
+    ],
+    "rows": [
+     [
+      "que je",
+      "sois",
+      "aie",
+      "fasse",
+      "aille"
+     ],
+     [
+      "que tu",
+      "sois",
+      "aies",
+      "fasses",
+      "ailles"
+     ],
+     [
+      "qu’il / elle",
+      "soit",
+      "ait",
+      "fasse",
+      "aille"
+     ],
+     [
+      "que nous",
+      "soyons",
+      "ayons",
+      "fassions",
+      "allions"
+     ],
+     [
+      "que vous",
+      "soyez",
+      "ayez",
+      "fassiez",
+      "alliez"
+     ],
+     [
+      "qu’ils / elles",
+      "soient",
+      "aient",
+      "fassent",
+      "aillent"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "No subjunctive when the subject is the same: « Je veux partir » (not « que je parte »).",
+   "Certainty (je pense que, je sais que) → indicatif; doubt (je doute que) → subjonctif."
+  ],
+  "title_hi": "subjonctif présent",
+  "summary_hi": "ज़रूरत, इच्छा, भावना के बाद: Il faut que tu viennes।"
+ },
+ {
+  "slug": "passe-compose-imparfait",
+  "level": "B1",
+  "title": "Passé composé vs imparfait",
+  "title_hi": "passé composé बनाम imparfait",
+  "summary": "Passé composé = events (what happened). Imparfait = background, habits, descriptions.",
+  "summary_hi": "passé composé = घटना (क्या हुआ); imparfait = पृष्ठभूमि, आदत, वर्णन (कैसा था)।",
+  "rules": [
+   {
+    "rule": "Imparfait sets the scene; passé composé interrupts it.",
+    "rule_hi": "imparfait दृश्य बनाता है; passé composé उसे बीच में तोड़ता है।",
+    "examples": [
+     {
+      "fr": "Il pleuvait quand je suis sorti.",
+      "en": "It was raining when I went out.",
+      "hi": "जब मैं बाहर निकला तब बारिश हो रही थी।"
+     },
+     {
+      "fr": "Je dormais quand le téléphone a sonné.",
+      "en": "I was sleeping when the phone rang.",
+      "hi": "जब फ़ोन बजा तब मैं सो रहा था।"
+     }
+    ]
+   },
+   {
+    "rule": "Habits in the past = imparfait; one precise moment = passé composé.",
+    "rule_hi": "पुरानी आदत = imparfait; एक खास क्षण = passé composé।",
+    "examples": [
+     {
+      "fr": "Enfant, j’allais chez ma grand-mère chaque été.",
+      "en": "As a child I went to my grandmother’s every summer.",
+      "hi": "बचपन में मैं हर गर्मी दादी के घर जाता था।"
+     },
+     {
+      "fr": "Hier, je suis allé chez elle.",
+      "en": "Yesterday I went to her place.",
+      "hi": "कल मैं उसके घर गया।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Clues for imparfait: souvent, toujours, d’habitude, chaque jour. Clues for passé composé: soudain, tout à coup, hier, une fois.",
+   "Feelings and weather in the past are usually imparfait."
+  ],
+  "tips_hi": [
+   "imparfait के संकेत: souvent, d’habitude। passé composé के संकेत: soudain, hier।"
+  ],
+  "quiz": [
+   {
+    "q": "Quand j’___ petit, je jouais dehors.",
+    "options": [
+     "étais",
+     "ai été",
+     "serai"
+    ],
+    "correct": 0,
+    "explain": "description of childhood → imparfait."
+   },
+   {
+    "q": "Soudain, la porte ___ .",
+    "options": [
+     "s’ouvrait",
+     "s’est ouverte",
+     "s’ouvre"
+    ],
+    "correct": 1,
+    "explain": "sudden event → passé composé."
+   }
+  ]
+ },
+ {
+  "slug": "conditionnel-present",
+  "level": "B1",
+  "title": "Le conditionnel présent",
+  "title_hi": "सशर्त काल (conditionnel)",
+  "summary": "Futur stem + imparfait endings. Politeness, advice, wishes, hypotheses.",
+  "summary_hi": "भविष्य का stem + imparfait के अंत (-ais, -ais, -ait, -ions, -iez, -aient)। शिष्टता, सलाह, इच्छा।",
+  "rules": [
+   {
+    "rule": "Politeness and requests.",
+    "rule_hi": "शिष्ट निवेदन।",
+    "examples": [
+     {
+      "fr": "Pourriez-vous m’aider ?",
+      "en": "Could you help me?",
+      "hi": "क्या आप मेरी मदद कर सकेंगे?"
+     },
+     {
+      "fr": "Je voudrais un café.",
+      "en": "I would like a coffee.",
+      "hi": "मैं एक कॉफ़ी लेना चाहूँगा।"
+     }
+    ]
+   },
+   {
+    "rule": "Advice: devoir / pouvoir in the conditional.",
+    "rule_hi": "सलाह: devoir/pouvoir का conditionnel।",
+    "examples": [
+     {
+      "fr": "Tu devrais dormir plus.",
+      "en": "You should sleep more.",
+      "hi": "तुम्हें ज़्यादा सोना चाहिए।"
+     }
+    ]
+   },
+   {
+    "rule": "Reported/uncertain news (journalism).",
+    "rule_hi": "अपुष्ट खबर (पत्रकारिता)।",
+    "examples": [
+     {
+      "fr": "Le ministre serait en voyage.",
+      "en": "The minister is reportedly travelling.",
+      "hi": "कहा जा रहा है कि मंत्री यात्रा पर हैं।"
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "aimer",
+    "headers": [
+     "Pronoun",
+     "Form"
+    ],
+    "rows": [
+     [
+      "je",
+      "aimerais"
+     ],
+     [
+      "tu",
+      "aimerais"
+     ],
+     [
+      "il",
+      "aimerait"
+     ],
+     [
+      "nous",
+      "aimerions"
+     ],
+     [
+      "vous",
+      "aimeriez"
+     ],
+     [
+      "ils",
+      "aimeraient"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "Never use the conditional after 'si' in the same clause: Si j’avais le temps, je viendrais."
+  ],
+  "tips_hi": [
+   "'si' के बाद conditionnel नहीं आता: si + imparfait, conditionnel।"
+  ],
+  "quiz": [
+   {
+    "q": "Tu ___ voir un médecin.",
+    "options": [
+     "devrais",
+     "devras",
+     "dois"
+    ],
+    "correct": 0,
+    "explain": "advice → conditionnel."
+   },
+   {
+    "q": "Je ___ bien un thé.",
+    "options": [
+     "prendrai",
+     "prendrais",
+     "prends"
+    ],
+    "correct": 1,
+    "explain": "polite wish."
+   }
+  ]
+ },
+ {
+  "slug": "relatifs-simples",
+  "level": "B1",
+  "title": "Relative pronouns: qui, que, où, dont",
+  "title_hi": "संबंधवाचक: qui, que, où, dont",
+  "summary": "Join two sentences. qui = subject, que = object, où = place/time, dont = 'de' + noun.",
+  "summary_hi": "दो वाक्य जोड़ना। qui = कर्ता, que = कर्म, où = जगह/समय, dont = de + संज्ञा।",
+  "rules": [
+   {
+    "rule": "qui replaces the subject; que replaces the object.",
+    "rule_hi": "qui = कर्ता की जगह; que = कर्म की जगह।",
+    "examples": [
+     {
+      "fr": "L’homme qui parle est mon prof.",
+      "en": "The man who is speaking is my teacher.",
+      "hi": "जो आदमी बोल रहा है वह मेरा शिक्षक है।"
+     },
+     {
+      "fr": "Le livre que je lis est long.",
+      "en": "The book that I’m reading is long.",
+      "hi": "जो किताब मैं पढ़ रहा हूँ वह लंबी है।"
+     }
+    ]
+   },
+   {
+    "rule": "où = where/when. dont = whose / about which / of which.",
+    "rule_hi": "où = जहाँ/जब। dont = जिसका / जिसके बारे में।",
+    "examples": [
+     {
+      "fr": "La ville où j’habite est calme.",
+      "en": "The city where I live is quiet.",
+      "hi": "जिस शहर में मैं रहता हूँ वह शांत है।"
+     },
+     {
+      "fr": "Le film dont tu parles est génial.",
+      "en": "The film you’re talking about is great.",
+      "hi": "जिस फ़िल्म की तुम बात कर रहे हो वह शानदार है।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "After 'que', the subject comes next: le livre que TU lis.",
+   "Verbs with 'de' (parler de, avoir besoin de) → dont."
+  ],
+  "tips_hi": [
+   "जिस क्रिया के साथ 'de' आता है (parler de, avoir besoin de) वहाँ dont लगाएँ।"
+  ],
+  "quiz": [
+   {
+    "q": "C’est le film ___ j’ai vu hier.",
+    "options": [
+     "qui",
+     "que",
+     "dont"
+    ],
+    "correct": 1,
+    "explain": "direct object → que."
+   },
+   {
+    "q": "La fille ___ je parle est nouvelle.",
+    "options": [
+     "que",
+     "dont",
+     "qui"
+    ],
+    "correct": 1,
+    "explain": "parler de → dont."
+   }
+  ]
+ },
+ {
+  "slug": "hypotheses-si",
+  "level": "B1",
+  "title": "Hypotheses with si",
+  "title_hi": "'अगर' वाले वाक्य (si)",
+  "summary": "Three patterns: real (present→future), unlikely (imparfait→conditionnel), impossible past (plus-que-parfait→conditionnel passé).",
+  "summary_hi": "तीन ढाँचे: संभव, असंभावित, और बीते कल की असंभव शर्त।",
+  "rules": [
+   {
+    "rule": "Real: si + présent → futur / présent / impératif.",
+    "rule_hi": "संभव: si + वर्तमान → भविष्य।",
+    "examples": [
+     {
+      "fr": "Si tu viens, on sortira.",
+      "en": "If you come, we’ll go out.",
+      "hi": "अगर तुम आए तो हम बाहर जाएँगे।"
+     }
+    ]
+   },
+   {
+    "rule": "Unlikely/imaginary: si + imparfait → conditionnel présent.",
+    "rule_hi": "असंभावित: si + imparfait → conditionnel।",
+    "examples": [
+     {
+      "fr": "Si j’avais un million, je voyagerais.",
+      "en": "If I had a million I’d travel.",
+      "hi": "अगर मेरे पास दस लाख होते तो मैं घूमता।"
+     }
+    ]
+   },
+   {
+    "rule": "Regret: si + plus-que-parfait → conditionnel passé.",
+    "rule_hi": "पछतावा: si + plus-que-parfait → conditionnel passé।",
+    "examples": [
+     {
+      "fr": "Si j’avais su, je serais venu.",
+      "en": "If I had known I would have come.",
+      "hi": "अगर मुझे पता होता तो मैं आता।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "si + il → s’il, but si + elle stays 'si elle'.",
+   "No future or conditional right after si."
+  ],
+  "tips_hi": [
+   "si के ठीक बाद futur या conditionnel नहीं लगता।"
+  ],
+  "quiz": [
+   {
+    "q": "Si j’___ le temps, je t’aiderais.",
+    "options": [
+     "avais",
+     "aurai",
+     "aurais"
+    ],
+    "correct": 0,
+    "explain": "si + imparfait."
+   },
+   {
+    "q": "Si tu étudies, tu ___ ton examen.",
+    "options": [
+     "réussirais",
+     "réussiras",
+     "as réussi"
+    ],
+    "correct": 1,
+    "explain": "real condition → futur."
+   }
+  ]
+ },
+ {
+  "slug": "plus-que-parfait",
+  "level": "B1",
+  "title": "Plus-que-parfait and past sequence",
+  "title_hi": "plus-que-parfait: बीते हुए से भी पहले",
+  "summary": "Imparfait of avoir/être + past participle: an action before another past action.",
+  "summary_hi": "avoir/être का imparfait + participe passé: किसी बीती घटना से भी पहले हुआ काम।",
+  "rules": [
+   {
+    "rule": "Use it for the earlier action.",
+    "rule_hi": "जो काम पहले हुआ था उसके लिए।",
+    "examples": [
+     {
+      "fr": "Quand je suis arrivé, le train était déjà parti.",
+      "en": "When I arrived, the train had already left.",
+      "hi": "जब मैं पहुँचा, ट्रेन पहले ही जा चुकी थी।"
+     },
+     {
+      "fr": "Elle m’a dit qu’elle avait fini.",
+      "en": "She told me she had finished.",
+      "hi": "उसने बताया कि वह खत्म कर चुकी थी।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Same être/avoir choice and agreements as the passé composé."
+  ],
+  "tips_hi": [
+   "avoir/être का चुनाव और मेल passé composé जैसा ही है।"
+  ],
+  "quiz": [
+   {
+    "q": "Il ___ déjà mangé quand je suis venu.",
+    "options": [
+     "avait",
+     "a",
+     "aurait"
+    ],
+    "correct": 0,
+    "explain": "avait mangé."
+   },
+   {
+    "q": "Elles ___ parties avant nous.",
+    "options": [
+     "étaient",
+     "avaient",
+     "sont"
+    ],
+    "correct": 0,
+    "explain": "partir uses être."
+   }
+  ]
+ },
+ {
+  "slug": "gerondif-participe",
+  "level": "B1",
+  "title": "Gérondif and present participle",
+  "title_hi": "gérondif (en + -ant)",
+  "summary": "en + -ant = while doing / by doing. Same subject for both actions.",
+  "summary_hi": "en + -ant = करते हुए / करके। दोनों क्रियाओं का कर्ता एक ही होता है।",
+  "rules": [
+   {
+    "rule": "Formation: nous-form minus -ons + -ant (parlons → en parlant).",
+    "rule_hi": "nous रूप से -ons हटाकर -ant।",
+    "examples": [
+     {
+      "fr": "Il lit en mangeant.",
+      "en": "He reads while eating.",
+      "hi": "वह खाते हुए पढ़ता है।"
+     },
+     {
+      "fr": "On apprend en pratiquant.",
+      "en": "We learn by practising.",
+      "hi": "अभ्यास करके सीखा जाता है।"
+     }
+    ]
+   },
+   {
+    "rule": "Irregular: être → étant, avoir → ayant, savoir → sachant.",
+    "rule_hi": "अनियमित: être → étant, avoir → ayant, savoir → sachant।",
+    "examples": [
+     {
+      "fr": "En étant patient, tu réussiras.",
+      "en": "By being patient you’ll succeed.",
+      "hi": "धैर्य रखने से तुम सफल होगे।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Great for writing tasks: replaces 'parce que' and 'quand' and makes sentences shorter."
+  ],
+  "tips_hi": [
+   "लिखित परीक्षा में वाक्य छोटे और सुंदर बनाने में मदद करता है।"
+  ],
+  "quiz": [
+   {
+    "q": "Il marche ___ téléphonant.",
+    "options": [
+     "en",
+     "à",
+     "par"
+    ],
+    "correct": 0,
+    "explain": "en + -ant."
+   },
+   {
+    "q": "Gérondif de ‘finir’ :",
+    "options": [
+     "en finissant",
+     "en finant",
+     "en finir"
+    ],
+    "correct": 0,
+    "explain": "nous finissons → finissant."
+   }
+  ]
+ },
+ {
+  "slug": "passif-voix",
+  "level": "B1",
+  "title": "The passive voice",
+  "title_hi": "कर्मवाच्य (passif)",
+  "summary": "être + past participle (agrees with subject) + par. Often avoided with 'on'.",
+  "summary_hi": "être + participe passé (कर्ता से मेल) + par। अक्सर 'on' से बदला जाता है।",
+  "rules": [
+   {
+    "rule": "Tense of être keeps the tense of the sentence.",
+    "rule_hi": "être उसी काल में रहता है जिसमें वाक्य है।",
+    "examples": [
+     {
+      "fr": "Le livre est écrit par Camus.",
+      "en": "The book is written by Camus.",
+      "hi": "किताब कामू द्वारा लिखी गई है।"
+     },
+     {
+      "fr": "La maison a été vendue.",
+      "en": "The house was sold.",
+      "hi": "घर बेच दिया गया।"
+     }
+    ]
+   },
+   {
+    "rule": "Alternative: on + active verb, or a reflexive.",
+    "rule_hi": "विकल्प: on + सक्रिय क्रिया या आत्मवाचक।",
+    "examples": [
+     {
+      "fr": "Ici, on parle français.",
+      "en": "French is spoken here.",
+      "hi": "यहाँ फ़्रेंच बोली जाती है।"
+     },
+     {
+      "fr": "Ça ne se dit pas.",
+      "en": "That isn’t said.",
+      "hi": "यह नहीं कहा जाता।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Participle agrees: Les lettres sont écrites."
+  ],
+  "tips_hi": [
+   "participle कर्ता से मेल खाता है: Les lettres sont écrites।"
+  ],
+  "quiz": [
+   {
+    "q": "Les portes ___ fermées à 18h.",
+    "options": [
+     "sont",
+     "ont",
+     "est"
+    ],
+    "correct": 0,
+    "explain": "passive: être."
+   },
+   {
+    "q": "Ce roman a été ___ par Hugo.",
+    "options": [
+     "écrit",
+     "écrire",
+     "écrivant"
+    ],
+    "correct": 0,
+    "explain": "past participle."
+   }
+  ]
+ },
+ {
+  "slug": "discours-indirect",
+  "level": "B1",
+  "title": "Reported speech",
+  "title_hi": "अप्रत्यक्ष कथन (discours indirect)",
+  "summary": "Report what someone said: change pronouns, time words and (in the past) the tense.",
+  "summary_hi": "किसी की बात दोहराना: सर्वनाम, समय-शब्द और अतीत में काल बदलते हैं।",
+  "rules": [
+   {
+    "rule": "Present report: tense stays the same.",
+    "rule_hi": "वर्तमान रिपोर्ट: काल नहीं बदलता।",
+    "examples": [
+     {
+      "fr": "Il dit : « Je suis fatigué. » → Il dit qu’il est fatigué.",
+      "en": "He says he is tired.",
+      "hi": "वह कहता है कि वह थका है।"
+     }
+    ]
+   },
+   {
+    "rule": "Past report: présent → imparfait, passé composé → plus-que-parfait, futur → conditionnel.",
+    "rule_hi": "अतीत में रिपोर्ट: काल एक कदम पीछे।",
+    "examples": [
+     {
+      "fr": "Elle a dit qu’elle viendrait.",
+      "en": "She said she would come.",
+      "hi": "उसने कहा कि वह आएगी।"
+     },
+     {
+      "fr": "Il a demandé si j’avais mangé.",
+      "en": "He asked if I had eaten.",
+      "hi": "उसने पूछा कि क्या मैंने खाया था।"
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Time words",
+    "headers": [
+     "Direct",
+     "Reported"
+    ],
+    "rows": [
+     [
+      "aujourd’hui",
+      "ce jour-là"
+     ],
+     [
+      "demain",
+      "le lendemain"
+     ],
+     [
+      "hier",
+      "la veille"
+     ],
+     [
+      "maintenant",
+      "à ce moment-là"
+     ],
+     [
+      "ici",
+      "là"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "Questions: est-ce que / inversion disappear → si (yes/no) or the question word."
+  ],
+  "tips_hi": [
+   "हाँ/ना वाले प्रश्न → si; बाकी में प्रश्न-शब्द वही रहता है।"
+  ],
+  "quiz": [
+   {
+    "q": "« Je partirai demain. » → Il a dit qu’il ___ le lendemain.",
+    "options": [
+     "partirait",
+     "partira",
+     "est parti"
+    ],
+    "correct": 0,
+    "explain": "futur → conditionnel."
+   },
+   {
+    "q": "« Tu as faim ? » → Il m’a demandé ___ j’avais faim.",
+    "options": [
+     "que",
+     "si",
+     "où"
+    ],
+    "correct": 1,
+    "explain": "yes/no question → si."
+   }
+  ]
+ },
+ {
+  "slug": "connecteurs-logiques",
+  "level": "B1",
+  "title": "Logical connectors: cause, consequence, opposition",
+  "title_hi": "तर्क-जोड़ने वाले शब्द: कारण, परिणाम, विरोध",
+  "summary": "The words that make your speech and writing sound organised — essential for TEF/TCF.",
+  "summary_hi": "ये शब्द आपकी बोली और लिखावट को व्यवस्थित बनाते हैं — TEF/TCF में बहुत ज़रूरी।",
+  "rules": [
+   {
+    "rule": "Cause: parce que, car, puisque, comme, grâce à (positive), à cause de (negative).",
+    "rule_hi": "कारण।",
+    "examples": [
+     {
+      "fr": "Je suis en retard à cause du trafic.",
+      "en": "I’m late because of traffic.",
+      "hi": "मैं ट्रैफ़िक की वजह से लेट हूँ।"
+     },
+     {
+      "fr": "J’ai réussi grâce à toi.",
+      "en": "I passed thanks to you.",
+      "hi": "मैं तुम्हारी वजह से सफल हुआ।"
+     }
+    ]
+   },
+   {
+    "rule": "Consequence: donc, alors, c’est pourquoi, par conséquent.",
+    "rule_hi": "परिणाम।",
+    "examples": [
+     {
+      "fr": "Il pleut, donc je reste à la maison.",
+      "en": "It’s raining, so I’m staying home.",
+      "hi": "बारिश हो रही है, इसलिए मैं घर पर हूँ।"
+     }
+    ]
+   },
+   {
+    "rule": "Opposition: mais, pourtant, cependant, en revanche, alors que.",
+    "rule_hi": "विरोध।",
+    "examples": [
+     {
+      "fr": "Il est riche, pourtant il est triste.",
+      "en": "He’s rich, yet he’s sad.",
+      "hi": "वह अमीर है, फिर भी उदास है।"
+     },
+     {
+      "fr": "Lui aime la ville, alors qu’elle préfère la campagne.",
+      "en": "He likes the city whereas she prefers the countryside.",
+      "hi": "उसे शहर पसंद है, जबकि उसे गाँव।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Aim to use 2-3 different connectors in every writing paragraph and spoken answer."
+  ],
+  "tips_hi": [
+   "हर अनुच्छेद और बोले गए जवाब में 2-3 अलग connectors इस्तेमाल करने का लक्ष्य रखें।"
+  ],
+  "quiz": [
+   {
+    "q": "Il a réussi ___ son travail.",
+    "options": [
+     "grâce à",
+     "à cause de",
+     "alors que"
+    ],
+    "correct": 0,
+    "explain": "positive cause."
+   },
+   {
+    "q": "Il est petit, ___ il joue très bien au basket.",
+    "options": [
+     "pourtant",
+     "donc",
+     "car"
+    ],
+    "correct": 0,
+    "explain": "opposition."
+   }
+  ]
+ },
+ {
+  "slug": "pronoms-toniques-doubles",
+  "level": "B1",
+  "title": "Stressed pronouns and pronoun order",
+  "title_hi": "बलाघात सर्वनाम (moi, toi…) और क्रम",
+  "summary": "moi, toi, lui, elle, nous, vous, eux, elles — used for emphasis and after prepositions.",
+  "summary_hi": "moi, toi, lui… — ज़ोर देने और preposition के बाद।",
+  "rules": [
+   {
+    "rule": "After a preposition, c’est, and for emphasis.",
+    "rule_hi": "preposition के बाद, c’est के बाद, और ज़ोर के लिए।",
+    "examples": [
+     {
+      "fr": "Je viens avec toi.",
+      "en": "I’m coming with you.",
+      "hi": "मैं तुम्हारे साथ आ रहा हूँ।"
+     },
+     {
+      "fr": "Moi, je préfère le thé.",
+      "en": "Me, I prefer tea.",
+      "hi": "मैं तो चाय पसंद करता हूँ।"
+     }
+    ]
+   },
+   {
+    "rule": "Two pronouns: me/te/nous/vous BEFORE le/la/les; le/la/les BEFORE lui/leur.",
+    "rule_hi": "दो सर्वनाम: क्रम याद रखें।",
+    "examples": [
+     {
+      "fr": "Il me le donne.",
+      "en": "He gives it to me.",
+      "hi": "वह मुझे वह देता है।"
+     },
+     {
+      "fr": "Je le lui ai dit.",
+      "en": "I told it to him.",
+      "hi": "मैंने उसे यह बताया।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Imperative: Donne-le-moi (le before moi). Negative: Ne me le donne pas."
+  ],
+  "tips_hi": [
+   "आदेश में: Donne-le-moi; निषेध में: Ne me le donne pas।"
+  ],
+  "quiz": [
+   {
+    "q": "C’est ___ qui ai gagné.",
+    "options": [
+     "je",
+     "moi",
+     "me"
+    ],
+    "correct": 1,
+    "explain": "c’est moi qui…"
+   },
+   {
+    "q": "Il ___ donne le livre. (à moi)",
+    "options": [
+     "me le",
+     "le me",
+     "moi le"
+    ],
+    "correct": 0,
+    "explain": "me before le."
+   }
+  ]
+ },
+ {
+  "slug": "accord-participe",
+  "level": "B1",
+  "title": "Agreement of the past participle",
+  "title_hi": "participe passé का मेल",
+  "summary": "With être: agrees with the subject. With avoir: agrees with a COD placed BEFORE the verb.",
+  "summary_hi": "être के साथ कर्ता से; avoir के साथ तब जब COD क्रिया से पहले हो।",
+  "rules": [
+   {
+    "rule": "être → agree with the subject.",
+    "rule_hi": "être → कर्ता से मेल।",
+    "examples": [
+     {
+      "fr": "Elles sont arrivées.",
+      "en": "They (f) arrived.",
+      "hi": "वे (स्त्रियाँ) पहुँचीं।"
+     }
+    ]
+   },
+   {
+    "rule": "avoir → agree only if the COD comes before.",
+    "rule_hi": "avoir → सिर्फ़ तब जब COD पहले हो।",
+    "examples": [
+     {
+      "fr": "La lettre que j’ai écrite.",
+      "en": "The letter I wrote.",
+      "hi": "वह चिट्ठी जो मैंने लिखी।"
+     },
+     {
+      "fr": "J’ai écrit la lettre.",
+      "en": "I wrote the letter. (no agreement)",
+      "hi": "मैंने चिट्ठी लिखी। (मेल नहीं)"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Reflexive verbs: usually agree with the reflexive pronoun (elle s’est lavée) unless a COD follows (elle s’est lavé les mains)."
+  ],
+  "tips_hi": [
+   "आत्मवाचक: आम तौर पर मेल; पर अगर बाद में COD हो (les mains) तो मेल नहीं।"
+  ],
+  "quiz": [
+   {
+    "q": "Les photos que j’ai ___ .",
+    "options": [
+     "pris",
+     "prise",
+     "prises"
+    ],
+    "correct": 2,
+    "explain": "COD 'les photos' placed before."
+   },
+   {
+    "q": "Nous sommes ___ (f).",
+    "options": [
+     "allé",
+     "allées",
+     "allés"
+    ],
+    "correct": 1,
+    "explain": "nous = women → allées."
+   }
+  ]
+ },
+ {
+  "slug": "pronoms-relatifs",
+  "level": "B2",
+  "title": "Relative pronouns: qui, que, dont, où, lequel",
+  "summary": "Link clauses elegantly. The choice depends on the role of the noun in the relative clause.",
+  "rules": [
+   {
+    "rule": "qui = subject; que = direct object; où = place or time; dont = replaces de + noun.",
+    "examples": [
+     {
+      "fr": "L’homme qui parle est mon oncle.",
+      "en": "The man who is speaking is my uncle."
+     },
+     {
+      "fr": "Le livre que je lis est passionnant.",
+      "en": "The book I am reading is gripping."
+     },
+     {
+      "fr": "C’est le livre dont je parlais.",
+      "en": "It is the book I was talking about."
+     }
+    ]
+   },
+   {
+    "rule": "After a preposition, use lequel / laquelle / lesquels / lesquelles (auquel, duquel…).",
+    "examples": [
+     {
+      "fr": "La raison pour laquelle il est parti reste inconnue.",
+      "en": "The reason why he left remains unknown."
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "If the verb after the pronoun takes « de » (parler de, avoir besoin de), use dont.",
+   "That agreement: « la lettre que j’ai écrite » — the participle agrees with the preceding object."
+  ],
+  "title_hi": "संबंधवाचक सर्वनाम",
+  "summary_hi": "qui, que, dont, où, lequel जैसे शब्दों से वाक्य जोड़ना।"
+ },
+ {
+  "slug": "plus-que-parfait-hypotheses",
+  "level": "B2",
+  "title": "Plus-que-parfait and past hypotheses",
+  "summary": "Talk about what happened before another past event, and imagine different pasts.",
+  "rules": [
+   {
+    "rule": "Plus-que-parfait: imparfait of avoir/être + participle.",
+    "examples": [
+     {
+      "fr": "Quand je suis arrivé, il était déjà parti.",
+      "en": "When I arrived, he had already left."
+     }
+    ]
+   },
+   {
+    "rule": "Unreal past: si + plus-que-parfait → conditionnel passé.",
+    "examples": [
+     {
+      "fr": "Si j’avais su, je serais resté.",
+      "en": "If I had known, I would have stayed."
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Conditionnel passé = conditionnel of avoir/être + participle: « j’aurais dû », « nous serions partis »."
+  ],
+  "title_hi": "plus-que-parfait और शर्तें",
+  "summary_hi": "बीते हुए से भी पहले का काम, और अतीत की असंभव शर्तें।"
+ },
+ {
+  "slug": "subjonctif-usages",
+  "level": "B2",
+  "title": "Subjunctive: when to use it",
+  "title_hi": "subjonctif कब लगाएँ",
+  "summary": "After wishes, emotions, doubt, necessity and certain conjunctions (bien que, pour que, avant que, à condition que).",
+  "summary_hi": "इच्छा, भावना, संदेह, ज़रूरत और कुछ conjunctions (bien que, pour que, avant que) के बाद।",
+  "rules": [
+   {
+    "rule": "Need, wish, order: il faut que, vouloir que, exiger que.",
+    "rule_hi": "ज़रूरत/इच्छा/आदेश।",
+    "examples": [
+     {
+      "fr": "Il faut que tu viennes.",
+      "en": "You must come.",
+      "hi": "तुम्हें आना ही होगा।"
+     },
+     {
+      "fr": "Je veux que vous soyez à l’heure.",
+      "en": "I want you to be on time.",
+      "hi": "मैं चाहता हूँ कि आप समय पर हों।"
+     }
+    ]
+   },
+   {
+    "rule": "Emotion and doubt: être content que, regretter que, douter que.",
+    "rule_hi": "भावना और संदेह।",
+    "examples": [
+     {
+      "fr": "Je regrette qu’il soit parti.",
+      "en": "I’m sorry he left.",
+      "hi": "मुझे अफ़सोस है कि वह चला गया।"
+     },
+     {
+      "fr": "Je doute qu’elle réussisse.",
+      "en": "I doubt she’ll succeed.",
+      "hi": "मुझे शक है कि वह सफल होगी।"
+     }
+    ]
+   },
+   {
+    "rule": "Conjunctions: pour que, afin que, bien que, quoique, avant que, à moins que, jusqu’à ce que.",
+    "rule_hi": "ये conjunctions हमेशा subjonctif लेते हैं।",
+    "examples": [
+     {
+      "fr": "Bien qu’il soit fatigué, il travaille.",
+      "en": "Although tired, he works.",
+      "hi": "थका होने के बावजूद वह काम करता है।"
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Irregular subjonctif",
+    "headers": [
+     "Verb",
+     "que je…",
+     "que nous…"
+    ],
+    "rows": [
+     [
+      "être",
+      "sois",
+      "soyons"
+     ],
+     [
+      "avoir",
+      "aie",
+      "ayons"
+     ],
+     [
+      "aller",
+      "aille",
+      "allions"
+     ],
+     [
+      "faire",
+      "fasse",
+      "fassions"
+     ],
+     [
+      "pouvoir",
+      "puisse",
+      "puissions"
+     ],
+     [
+      "savoir",
+      "sache",
+      "sachions"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "Same subject in both clauses → use the infinitive: Je veux partir (not que je parte).",
+   "après que (fact) takes the indicative; avant que takes the subjunctive."
+  ],
+  "tips_hi": [
+   "दोनों हिस्सों का कर्ता एक हो तो infinitive: Je veux partir।",
+   "après que + indicatif; avant que + subjonctif।"
+  ],
+  "quiz": [
+   {
+    "q": "Bien qu’il ___ riche, il est avare.",
+    "options": [
+     "est",
+     "soit",
+     "sera"
+    ],
+    "correct": 1,
+    "explain": "bien que → subjonctif."
+   },
+   {
+    "q": "Je pense qu’il ___ raison.",
+    "options": [
+     "ait",
+     "a",
+     "aurait"
+    ],
+    "correct": 1,
+    "explain": "penser (affirmative) → indicatif."
+   }
+  ]
+ },
+ {
+  "slug": "relatifs-composes",
+  "level": "B2",
+  "title": "Compound relatives: lequel, auquel, duquel",
+  "title_hi": "संयुक्त संबंधवाचक: lequel, auquel, duquel",
+  "summary": "Used after prepositions when the antecedent is a thing: avec lequel, pour laquelle, auquel.",
+  "summary_hi": "preposition के बाद वस्तु के लिए: avec lequel, pour laquelle, auquel।",
+  "rules": [
+   {
+    "rule": "preposition + lequel/laquelle/lesquels/lesquelles (agree with the noun).",
+    "rule_hi": "preposition + lequel… (संज्ञा से मेल)।",
+    "examples": [
+     {
+      "fr": "Le stylo avec lequel j’écris.",
+      "en": "The pen I write with.",
+      "hi": "जिस कलम से मैं लिखता हूँ।"
+     },
+     {
+      "fr": "La raison pour laquelle je suis venu.",
+      "en": "The reason why I came.",
+      "hi": "वह कारण जिसकी वजह से मैं आया।"
+     }
+    ]
+   },
+   {
+    "rule": "à → auquel / à laquelle / auxquels; de → duquel / de laquelle / desquels. For people, qui is possible.",
+    "rule_hi": "à और de के साथ रूप बदलते हैं।",
+    "examples": [
+     {
+      "fr": "Le projet auquel je pense.",
+      "en": "The project I’m thinking of.",
+      "hi": "जिस प्रोजेक्ट के बारे में मैं सोच रहा हूँ।"
+     },
+     {
+      "fr": "L’ami avec qui je voyage.",
+      "en": "The friend I travel with.",
+      "hi": "जिस दोस्त के साथ मैं यात्रा करता हूँ।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "'dont' is simpler where possible; use duquel only with a preposition of place (à côté duquel)."
+  ],
+  "tips_hi": [
+   "जहाँ हो सके dont लगाएँ; duquel सिर्फ़ जगह वाले prepositions (à côté de) के साथ।"
+  ],
+  "quiz": [
+   {
+    "q": "La table sur ___ j’ai posé le livre.",
+    "options": [
+     "laquelle",
+     "lequel",
+     "laquel"
+    ],
+    "correct": 0,
+    "explain": "table is feminine."
+   },
+   {
+    "q": "Le problème ___ je réfléchis.",
+    "options": [
+     "auquel",
+     "dont",
+     "que"
+    ],
+    "correct": 0,
+    "explain": "réfléchir à → auquel."
+   }
+  ]
+ },
+ {
+  "slug": "futur-anterieur-cond-passe",
+  "level": "B2",
+  "title": "Futur antérieur and conditionnel passé",
+  "title_hi": "futur antérieur और conditionnel passé",
+  "summary": "Compound tenses: an action finished before a future moment, or a regret/missed possibility.",
+  "summary_hi": "भविष्य के किसी क्षण से पहले पूरा हो चुका काम; या पछतावा/छूटा हुआ अवसर।",
+  "rules": [
+   {
+    "rule": "futur antérieur = future of avoir/être + participle.",
+    "rule_hi": "futur antérieur = avoir/être का futur + participe passé।",
+    "examples": [
+     {
+      "fr": "Quand tu arriveras, j’aurai fini.",
+      "en": "By the time you arrive, I’ll have finished.",
+      "hi": "जब तुम आओगे तब मैं खत्म कर चुका हूँगा।"
+     },
+     {
+      "fr": "Dès qu’il sera parti, nous mangerons.",
+      "en": "As soon as he has left we’ll eat.",
+      "hi": "जैसे ही वह जाएगा हम खाएँगे।"
+     }
+    ]
+   },
+   {
+    "rule": "conditionnel passé = conditionnel of avoir/être + participle.",
+    "rule_hi": "conditionnel passé = avoir/être का conditionnel + participe।",
+    "examples": [
+     {
+      "fr": "J’aurais aimé venir.",
+      "en": "I would have liked to come.",
+      "hi": "मैं आना चाहता, पर…"
+     },
+     {
+      "fr": "Tu aurais dû me prévenir.",
+      "en": "You should have warned me.",
+      "hi": "तुम्हें मुझे बताना चाहिए था।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Great for opinion essays: « À mon avis, on aurait dû agir plus tôt »."
+  ],
+  "tips_hi": [
+   "राय वाले निबंध में बहुत काम आता है।"
+  ],
+  "quiz": [
+   {
+    "q": "Dès qu’elle ___ , je partirai.",
+    "options": [
+     "aura mangé",
+     "mangera",
+     "mange"
+    ],
+    "correct": 0,
+    "explain": "action completed first → futur antérieur."
+   },
+   {
+    "q": "Il ___ pu m’aider.",
+    "options": [
+     "aurait",
+     "avait",
+     "a"
+    ],
+    "correct": 0,
+    "explain": "il aurait pu."
+   }
+  ]
+ },
+ {
+  "slug": "doubles-pronoms-mise-en-relief",
+  "level": "B2",
+  "title": "Emphasis: c’est … qui / que, ce qui / ce que",
+  "title_hi": "ज़ोर देना: c’est … qui/que, ce qui/ce que",
+  "summary": "Highlight the important idea and talk about unnamed things.",
+  "summary_hi": "ज़रूरी बात पर ज़ोर और अनाम चीज़ों के बारे में बात करना।",
+  "rules": [
+   {
+    "rule": "c’est + element + qui (subject) / que (other).",
+    "rule_hi": "c’est + तत्व + qui/que।",
+    "examples": [
+     {
+      "fr": "C’est Marie qui a gagné.",
+      "en": "It’s Marie who won.",
+      "hi": "मैरी ही जीती है।"
+     },
+     {
+      "fr": "C’est demain que je pars.",
+      "en": "It’s tomorrow that I leave.",
+      "hi": "मैं कल ही जा रहा हूँ।"
+     }
+    ]
+   },
+   {
+    "rule": "ce qui (subject) / ce que (object) / ce dont (de) / ce à quoi (à) = what.",
+    "rule_hi": "ce qui/ce que = जो (बात)।",
+    "examples": [
+     {
+      "fr": "Ce qui m’intéresse, c’est la musique.",
+      "en": "What interests me is music.",
+      "hi": "जो मुझे दिलचस्प लगता है वह संगीत है।"
+     },
+     {
+      "fr": "Je ne comprends pas ce que tu dis.",
+      "en": "I don’t understand what you’re saying.",
+      "hi": "तुम जो कह रहे हो वह मुझे समझ नहीं आया।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Perfect for speaking Task 3 (opinion): « Ce qui me semble essentiel, c’est… »"
+  ],
+  "tips_hi": [
+   "बोलने की परीक्षा में राय देने के लिए बेहतरीन: « Ce qui me semble essentiel, c’est… »"
+  ],
+  "quiz": [
+   {
+    "q": "___ me plaît, c’est la liberté.",
+    "options": [
+     "Ce qui",
+     "Ce que",
+     "Ce dont"
+    ],
+    "correct": 0,
+    "explain": "subject → ce qui."
+   },
+   {
+    "q": "Dis-moi ___ tu veux.",
+    "options": [
+     "ce qui",
+     "ce que",
+     "ce dont"
+    ],
+    "correct": 1,
+    "explain": "object → ce que."
+   }
+  ]
+ },
+ {
+  "slug": "expression-concession-opposition",
+  "level": "B2",
+  "title": "Concession, cause and consequence (advanced)",
+  "title_hi": "रियायत, कारण, परिणाम (उन्नत)",
+  "summary": "Nuanced linking: malgré, même si, quoique, tellement … que, si bien que, d’autant que.",
+  "summary_hi": "बारीक जोड़: malgré, même si, tellement… que, d’autant que।",
+  "rules": [
+   {
+    "rule": "Concession: malgré + noun, bien que + subj., même si + indicative.",
+    "rule_hi": "रियायत: malgré + संज्ञा, bien que + subjonctif, même si + indicatif।",
+    "examples": [
+     {
+      "fr": "Malgré la pluie, nous sommes sortis.",
+      "en": "Despite the rain we went out.",
+      "hi": "बारिश के बावजूद हम निकले।"
+     },
+     {
+      "fr": "Même s’il pleut, je viendrai.",
+      "en": "Even if it rains I’ll come.",
+      "hi": "बारिश भी हुई तो मैं आऊँगा।"
+     }
+    ]
+   },
+   {
+    "rule": "Consequence: si/tellement … que, si bien que, de sorte que.",
+    "rule_hi": "परिणाम: इतना … कि।",
+    "examples": [
+     {
+      "fr": "Il a tellement travaillé qu’il est épuisé.",
+      "en": "He worked so much that he’s exhausted.",
+      "hi": "उसने इतना काम किया कि वह थक गया।"
+     }
+    ]
+   },
+   {
+    "rule": "Added cause: d’autant plus que, étant donné que, sous prétexte que.",
+    "rule_hi": "अतिरिक्त कारण।",
+    "examples": [
+     {
+      "fr": "Il est content, d’autant plus qu’il a réussi.",
+      "en": "He’s happy, all the more as he succeeded.",
+      "hi": "वह खुश है, खासकर इसलिए कि वह सफल हुआ।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Use at least one concession in every opinion essay: it shows B2+ control."
+  ],
+  "tips_hi": [
+   "हर निबंध में कम से कम एक concession डालें — इससे B2+ स्तर दिखता है।"
+  ],
+  "quiz": [
+   {
+    "q": "___ le froid, il est sorti en t-shirt.",
+    "options": [
+     "Malgré",
+     "Bien que",
+     "Parce que"
+    ],
+    "correct": 0,
+    "explain": "followed by a noun → malgré."
+   },
+   {
+    "q": "Bien que tu ___ raison, je refuse.",
+    "options": [
+     "as",
+     "aies",
+     "auras"
+    ],
+    "correct": 1,
+    "explain": "bien que → subjonctif."
+   }
+  ]
+ },
+ {
+  "slug": "participe-present-adjectif",
+  "level": "B2",
+  "title": "Present participle and verbal adjective",
+  "title_hi": "participe présent और verbal adjective",
+  "summary": "-ant forms: participe présent (invariable, replaces qui + verb) vs adjectif verbal (agrees).",
+  "summary_hi": "-ant रूप: participe présent (नहीं बदलता) बनाम adjectif verbal (लिंग/वचन से बदलता है)।",
+  "rules": [
+   {
+    "rule": "Participe présent: invariable, written style, replaces 'qui + verb' or cause.",
+    "rule_hi": "participe présent: अपरिवर्तनीय, लिखित शैली।",
+    "examples": [
+     {
+      "fr": "Les élèves travaillant dur réussissent.",
+      "en": "Students who work hard succeed.",
+      "hi": "मेहनत करने वाले छात्र सफल होते हैं।"
+     },
+     {
+      "fr": "Ayant fini, il est parti.",
+      "en": "Having finished, he left.",
+      "hi": "खत्म करके वह चला गया।"
+     }
+    ]
+   },
+   {
+    "rule": "Adjectif verbal: agrees like an adjective.",
+    "rule_hi": "adjectif verbal: विशेषण की तरह मेल।",
+    "examples": [
+     {
+      "fr": "Des histoires fascinantes.",
+      "en": "Fascinating stories.",
+      "hi": "रोचक कहानियाँ।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Spelling traps: fatigant (adj.) vs fatiguant (participle); différent vs différant."
+  ],
+  "tips_hi": [
+   "वर्तनी का जाल: fatigant (विशेषण) बनाम fatiguant (क्रिया)।"
+  ],
+  "quiz": [
+   {
+    "q": "Une femme ___ (charmer).",
+    "options": [
+     "charmant",
+     "charmante",
+     "charmantes"
+    ],
+    "correct": 1,
+    "explain": "adjective agrees: charmante."
+   },
+   {
+    "q": "___ peur, il a couru.",
+    "options": [
+     "Ayant",
+     "Ayante",
+     "En ayant"
+    ],
+    "correct": 0,
+    "explain": "participe présent, written cause."
+   }
+  ]
+ },
+ {
+  "slug": "nominalisation-style-ecrit",
+  "level": "B2",
+  "title": "Nominalisation and formal writing",
+  "title_hi": "भाववाचक रूप और औपचारिक लेखन",
+  "summary": "Turn verbs into nouns to sound formal: décider → la décision.",
+  "summary_hi": "औपचारिक लेखन के लिए क्रिया को संज्ञा बनाना: décider → la décision।",
+  "rules": [
+   {
+    "rule": "Replace subordinate clauses with a noun phrase.",
+    "rule_hi": "उपवाक्य की जगह संज्ञा-पदबंध।",
+    "examples": [
+     {
+      "fr": "Quand il est arrivé… → À son arrivée…",
+      "en": "On his arrival…",
+      "hi": "उसके आने पर…"
+     },
+     {
+      "fr": "Parce que le prix augmente → En raison de la hausse des prix",
+      "en": "Due to the rise in prices",
+      "hi": "कीमतें बढ़ने के कारण"
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Useful pairs",
+    "headers": [
+     "Verb",
+     "Noun",
+     "Hindi"
+    ],
+    "rows": [
+     [
+      "augmenter",
+      "l’augmentation",
+      "बढ़ोतरी"
+     ],
+     [
+      "diminuer",
+      "la diminution",
+      "कमी"
+     ],
+     [
+      "développer",
+      "le développement",
+      "विकास"
+     ],
+     [
+      "améliorer",
+      "l’amélioration",
+      "सुधार"
+     ],
+     [
+      "échouer",
+      "l’échec",
+      "असफलता"
+     ],
+     [
+      "réussir",
+      "la réussite",
+      "सफलता"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "Formal letters (TEF writing B): use 'En raison de', 'Suite à', 'Afin de'."
+  ],
+  "tips_hi": [
+   "औपचारिक पत्र में 'En raison de', 'Suite à', 'Afin de' लिखें।"
+  ],
+  "quiz": [
+   {
+    "q": "‘augmenter’ → ",
+    "options": [
+     "l’augmentation",
+     "l’augmente",
+     "l’augmentement"
+    ],
+    "correct": 0,
+    "explain": "-ation noun."
+   },
+   {
+    "q": "Nominal form of ‘échouer’ :",
+    "options": [
+     "l’échec",
+     "l’échouement",
+     "l’échouer"
+    ],
+    "correct": 0,
+    "explain": "l’échec."
+   }
+  ]
+ },
+ {
+  "slug": "concordance-passe-simple",
+  "level": "C1",
+  "title": "Passé simple and sequence of tenses",
+  "summary": "The literary narrative past, and how tenses line up in formal writing.",
+  "rules": [
+   {
+    "rule": "Passé simple is used in literature and history for completed actions. -er verbs: -ai, -as, -a, -âmes, -âtes, -èrent.",
+    "examples": [
+     {
+      "fr": "Il entra, regarda autour de lui et sourit.",
+      "en": "He came in, looked around and smiled."
+     }
+    ]
+   },
+   {
+    "rule": "Sequence: the main verb’s tense decides whether you use the présent or the imparfait subjunctive (rare today).",
+    "examples": [
+     {
+      "fr": "Il fallait qu’il partît.",
+      "en": "He had to leave. (literary imparfait du subjonctif)"
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Passé simple of common verbs (il / ils)",
+    "headers": [
+     "Infinitive",
+     "il / elle",
+     "ils / elles"
+    ],
+    "rows": [
+     [
+      "être",
+      "fut",
+      "furent"
+     ],
+     [
+      "avoir",
+      "eut",
+      "eurent"
+     ],
+     [
+      "faire",
+      "fit",
+      "firent"
+     ],
+     [
+      "aller",
+      "alla",
+      "allèrent"
+     ],
+     [
+      "venir",
+      "vint",
+      "vinrent"
+     ],
+     [
+      "dire",
+      "dit",
+      "dirent"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "You will meet the passé simple mostly in the 3rd person. Learn to recognise it before producing it.",
+   "Modern writing replaces the imparfait du subjonctif with the présent: « Il fallait qu’il parte »."
+  ],
+  "title_hi": "काल-मेल और passé simple",
+  "summary_hi": "लिखित/साहित्यिक भाषा में कालों का तालमेल।"
+ },
+ {
+  "slug": "registre-soutenu",
+  "level": "C1",
+  "title": "Formal register and stylistic devices",
+  "summary": "Inversion, ne explétif and concessive structures that give your French an educated tone.",
+  "rules": [
+   {
+    "rule": "Inversion after adverbs: à peine, peut-être, sans doute, aussi (therefore).",
+    "examples": [
+     {
+      "fr": "À peine était-elle arrivée que la réunion commença.",
+      "en": "No sooner had she arrived than the meeting began."
+     }
+    ]
+   },
+   {
+    "rule": "Concession with quel que soit / quoi que + subjunctive, and loin de + infinitive.",
+    "examples": [
+     {
+      "fr": "Quels que soient ses motifs, son acte demeure injustifiable.",
+      "en": "Whatever his motives, his act remains unjustifiable."
+     }
+    ]
+   },
+   {
+    "rule": "On ne saurait + infinitive = “one cannot”: a formal alternative to ne pas pouvoir.",
+    "examples": [
+     {
+      "fr": "On ne saurait exagérer l’importance de cette réforme.",
+      "en": "One cannot overstate the importance of this reform."
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Ne explétif: after craindre que, avoir peur que, avant que (formal): « Je crains qu’il ne vienne ». It is not a negation."
+  ],
+  "title_hi": "उच्च भाषा-स्तर (registre soutenu)",
+  "summary_hi": "औपचारिक और साहित्यिक भाषा के शब्द और रचनाएँ।"
+ },
+ {
+  "slug": "inversion-style-soutenu",
+  "level": "C1",
+  "title": "Stylistic inversion and elevated register",
+  "title_hi": "शैलीगत उलटफेर और उच्च भाषा-स्तर",
+  "summary": "Inversion after adverbs (peut-être, sans doute, à peine, aussi) and in subordinates, found in editorials and DALF.",
+  "summary_hi": "समाचार-संपादकीय और DALF में मिलने वाला उलटफेर।",
+  "rules": [
+   {
+    "rule": "Inversion after à peine, peut-être que / peut-être + inversion, sans doute, aussi (= therefore).",
+    "rule_hi": "इन क्रिया-विशेषणों के बाद क्रिया-कर्ता उलटते हैं।",
+    "examples": [
+     {
+      "fr": "À peine était-il arrivé qu’il est reparti.",
+      "en": "Hardly had he arrived when he left.",
+      "hi": "वह मुश्किल से पहुँचा ही था कि फिर चला गया।"
+     },
+     {
+      "fr": "Peut-être a-t-il oublié.",
+      "en": "Maybe he forgot.",
+      "hi": "शायद वह भूल गया।"
+     }
+    ]
+   },
+   {
+    "rule": "Fixed formulas: Ainsi, Toujours est-il que…, Reste à savoir si…",
+    "rule_hi": "स्थिर वाक्यांश।",
+    "examples": [
+     {
+      "fr": "Toujours est-il que le projet a échoué.",
+      "en": "The fact remains that the project failed.",
+      "hi": "सच यही है कि प्रोजेक्ट विफल रहा।"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Use sparingly: one or two stylish inversions per essay lifts the score to C1."
+  ],
+  "tips_hi": [
+   "कम इस्तेमाल करें — एक-दो सुंदर inversion निबंध को C1 बना देते हैं।"
+  ],
+  "quiz": [
+   {
+    "q": "Peut-être ___ -il raison.",
+    "options": [
+     "a",
+     "a-t",
+     "as"
+    ],
+    "correct": 1,
+    "explain": "inversion with t: a-t-il."
+   },
+   {
+    "q": "À peine ___ -elle sortie…",
+    "options": [
+     "est",
+     "était",
+     "a"
+    ],
+    "correct": 1,
+    "explain": "à peine + plus-que-parfait (inversion)."
+   }
+  ]
+ },
+ {
+  "slug": "passe-simple-litteraire",
+  "level": "C1",
+  "title": "Passé simple and literary tenses",
+  "title_hi": "passé simple (साहित्यिक भूतकाल)",
+  "summary": "The narrative past of novels and news essays. Learn to recognise it; use mainly 3rd person.",
+  "summary_hi": "उपन्यासों का भूतकाल। पहचानना ज़रूरी, लिखना कम।",
+  "rules": [
+   {
+    "rule": "Endings: -a/-èrent for -er verbs; -it/-irent for -ir/-re; -ut/-urent for -oir/-ire irregulars.",
+    "rule_hi": "3rd person रूप सबसे ज़्यादा मिलते हैं।",
+    "examples": [
+     {
+      "fr": "Il ouvrit la porte et entra.",
+      "en": "He opened the door and entered.",
+      "hi": "उसने दरवाज़ा खोला और अंदर गया।"
+     },
+     {
+      "fr": "Ils partirent à l’aube.",
+      "en": "They left at dawn.",
+      "hi": "वे भोर में निकले।"
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "caption": "Common irregulars (il / ils)",
+    "headers": [
+     "Infinitive",
+     "il",
+     "ils"
+    ],
+    "rows": [
+     [
+      "être",
+      "fut",
+      "furent"
+     ],
+     [
+      "avoir",
+      "eut",
+      "eurent"
+     ],
+     [
+      "faire",
+      "fit",
+      "firent"
+     ],
+     [
+      "venir",
+      "vint",
+      "vinrent"
+     ],
+     [
+      "voir",
+      "vit",
+      "virent"
+     ],
+     [
+      "dire",
+      "dit",
+      "dirent"
+     ]
+    ]
+   }
+  ],
+  "tips": [
+   "Imparfait (description) + passé simple (event) in a story, like imparfait + passé composé in speech."
+  ],
+  "tips_hi": [
+   "कहानी में imparfait वर्णन के लिए और passé simple घटना के लिए।"
+  ],
+  "quiz": [
+   {
+    "q": "Il ___ la lettre. (lire)",
+    "options": [
+     "lit",
+     "lut",
+     "lisait"
+    ],
+    "correct": 1,
+    "explain": "lire → il lut."
+   },
+   {
+    "q": "Ils ___ au village. (aller)",
+    "options": [
+     "allèrent",
+     "allaient",
+     "iront"
+    ],
+    "correct": 0,
+    "explain": "ils allèrent."
+   }
+  ]
+ },
+ {
+  "slug": "argumentation-c1",
+  "level": "C1",
+  "title": "Argumentation toolbox",
+  "title_hi": "तर्क करने का टूलबॉक्स",
+  "summary": "Structure a persuasive text or talk: thesis, arguments, counter-arguments, conclusion.",
+  "summary_hi": "प्रभावी निबंध/भाषण की संरचना: थीसिस, तर्क, प्रतितर्क, निष्कर्ष।",
+  "rules": [
+   {
+    "rule": "Introduce a thesis and give your position.",
+    "rule_hi": "थीसिस और अपनी राय।",
+    "examples": [
+     {
+      "fr": "Il est indéniable que… Pour ma part, je soutiens que…",
+      "en": "It is undeniable that… For my part, I maintain that…",
+      "hi": "यह निर्विवाद है कि… मैं तो मानता हूँ कि…"
+     }
+    ]
+   },
+   {
+    "rule": "Add, contrast, concede.",
+    "rule_hi": "जोड़ना, विरोध करना, मानना।",
+    "examples": [
+     {
+      "fr": "En outre / De surcroît / Certes… mais… / Il n’en reste pas moins que…",
+      "en": "Moreover / Admittedly… but…",
+      "hi": "इसके अलावा / माना कि… लेकिन…"
+     }
+    ]
+   },
+   {
+    "rule": "Conclude.",
+    "rule_hi": "निष्कर्ष।",
+    "examples": [
+     {
+      "fr": "En définitive, force est de constater que…",
+      "en": "Ultimately, one has to admit that…",
+      "hi": "अंततः मानना पड़ेगा कि…"
+     }
+    ]
+   }
+  ],
+  "tips": [
+   "Plan: Introduction (accroche + problématique) → 2-3 arguments with examples → conclusion + ouverture."
+  ],
+  "tips_hi": [
+   "योजना: भूमिका → 2-3 तर्क + उदाहरण → निष्कर्ष।"
+  ],
+  "quiz": [
+   {
+    "q": "‘En outre’ means:",
+    "options": [
+     "moreover",
+     "however",
+     "therefore"
+    ],
+    "correct": 0,
+    "explain": "adds an argument."
+   },
+   {
+    "q": "‘Il n’en reste pas moins que’ introduces:",
+    "options": [
+     "a conclusion despite objections",
+     "a question",
+     "a cause"
+    ],
+    "correct": 0,
+    "explain": "'nevertheless the fact is'."
+   }
+  ]
+ }
+]

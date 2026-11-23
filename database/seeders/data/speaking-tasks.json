@@ -1,0 +1,110 @@
+[
+ {
+  "id": "eo-a2-interview",
+  "exam": "TCF",
+  "level": "A2",
+  "nclc": "NCLC 4",
+  "title": "Entretien dirigé",
+  "minutes": 2,
+  "prompt": "Présentez-vous : nom, âge, pays, travail ou études, famille, loisirs, et pourquoi vous apprenez le français.",
+  "prompt_hi": "अपना परिचय दें: नाम, उम्र, देश, काम/पढ़ाई, परिवार, शौक, और फ़्रेंच क्यों सीख रहे हैं।",
+  "phrases": [
+   {
+    "fr": "Je m’appelle… et j’ai… ans.",
+    "hi": "मेरा नाम… है और मैं… साल का हूँ।"
+   },
+   {
+    "fr": "J’apprends le français parce que je veux vivre au Canada.",
+    "hi": "मैं फ़्रेंच इसलिए सीख रहा हूँ कि कनाडा में रहना चाहता हूँ।"
+   },
+   {
+    "fr": "Pendant mon temps libre, j’aime…",
+    "hi": "खाली समय में मुझे… पसंद है।"
+   }
+  ]
+ },
+ {
+  "id": "eo-b1-infos",
+  "exam": "TEF",
+  "level": "B1",
+  "nclc": "NCLC 5-6",
+  "title": "Section A : demander des informations",
+  "minutes": 5,
+  "prompt": "Vous lisez une annonce pour un cours de natation. Téléphonez pour obtenir un maximum d’informations (prix, horaires, niveau, inscription).",
+  "prompt_hi": "आप तैराकी क्लास का विज्ञापन पढ़ते हैं। फ़ोन करके अधिकतम जानकारी लें (कीमत, समय, स्तर, पंजीकरण)।",
+  "phrases": [
+   {
+    "fr": "Bonjour, je vous appelle au sujet de votre annonce.",
+    "hi": "नमस्ते, मैं आपके विज्ञापन के बारे में फ़ोन कर रहा हूँ।"
+   },
+   {
+    "fr": "Pourriez-vous me dire combien coûte le cours ?",
+    "hi": "क्या आप बता सकते हैं कि क्लास की कीमत कितनी है?"
+   },
+   {
+    "fr": "Est-ce qu’il y a des cours pour débutants ?",
+    "hi": "क्या शुरुआती लोगों के लिए क्लास है?"
+   },
+   {
+    "fr": "Comment est-ce que je peux m’inscrire ?",
+    "hi": "मैं पंजीकरण कैसे कर सकता हूँ?"
+   }
+  ]
+ },
+ {
+  "id": "eo-b2-convaincre",
+  "exam": "TEF",
+  "level": "B2",
+  "nclc": "NCLC 7",
+  "title": "Section B : convaincre un ami",
+  "minutes": 10,
+  "prompt": "Un ami hésite à quitter son emploi pour étudier. Vous le convainquez de ne pas le faire (ou de le faire). Donnez au moins trois arguments et répondez à ses objections.",
+  "prompt_hi": "आपका दोस्त नौकरी छोड़कर पढ़ने की सोच रहा है। उसे मनाएँ (या रोकें): कम से कम तीन तर्क दें और उसके एतराज़ों का जवाब दें।",
+  "phrases": [
+   {
+    "fr": "À ta place, je réfléchirais bien avant de décider.",
+    "hi": "तुम्हारी जगह होता तो फ़ैसले से पहले अच्छे से सोचता।"
+   },
+   {
+    "fr": "Je comprends ton point de vue, mais il faut aussi considérer que…",
+    "hi": "मैं तुम्हारी बात समझता हूँ, पर यह भी सोचो कि…"
+   },
+   {
+    "fr": "D’abord… ensuite… enfin…",
+    "hi": "पहले… फिर… अंत में…"
+   },
+   {
+    "fr": "Imagine que tu aies un diplôme : tu gagnerais bien plus.",
+    "hi": "सोचो तुम्हारे पास डिग्री हो: तुम कहीं ज़्यादा कमाओगे।"
+   }
+  ]
+ },
+ {
+  "id": "eo-c1-debat",
+  "exam": "DELF",
+  "level": "C1",
+  "nclc": "NCLC 9-10",
+  "title": "Exposé et débat",
+  "minutes": 10,
+  "prompt": "Présentez en 3 minutes votre position sur : « Faut-il limiter l’usage des smartphones à l’école ? » puis répondez au contradicteur.",
+  "prompt_hi": "3 मिनट में अपनी राय रखें: « क्या स्कूल में स्मार्टफ़ोन सीमित हों? » फिर विरोधी के सवालों के जवाब दें।",
+  "phrases": [
+   {
+    "fr": "La question qui se pose est de savoir si…",
+    "hi": "सवाल यह है कि क्या…"
+   },
+   {
+    "fr": "Certes, … ; toutefois, …",
+    "hi": "माना कि…; फिर भी…"
+   },
+   {
+    "fr": "Force est de reconnaître que…",
+    "hi": "यह मानना पड़ेगा कि…"
+   },
+   {
+    "fr": "Pour résumer, je dirais que…",
+    "hi": "सारांश में मैं कहूँगा कि…"
+   }
+  ]
+ }
+]

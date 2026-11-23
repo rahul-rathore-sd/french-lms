@@ -1,0 +1,338 @@
+[
+ {
+  "level": "A1",
+  "topic": "Greetings",
+  "en": "Hello, my name is Anna.",
+  "fr": "Bonjour, je m’appelle Anna."
+ },
+ {
+  "level": "A1",
+  "topic": "Identity",
+  "en": "I am a student.",
+  "fr": "Je suis étudiant."
+ },
+ {
+  "level": "A1",
+  "topic": "Greetings",
+  "en": "How are you?",
+  "fr": "Comment allez-vous ?"
+ },
+ {
+  "level": "A1",
+  "topic": "Home",
+  "en": "I live in Paris.",
+  "fr": "J’habite à Paris."
+ },
+ {
+  "level": "A1",
+  "topic": "Family",
+  "en": "She has two brothers.",
+  "fr": "Elle a deux frères."
+ },
+ {
+  "level": "A1",
+  "topic": "Feelings",
+  "en": "We are hungry.",
+  "fr": "Nous avons faim."
+ },
+ {
+  "level": "A1",
+  "topic": "Travel",
+  "en": "Where is the station?",
+  "fr": "Où est la gare ?"
+ },
+ {
+  "level": "A1",
+  "topic": "Food",
+  "en": "The coffee is hot.",
+  "fr": "Le café est chaud."
+ },
+ {
+  "level": "A1",
+  "topic": "Likes",
+  "en": "I like music.",
+  "fr": "J’aime la musique."
+ },
+ {
+  "level": "A1",
+  "topic": "Feelings",
+  "en": "He is not tired.",
+  "fr": "Il n’est pas fatigué."
+ },
+ {
+  "level": "A1",
+  "topic": "Time",
+  "en": "What time is it?",
+  "fr": "Quelle heure est-il ?"
+ },
+ {
+  "level": "A1",
+  "topic": "Family",
+  "en": "My mother is a doctor.",
+  "fr": "Ma mère est médecin."
+ },
+ {
+  "level": "A1",
+  "topic": "Food",
+  "en": "I would like a glass of water.",
+  "fr": "Je voudrais un verre d’eau."
+ },
+ {
+  "level": "A1",
+  "topic": "Greetings",
+  "en": "Thank you very much.",
+  "fr": "Merci beaucoup."
+ },
+ {
+  "level": "A2",
+  "topic": "Past",
+  "en": "Yesterday I visited the museum.",
+  "fr": "Hier, j’ai visité le musée."
+ },
+ {
+  "level": "A2",
+  "topic": "Future",
+  "en": "We are going to travel next week.",
+  "fr": "Nous allons voyager la semaine prochaine."
+ },
+ {
+  "level": "A2",
+  "topic": "Daily life",
+  "en": "She is looking for her keys.",
+  "fr": "Elle cherche ses clés."
+ },
+ {
+  "level": "A2",
+  "topic": "Communication",
+  "en": "I do not understand this word.",
+  "fr": "Je ne comprends pas ce mot."
+ },
+ {
+  "level": "A2",
+  "topic": "Politeness",
+  "en": "Can you help me, please?",
+  "fr": "Pouvez-vous m’aider, s’il vous plaît ?"
+ },
+ {
+  "level": "A2",
+  "topic": "Past",
+  "en": "It was raining when we left.",
+  "fr": "Il pleuvait quand nous sommes partis."
+ },
+ {
+  "level": "A2",
+  "topic": "Routine",
+  "en": "He wakes up at seven every morning.",
+  "fr": "Il se réveille à sept heures tous les matins."
+ },
+ {
+  "level": "A2",
+  "topic": "Past",
+  "en": "I have already eaten.",
+  "fr": "J’ai déjà mangé."
+ },
+ {
+  "level": "A2",
+  "topic": "Comparison",
+  "en": "This restaurant is better than that one.",
+  "fr": "Ce restaurant est meilleur que celui-là."
+ },
+ {
+  "level": "A2",
+  "topic": "Directions",
+  "en": "Turn left at the pharmacy.",
+  "fr": "Tournez à gauche à la pharmacie."
+ },
+ {
+  "level": "A2",
+  "topic": "Shopping",
+  "en": "How much does this cost?",
+  "fr": "Combien ça coûte ?"
+ },
+ {
+  "level": "A2",
+  "topic": "Places",
+  "en": "My friends live far from here.",
+  "fr": "Mes amis habitent loin d’ici."
+ },
+ {
+  "level": "B1",
+  "topic": "Conditions",
+  "en": "If I have time, I will come.",
+  "fr": "Si j’ai le temps, je viendrai."
+ },
+ {
+  "level": "B1",
+  "topic": "Wishes",
+  "en": "I would like to learn Spanish.",
+  "fr": "Je voudrais apprendre l’espagnol."
+ },
+ {
+  "level": "B1",
+  "topic": "Reported speech",
+  "en": "She told me that she was tired.",
+  "fr": "Elle m’a dit qu’elle était fatiguée."
+ },
+ {
+  "level": "B1",
+  "topic": "Subjunctive",
+  "en": "It is necessary that you come early.",
+  "fr": "Il faut que tu viennes tôt."
+ },
+ {
+  "level": "B1",
+  "topic": "Past habits",
+  "en": "When I was young, I played football.",
+  "fr": "Quand j’étais jeune, je jouais au football."
+ },
+ {
+  "level": "B1",
+  "topic": "Duration",
+  "en": "I have been living here for three years.",
+  "fr": "J’habite ici depuis trois ans."
+ },
+ {
+  "level": "B1",
+  "topic": "Pronouns",
+  "en": "He gave me the book yesterday.",
+  "fr": "Il m’a donné le livre hier."
+ },
+ {
+  "level": "B1",
+  "topic": "Concession",
+  "en": "Although it is expensive, I will buy it.",
+  "fr": "Bien que ce soit cher, je l’achèterai."
+ },
+ {
+  "level": "B1",
+  "topic": "Opinion",
+  "en": "I think that he is right.",
+  "fr": "Je pense qu’il a raison."
+ },
+ {
+  "level": "B1",
+  "topic": "Regret",
+  "en": "We should have left earlier.",
+  "fr": "Nous aurions dû partir plus tôt."
+ },
+ {
+  "level": "B1",
+  "topic": "Relative clauses",
+  "en": "The film that I saw was excellent.",
+  "fr": "Le film que j’ai vu était excellent."
+ },
+ {
+  "level": "B1",
+  "topic": "Reported speech",
+  "en": "She asked me where I worked.",
+  "fr": "Elle m’a demandé où je travaillais."
+ },
+ {
+  "level": "B2",
+  "topic": "Conditions",
+  "en": "Had I known, I would have stayed.",
+  "fr": "Si j’avais su, je serais resté."
+ },
+ {
+  "level": "B2",
+  "topic": "Opinion",
+  "en": "It seems to me that the situation is getting worse.",
+  "fr": "Il me semble que la situation empire."
+ },
+ {
+  "level": "B2",
+  "topic": "Concession",
+  "en": "Whatever happens, I will stay with you.",
+  "fr": "Quoi qu’il arrive, je resterai avec toi."
+ },
+ {
+  "level": "B2",
+  "topic": "Proportion",
+  "en": "The more I read, the more I learn.",
+  "fr": "Plus je lis, plus j’apprends."
+ },
+ {
+  "level": "B2",
+  "topic": "Comparison",
+  "en": "He speaks as if he knew everything.",
+  "fr": "Il parle comme s’il savait tout."
+ },
+ {
+  "level": "B2",
+  "topic": "Concession",
+  "en": "Despite the rain, the match took place.",
+  "fr": "Malgré la pluie, le match a eu lieu."
+ },
+ {
+  "level": "B2",
+  "topic": "Relative clauses",
+  "en": "This is the book I was talking about.",
+  "fr": "C’est le livre dont je parlais."
+ },
+ {
+  "level": "B2",
+  "topic": "Regret",
+  "en": "She regrets not having come.",
+  "fr": "Elle regrette de ne pas être venue."
+ },
+ {
+  "level": "B2",
+  "topic": "Work",
+  "en": "We must find a solution as soon as possible.",
+  "fr": "Nous devons trouver une solution le plus tôt possible."
+ },
+ {
+  "level": "B2",
+  "topic": "Subjunctive",
+  "en": "I doubt that he will succeed.",
+  "fr": "Je doute qu’il réussisse."
+ },
+ {
+  "level": "C1",
+  "topic": "Concession",
+  "en": "Even if he were to resign, nothing would change.",
+  "fr": "Quand bien même il démissionnerait, rien ne changerait."
+ },
+ {
+  "level": "C1",
+  "topic": "Formal register",
+  "en": "One cannot overstate the importance of this reform.",
+  "fr": "On ne saurait exagérer l’importance de cette réforme."
+ },
+ {
+  "level": "C1",
+  "topic": "Inversion",
+  "en": "No sooner had she arrived than the meeting began.",
+  "fr": "À peine était-elle arrivée que la réunion commença."
+ },
+ {
+  "level": "C1",
+  "topic": "Subjunctive",
+  "en": "Whatever his motives may be, his act remains unjustifiable.",
+  "fr": "Quels que soient ses motifs, son acte demeure injustifiable."
+ },
+ {
+  "level": "C1",
+  "topic": "Subjunctive",
+  "en": "He would have liked us to be present.",
+  "fr": "Il aurait aimé que nous soyons présents."
+ },
+ {
+  "level": "C1",
+  "topic": "Formal register",
+  "en": "It is to be feared that the crisis will deepen.",
+  "fr": "Il est à craindre que la crise ne s’aggrave."
+ },
+ {
+  "level": "C1",
+  "topic": "Rhetoric",
+  "en": "Far from calming the debate, his remarks inflamed it.",
+  "fr": "Loin d’apaiser le débat, ses propos l’ont enflammé."
+ },
+ {
+  "level": "C1",
+  "topic": "Formal register",
+  "en": "To my knowledge, the report has not been published.",
+  "fr": "À ma connaissance, le rapport n’a pas été publié."
+ }
+]

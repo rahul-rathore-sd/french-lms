@@ -1,0 +1,147 @@
+[
+ {
+  "id": "tef-canada",
+  "name": "TEF Canada",
+  "tagline": "The most common test for Canadian immigration (Express Entry) and citizenship.",
+  "tagline_hi": "कनाडा इमिग्रेशन (Express Entry) और नागरिकता के लिए सबसे आम परीक्षा।",
+  "levels": "A1 → C2 (results mapped to NCLC 1-12)",
+  "usedFor": [
+   "Express Entry",
+   "Quebec immigration",
+   "Citizenship"
+  ],
+  "parts": [
+   {
+    "skill": "CO",
+    "duration": "≈ 40 min",
+    "detail": "60 questions, audio played once. Short dialogues, announcements, interviews. Difficulty rises as you go.",
+    "detail_hi": "60 सवाल, ऑडियो सिर्फ़ एक बार चलता है। सवाल धीरे-धीरे कठिन होते जाते हैं।"
+   },
+   {
+    "skill": "CE",
+    "duration": "≈ 60 min",
+    "detail": "50 questions: ads, notices, articles. Reading speed matters: ~1 minute per question.",
+    "detail_hi": "50 सवाल: विज्ञापन, सूचनाएँ, लेख। गति ज़रूरी है: लगभग 1 मिनट प्रति सवाल।"
+   },
+   {
+    "skill": "EE",
+    "duration": "60 min",
+    "detail": "Section A: continue a news item (min. 80 words). Section B: formal letter giving an opinion (min. 200 words).",
+    "detail_hi": "भाग A: किसी समाचार को आगे बढ़ाएँ (कम से कम 80 शब्द)। भाग B: राय देने वाला औपचारिक पत्र (कम से कम 200 शब्द)।"
+   },
+   {
+    "skill": "EO",
+    "duration": "15 min",
+    "detail": "Section A: ask questions about an ad to get information (≈ 5 min). Section B: convince a friend / argue a point (≈ 10 min).",
+    "detail_hi": "भाग A: विज्ञापन के बारे में सवाल पूछें। भाग B: दोस्त को मनाएँ / अपनी बात तर्क से रखें।"
+   }
+  ],
+  "scoring": "Each skill scored out of 360 (CO), 300 (CE), 450 (EO and EE). Each score maps to its own NCLC level.",
+  "tips": [
+   "In listening, read the options BEFORE the audio and write numbers quickly.",
+   "Writing B: use a formal opening and closing (Madame, Monsieur … Veuillez agréer…).",
+   "Speaking A: prepare 8-10 question openers: Pouvez-vous me dire… ? Est-ce qu’il est possible de… ?"
+  ],
+  "tips_hi": [
+   "सुनने में ऑडियो से पहले विकल्प पढ़ें और संख्याएँ जल्दी लिखें।",
+   "औपचारिक पत्र में शुरुआत और अंत के नियम पक्के करें।",
+   "बोलने में सवाल पूछने के 8-10 वाक्य रट लें।"
+  ]
+ },
+ {
+  "id": "tcf-canada",
+  "name": "TCF Canada",
+  "tagline": "Another IRCC-accepted test with multiple-choice listening and reading.",
+  "tagline_hi": "IRCC द्वारा मान्य दूसरी परीक्षा; सुनना और पढ़ना बहुविकल्पीय होता है।",
+  "levels": "A1 → C2 (results mapped to NCLC)",
+  "usedFor": [
+   "Express Entry",
+   "Citizenship",
+   "University"
+  ],
+  "parts": [
+   {
+    "skill": "CO",
+    "duration": "35 min",
+    "detail": "39 questions, audio played once, difficulty rises (A1 to C2).",
+    "detail_hi": "39 सवाल, ऑडियो एक बार, कठिनाई बढ़ती जाती है।"
+   },
+   {
+    "skill": "CE",
+    "duration": "60 min",
+    "detail": "39 questions on texts of increasing difficulty.",
+    "detail_hi": "39 सवाल, पाठ क्रमशः कठिन।"
+   },
+   {
+    "skill": "EE",
+    "duration": "60 min",
+    "detail": "3 tasks: short message (60-120 words), article/blog (120-150 words), argumentative text with two viewpoints (120-180 words).",
+    "detail_hi": "3 कार्य: छोटा संदेश, लेख/ब्लॉग, दो पक्षों वाला तर्क-पाठ।"
+   },
+   {
+    "skill": "EO",
+    "duration": "≈ 12 min",
+    "detail": "3 tasks: guided interview (no preparation), role-play (2 min preparation), express and defend an opinion.",
+    "detail_hi": "3 कार्य: साक्षात्कार, रोल-प्ले, अपनी राय का बचाव।"
+   }
+  ],
+  "scoring": "Listening and reading scored out of 699; writing and speaking scored out of 20. Each maps to NCLC.",
+  "tips": [
+   "Wrong answers are not penalised: always answer every question.",
+   "Time yourself: 90 seconds per reading question maximum.",
+   "Writing: respect the word limit of each task."
+  ],
+  "tips_hi": [
+   "गलत जवाब पर नंबर नहीं कटते — हर सवाल का जवाब दें।",
+   "समय का हिसाब रखें।",
+   "हर कार्य की शब्द-सीमा का पालन करें।"
+  ]
+ },
+ {
+  "id": "delf-dalf",
+  "name": "DELF / DALF",
+  "tagline": "Lifelong diplomas from the French Ministry of Education, one per CEFR level.",
+  "tagline_hi": "फ़्रांस के शिक्षा मंत्रालय के आजीवन वैध डिप्लोमा, हर CEFR स्तर के लिए अलग।",
+  "levels": "DELF A1, A2, B1, B2 · DALF C1, C2",
+  "usedFor": [
+   "Study in France",
+   "Visa / residence",
+   "Career"
+  ],
+  "parts": [
+   {
+    "skill": "CO",
+    "duration": "20-40 min",
+    "detail": "Listen to 2-3 recordings and answer questions (heard twice at A1-B2).",
+    "detail_hi": "2-3 रिकॉर्डिंग सुनकर जवाब दें।"
+   },
+   {
+    "skill": "CE",
+    "duration": "30-60 min",
+    "detail": "Read documents and answer comprehension questions.",
+    "detail_hi": "पाठ पढ़कर सवालों के जवाब।"
+   },
+   {
+    "skill": "EE",
+    "duration": "45-90 min",
+    "detail": "Write letters, essays or an argued synthesis according to the level.",
+    "detail_hi": "स्तर के अनुसार पत्र, निबंध या संश्लेषण।"
+   },
+   {
+    "skill": "EO",
+    "duration": "6-30 min",
+    "detail": "Guided talk, monologue and exchange with the examiner.",
+    "detail_hi": "परीक्षक के साथ बातचीत और एकालाप।"
+   }
+  ],
+  "scoring": "Each skill out of 25; total out of 100. Pass = 50/100 with at least 5/25 in every skill.",
+  "tips": [
+   "B2 (DELF) is roughly NCLC 7-8: the best target for most visa and study goals.",
+   "DELF diplomas never expire."
+  ],
+  "tips_hi": [
+   "DELF B2 लगभग NCLC 7-8 के बराबर है।",
+   "DELF डिप्लोमा कभी एक्सपायर नहीं होता।"
+  ]
+ }
+]

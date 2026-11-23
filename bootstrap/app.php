@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Middleware\StartSessionIfNeeded;
-use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
-use Illuminate\Cookie\Middleware\EncryptCookies;
+use App\Http\Middleware\NoIndex;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -21,21 +19,16 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->trustProxies(at: '*');
 
         // Private by default: tell search engines not to index anything (see FRENCH_NOINDEX).
-        $middleware->append(\App\Http\Middleware\NoIndex::class);
+        $middleware->append(NoIndex::class);
 
-        // Public pages (static UI, blog, sitemap) are stateless: no session row or cookie per visitor.
+        // Lightweight and stateless: no sessions, cookies or CSRF tokens anywhere. Progress is kept
+        // in the browser (localStorage); the API is protected by the bearer key.
         $middleware->web(remove: [
+            \Illuminate\Cookie\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Illuminate\Foundation\Http\Middleware\PreventRequestForgery::class,
-        ]);
-
-        // JSON API: no CSRF token (the API checks the X-Requested-With header instead) and
-        // no session unless an admin cookie is present, so anonymous visitors create no sessions.
-        $middleware->group('apiadmin', [
-            EncryptCookies::class,
-            AddQueuedCookiesToResponse::class,
-            StartSessionIfNeeded::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
