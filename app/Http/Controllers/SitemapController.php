@@ -10,6 +10,9 @@ class SitemapController extends Controller
 {
     public function __invoke(): Response
     {
+        // A private/noindex site must not advertise its pages.
+        abort_if(config('french.noindex'), 404);
+
         $base = Api::siteUrl();
         $urls = [['/', null], ['/apply/', null], ['/library/', null], ['/books/', null], ['/dashboard/', null], ['/practice/', null], ['/blog/', null]];
         foreach (Api::wherePublic(BlogPost::query())->orderByDesc('id')->limit(1000)->get(['slug', 'updated_at']) as $r) {

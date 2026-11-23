@@ -20,6 +20,9 @@ return Application::configure(basePath: dirname(__DIR__))
         // The site sits behind CloudPanel's Nginx proxy: trust it for the client IP and scheme.
         $middleware->trustProxies(at: '*');
 
+        // Private by default: tell search engines not to index anything (see FRENCH_NOINDEX).
+        $middleware->append(\App\Http\Middleware\NoIndex::class);
+
         // Public pages (static UI, blog, sitemap) are stateless: no session row or cookie per visitor.
         $middleware->web(remove: [
             \Illuminate\Session\Middleware\StartSession::class,

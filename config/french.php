@@ -4,6 +4,9 @@ return [
     // Public URL used in emails, the sitemap and blog links.
     'site_url' => rtrim((string) env('SITE_URL', env('APP_URL', 'http://localhost')), '/'),
 
+    // true (default): keep the site out of Google (X-Robots-Tag noindex, no sitemap). Set FRENCH_NOINDEX=false to go public.
+    'noindex' => filter_var(env('FRENCH_NOINDEX', true), FILTER_VALIDATE_BOOLEAN),
+
     // Where new-lead alerts are mailed ("" disables them).
     'notify_email' => (string) env('NOTIFY_EMAIL', ''),
 

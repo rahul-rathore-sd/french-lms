@@ -66,8 +66,21 @@ class ApiTest extends TestCase
         $this->patchJson("/api/v1/emails/$id", ['status' => 'approved'], $this->hermes())->assertStatus(403);
     }
 
+    public function test_site_is_noindex_by_default_and_hides_the_sitemap(): void
+    {
+        $this->assertTrue(config('french.noindex'));
+        $this->get('/')->assertOk()->assertHeader('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet');
+        $this->getJson('/api/v1/status')->assertHeader('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet');
+        $this->get('/sitemap.xml')->assertNotFound();
+        $this->assertStringContainsString('Disallow: /', file_get_contents(public_path('robots.txt')));
+
+        config(['french.noindex' => false]);
+        $this->get('/')->assertHeaderMissing('X-Robots-Tag');
+    }
+
     public function test_blog_drafts_stay_private_and_published_posts_are_public(): void
     {
+        config(['french.noindex' => false]); // sitemap is only served when the site is public
         $this->postJson('/api/v1/blog', ['title' => 'Draft one', 'content_md' => 'secret'], $this->hermes())->assertCreated();
         $this->postJson('/api/v1/blog', ['title' => 'Public one', 'content_md' => "# Hi\n\n<script>alert(1)</script>", 'status' => 'published'], $this->hermes())->assertCreated();
 
