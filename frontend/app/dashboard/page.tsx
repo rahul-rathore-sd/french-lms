@@ -69,7 +69,7 @@ function Dashboard() {
         {/* Phones: compact 3-metric progress summary card + practice button */}
         {tab === "learn" && (
           <section className="mt-3.5 space-y-2 sm:hidden" aria-label="Your progress">
-            <div className="grid grid-cols-3 divide-x divide-line rounded-2xl border border-line bg-surface py-2.5">
+            <div className="grid grid-cols-3 divide-x divide-line panel rounded-2xl py-2.5">
               <div className="px-2 text-center">
                 <Flame className={`mx-auto h-4 w-4 ${streak ? "text-orange-500" : "text-muted"}`} />
                 <p className="mt-1 font-display text-lg font-semibold leading-none">{streak}</p>
@@ -123,7 +123,7 @@ function Dashboard() {
             </div>
           </Stat>
 
-          <div className="flex flex-col items-start gap-2 rounded-2xl border border-line bg-surface p-4 sm:flex-row sm:items-center sm:gap-4 sm:p-5">
+          <div className="flex flex-col items-start gap-2 panel rounded-2xl p-4 sm:flex-row sm:items-center sm:gap-4 sm:p-5">
             <ProgressRing value={goalPct} size={52}>
               {goalPct >= 1 ? <Check className="h-5 w-5 text-success" /> : `${Math.round(goalPct * 100)}%`}
             </ProgressRing>
@@ -192,7 +192,7 @@ function greeting() {
 
 function Stat({ label, icon, children }: { label: string; icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-line bg-surface p-4 sm:p-5">
+    <div className="panel rounded-2xl p-4 sm:p-5">
       <div className="mb-1.5 flex items-center gap-2 text-sm text-muted sm:mb-2">{icon}{label}</div>
       {children}
     </div>
@@ -232,7 +232,7 @@ function LearnTab() {
           const finished = c.lessons.filter((l) => progress.completedLessons.includes(l.id)).length;
           const open = c.id === courseId;
           return (
-            <div key={c.id} className="overflow-hidden rounded-2xl border border-line bg-surface">
+            <div key={c.id} className="overflow-hidden panel rounded-2xl">
               <button
                 onClick={() => setCourseId(open ? -1 : c.id)}
                 aria-expanded={open}
@@ -380,7 +380,7 @@ function LessonReader({ course, lesson, onNext }: { course: Course; lesson: Less
       </header>
 
       {/* French Corpus & Audio Passage */}
-      <section className="relative overflow-hidden rounded-2xl border border-line bg-surface p-4 sm:p-8 sm:rounded-3xl shadow-soft">
+      <section className="relative overflow-hidden panel rounded-2xl p-4 sm:p-8 sm:rounded-3xl shadow-soft">
         <div className="ambient absolute inset-0 opacity-60 pointer-events-none" />
         <div className="relative space-y-4">
           <p className="font-display text-xl leading-relaxed sm:text-3xl text-fg italic font-normal">
@@ -424,7 +424,7 @@ function LessonReader({ course, lesson, onNext }: { course: Course; lesson: Less
       </section>
 
       {/* Interactive Acoustic Quiz */}
-      <section className="rounded-2xl border border-line bg-surface p-4 sm:p-8 sm:rounded-3xl shadow-soft">
+      <section className="panel rounded-2xl p-4 sm:p-8 sm:rounded-3xl shadow-soft">
         <p className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-accent">
           <BookOpen className="h-3.5 w-3.5" /> Contrôle Acoustique & Compréhension
         </p>
@@ -534,7 +534,7 @@ function LexiconTab() {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Rechercher (Français, हिन्दी, English)..."
-            className="h-11 w-full rounded-xl border border-line bg-surface pl-10 pr-4 text-xs sm:text-sm outline-none transition placeholder:text-muted focus:border-accent"
+            className="h-11 w-full panel rounded-xl pl-10 pr-4 text-xs sm:text-sm outline-none transition placeholder:text-muted focus:border-accent"
           />
         </label>
 
@@ -591,7 +591,7 @@ function LexiconTab() {
           return (
             <li
               key={`${w.id}-${w.french_word}`}
-              className="flex flex-col rounded-2xl border border-line bg-surface p-4 sm:p-5 transition hover:border-accent/40 shadow-soft"
+              className="flex flex-col panel rounded-2xl p-4 sm:p-5 transition hover:border-accent/40 shadow-soft"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">

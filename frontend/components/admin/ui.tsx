@@ -50,5 +50,5 @@ export function Chips<T extends string>({ value, options, onChange, counts }: { 
 }
 
 export function Card({ children }: { children: ReactNode }) {
-  return <li className="rounded-2xl border border-line bg-surface p-5">{children}</li>;
+  return <li className="panel rounded-2xl p-5">{children}</li>;
 }

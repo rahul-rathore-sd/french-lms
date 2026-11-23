@@ -152,21 +152,21 @@ export default function BooksTab({ onChanged }: { onChanged?: () => void }) {
 
       {/* Stats counter */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div className="rounded-2xl border border-line bg-surface p-4">
+        <div className="panel rounded-2xl p-4">
           <p className="text-xs text-muted">Total Books</p>
           <p className="mt-1 font-display text-2xl font-semibold">{books.length}</p>
         </div>
-        <div className="rounded-2xl border border-line bg-surface p-4">
+        <div className="panel rounded-2xl p-4">
           <p className="text-xs text-muted">Filtered</p>
           <p className="mt-1 font-display text-2xl font-semibold">{filtered.length}</p>
         </div>
-        <div className="rounded-2xl border border-line bg-surface p-4">
+        <div className="panel rounded-2xl p-4">
           <p className="text-xs text-muted">Total Pages</p>
           <p className="mt-1 font-display text-2xl font-semibold">
             {books.reduce((acc, b) => acc + (b.pages || 0), 0)}
           </p>
         </div>
-        <div className="rounded-2xl border border-line bg-surface p-4">
+        <div className="panel rounded-2xl p-4">
           <p className="text-xs text-muted">CEFR Covered</p>
           <p className="mt-1 font-display text-2xl font-semibold">A1 – C2</p>
         </div>
@@ -177,7 +177,7 @@ export default function BooksTab({ onChanged }: { onChanged?: () => void }) {
       {/* Add / Edit Form Modal */}
       {editing && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-          <div className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-line bg-surface p-6 shadow-2xl sm:p-8">
+          <div className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto panel rounded-3xl p-6 shadow-2xl sm:p-8">
             <div className="flex items-center justify-between border-b border-line pb-4">
               <div>
                 <h3 className="font-display text-xl font-semibold">

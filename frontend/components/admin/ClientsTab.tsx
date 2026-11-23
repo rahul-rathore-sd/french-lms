@@ -76,7 +76,7 @@ export default function ClientsTab({ onChanged }: { onChanged: () => void }) {
       </div>
 
       {adding && (
-        <form onSubmit={add} className="mt-4 grid gap-3 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-2">
+        <form onSubmit={add} className="mt-4 grid gap-3 panel rounded-2xl p-5 sm:grid-cols-2">
           <input required placeholder="Full name" value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })} className={inputCls} />
           <input required type="email" placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputCls} />
           <input placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputCls} />

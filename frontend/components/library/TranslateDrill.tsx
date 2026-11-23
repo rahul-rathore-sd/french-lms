@@ -104,7 +104,7 @@ export default function TranslateDrill({ level }: { level: Level }) {
   if (finished) {
     const pct = Math.round((correct / session.length) * 100);
     return (
-      <div className="animate-rise rounded-3xl border border-line bg-surface p-8 text-center sm:p-12">
+      <div className="animate-rise panel rounded-3xl p-8 text-center sm:p-12">
         <p className="font-display text-5xl font-semibold">{pct}%</p>
         <p className="mt-2 text-muted">{correct} of {session.length} correct · {level}</p>
         {xp !== null && <p className="mt-3 text-gold">+{xp} XP</p>}
@@ -126,7 +126,7 @@ export default function TranslateDrill({ level }: { level: Level }) {
         <span className="text-xs tabular-nums text-muted">{index + 1} / {session.length}</span>
       </div>
 
-      <div className="mt-6 rounded-3xl border border-line bg-surface p-5 sm:p-8">
+      <div className="mt-6 panel rounded-3xl p-5 sm:p-8">
         <p className="text-xs font-medium uppercase tracking-wider text-muted">
           {q.mode === "build" ? "Translate into French" : "What does this mean in English?"} · {q.pair.topic}
         </p>

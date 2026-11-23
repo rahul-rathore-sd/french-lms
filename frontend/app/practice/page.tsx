@@ -127,7 +127,7 @@ export default function PracticePage() {
                 }}
               >
                 {/* Front */}
-                <div className="flip-face absolute inset-0 flex flex-col items-center justify-center rounded-3xl border border-line bg-surface p-8 text-center shadow-soft">
+                <div className="flip-face absolute inset-0 flex flex-col items-center justify-center panel rounded-3xl p-8 text-center shadow-soft">
                   <span className="rounded-full bg-raised px-3 py-1 text-xs font-medium text-muted">{card!.cefr_level} · {card!.part_of_speech}</span>
                   <h2 className="mt-8 font-display text-5xl font-medium tracking-tight sm:text-6xl">{card!.french_word}</h2>
                   <p className="mt-4 font-mono text-sm text-muted">{card!.ipa_phonetic}</p>
@@ -189,7 +189,7 @@ export default function PracticePage() {
 
 function Empty({ mastered }: { mastered: number }) {
   return (
-    <div className="mt-16 rounded-3xl border border-line bg-surface p-10 text-center">
+    <div className="mt-16 panel rounded-3xl p-10 text-center">
       <PartyPopper className="mx-auto h-10 w-10 text-gold" />
       <h1 className="mt-4 font-display text-3xl font-medium">You are all caught up.</h1>
       <p className="mt-2 text-muted">No cards are due right now. {mastered > 0 && `${mastered} words are already well memorised.`}</p>
@@ -201,7 +201,7 @@ function Empty({ mastered }: { mastered: number }) {
 function Done({ reviewed, again, onMore }: { reviewed: number; again: number; onMore: () => void }) {
   const accuracy = reviewed ? Math.round(((reviewed - again) / reviewed) * 100) : 100;
   return (
-    <div className="mt-16 animate-rise rounded-3xl border border-line bg-surface p-10 text-center shadow-soft">
+    <div className="mt-16 animate-rise panel rounded-3xl p-10 text-center shadow-soft">
       <PartyPopper className="mx-auto h-10 w-10 text-gold" />
       <h1 className="mt-4 font-display text-3xl font-medium">Session complete</h1>
       <p className="mt-2 text-muted">{reviewed} reviews · {accuracy}% recalled on the first try</p>

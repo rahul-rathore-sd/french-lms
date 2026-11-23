@@ -98,7 +98,7 @@ export default function SocialTab({ onChanged }: { onChanged: () => void }) {
 
   return (
     <section className="mt-6">
-      <form onSubmit={create} className="space-y-3 rounded-2xl border border-line bg-surface p-5">
+      <form onSubmit={create} className="space-y-3 panel rounded-2xl p-5">
         <div className="flex flex-wrap gap-3">
           <select value={f.platform} onChange={(e) => setF({ ...f, platform: e.target.value })} className="h-10 rounded-xl border border-line bg-bg px-3 text-sm" aria-label="Platform">{PLATFORMS.map((p) => <option key={p}>{p}</option>)}</select>
           <input value={f.link} onChange={(e) => setF({ ...f, link: e.target.value })} placeholder="Link to share (optional)" className={`${inputCls} flex-1`} />

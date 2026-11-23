@@ -48,7 +48,7 @@ export default function ExamsView({ level }: { level: Level | "ALL" }) {
 
       <div className="mt-6 space-y-4">
         {tab === "guide" && examGuides.map((g) => (
-          <section key={g.id} className="rounded-2xl border border-line bg-surface p-5 sm:p-6">
+          <section key={g.id} className="panel rounded-2xl p-5 sm:p-6">
             <h3 className="font-display text-2xl font-semibold">{g.name}</h3>
             <p className="mt-1 text-sm text-muted">{g.tagline}</p>
             {hi && <p className="text-sm text-accent">{g.tagline_hi}</p>}
@@ -70,7 +70,7 @@ export default function ExamsView({ level }: { level: Level | "ALL" }) {
         ))}
 
         {tab === "nclc" && (
-          <section className="rounded-2xl border border-line bg-surface p-4 sm:p-6">
+          <section className="panel rounded-2xl p-4 sm:p-6">
             <p className="text-sm text-muted">NCLC (Niveaux de compétence linguistique canadiens) = CLB. The target for Express Entry French bonus points is NCLC 7 in all four skills. Higher NCLC means more points, so keep going to 9-10.</p>
             {hi && <p className="mt-1 text-sm text-accent">NCLC कनाडा का भाषा-स्तर है। Express Entry में चारों कौशलों में NCLC 7 ज़रूरी लक्ष्य है; 9-10 पर और अधिक अंक मिलते हैं।</p>}
             <div className="mt-4 overflow-x-auto rounded-xl border border-line">
@@ -110,7 +110,7 @@ export default function ExamsView({ level }: { level: Level | "ALL" }) {
           const done = progress.completedItems.includes(doneId);
           const isCO = p.skill === "CO";
           return (
-            <section key={p.id} className="overflow-hidden rounded-2xl border border-line bg-surface">
+            <section key={p.id} className="overflow-hidden panel rounded-2xl">
               <button onClick={() => toggle(p.id)} aria-expanded={open === p.id} className="flex w-full items-center gap-3 p-4 text-left hover:bg-raised/60 sm:p-5">
                 <Chip>{p.level}</Chip>
                 <span className="min-w-0 flex-1"><span className="block font-semibold">{p.title}</span><span className="block text-sm text-muted">{isCO ? "Listening" : "Reading"} · {p.title_en} · {p.nclc}</span></span>
@@ -145,7 +145,7 @@ export default function ExamsView({ level }: { level: Level | "ALL" }) {
         })}
 
         {tab === "writing" && writingTasks.filter((w) => ok(w.level)).map((w) => (
-          <section key={w.id} className="overflow-hidden rounded-2xl border border-line bg-surface">
+          <section key={w.id} className="overflow-hidden panel rounded-2xl">
             <button onClick={() => toggle(w.id)} aria-expanded={open === w.id} className="flex w-full items-center gap-3 p-4 text-left hover:bg-raised/60 sm:p-5">
               <Chip>{w.level}</Chip>
               <span className="min-w-0 flex-1"><span className="block font-semibold">{w.title}</span><span className="block text-sm text-muted">{w.exam} · {w.nclc} · min. {w.minWords} words</span></span>
@@ -171,7 +171,7 @@ export default function ExamsView({ level }: { level: Level | "ALL" }) {
         ))}
 
         {tab === "speaking" && speakingTasks.filter((s) => ok(s.level)).map((s) => (
-          <section key={s.id} className="overflow-hidden rounded-2xl border border-line bg-surface">
+          <section key={s.id} className="overflow-hidden panel rounded-2xl">
             <button onClick={() => toggle(s.id)} aria-expanded={open === s.id} className="flex w-full items-center gap-3 p-4 text-left hover:bg-raised/60 sm:p-5">
               <Chip>{s.level}</Chip>
               <span className="min-w-0 flex-1"><span className="block font-semibold">{s.title}</span><span className="block text-sm text-muted">{s.exam} · {s.nclc} · ~{s.minutes} min</span></span>

@@ -57,7 +57,7 @@ export default function LexiconPreview() {
 
       <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {words.map((w) => (
-          <li key={w.id} className="group rounded-2xl border border-line bg-surface p-5 transition hover:border-accent/40 hover:shadow-soft">
+          <li key={w.id} className="group panel rounded-2xl p-5 transition hover:border-accent/40 hover:shadow-soft">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h3 className="font-display text-xl font-semibold">{w.french_word}</h3>

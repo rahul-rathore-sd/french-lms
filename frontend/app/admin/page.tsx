@@ -42,7 +42,7 @@ function Login({ onDone }: { onDone: () => void }) {
     }
   };
   return (
-    <form onSubmit={submit} className="mx-auto mt-24 w-full max-w-sm rounded-2xl border border-line bg-surface p-7 shadow-soft">
+    <form onSubmit={submit} className="mx-auto mt-24 w-full max-w-sm panel rounded-2xl p-7 shadow-soft">
       <h1 className="font-display text-2xl font-semibold">Admin sign in</h1>
       <p className="mt-1 text-sm text-muted">Manage leads, clients, email, blog and social media.</p>
       <input type="password" required autoFocus autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className={`${inputCls} mt-5`} />

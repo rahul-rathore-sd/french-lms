@@ -89,7 +89,7 @@ export default function BlogTab({ onChanged }: { onChanged: () => void }) {
 
   if (edit) {
     return (
-      <form onSubmit={save} className="mt-6 space-y-3 rounded-2xl border border-line bg-surface p-5">
+      <form onSubmit={save} className="mt-6 space-y-3 panel rounded-2xl p-5">
         <input required value={edit.title} onChange={(e) => setEdit({ ...edit, title: e.target.value })} placeholder="Title" className={`${inputCls} text-base font-medium`} />
         <div className="grid gap-3 sm:grid-cols-2">
           <input value={edit.slug} onChange={(e) => setEdit({ ...edit, slug: e.target.value })} placeholder="slug (auto from title)" className={inputCls} />

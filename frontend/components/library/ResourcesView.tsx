@@ -44,7 +44,7 @@ export default function ResourcesView() {
         </div>
         <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {dynamicBooks.map((b) => (
-            <li key={b.slug} className="flex gap-4 rounded-2xl border border-line bg-surface p-4 transition hover:border-accent/40">
+            <li key={b.slug} className="flex gap-4 panel rounded-2xl p-4 transition hover:border-accent/40">
               <div className="w-28 shrink-0 sm:w-32"><Cover book={b} /></div>
               <div className="flex min-w-0 flex-1 flex-col justify-between">
                 <div>
@@ -90,7 +90,7 @@ export default function ResourcesView() {
         <ul className="mt-4 grid gap-3 sm:grid-cols-2">
           {list.map((s) => (
             <li key={s.url}>
-              <a href={s.url} target="_blank" rel="noopener noreferrer" className="group block h-full rounded-2xl border border-line bg-surface p-4 transition hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-soft">
+              <a href={s.url} target="_blank" rel="noopener noreferrer" className="group block h-full panel rounded-2xl p-4 transition hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-soft">
                 <div className="flex items-start justify-between gap-3">
                   <h3 className="font-semibold leading-snug">{s.name}</h3>
                   <ExternalLink className="mt-1 h-4 w-4 shrink-0 text-muted group-hover:text-accent" />

@@ -23,7 +23,7 @@ export default function GrammarView({ topics }: { topics: GrammarTopic[] }) {
         const doneId = `grammar:${t.slug}`;
         const done = progress.completedItems.includes(doneId);
         return (
-          <li key={t.slug} className="overflow-hidden rounded-2xl border border-line bg-surface">
+          <li key={t.slug} className="overflow-hidden panel rounded-2xl">
             <button
               onClick={() => setOpen(isOpen ? null : t.slug)}
               aria-expanded={isOpen}

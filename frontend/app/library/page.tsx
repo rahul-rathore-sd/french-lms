@@ -129,7 +129,7 @@ function Library() {
                       <li key={t.slug}>
                         <button
                           onClick={() => go({ i: t.slug })}
-                          className="group flex h-full w-full flex-col rounded-2xl border border-line bg-surface p-5 text-left transition hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-soft sm:p-6"
+                          className="group flex h-full w-full flex-col panel rounded-2xl p-5 text-left transition hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-soft sm:p-6"
                         >
                           <div className="flex items-center justify-between">
                             <span className="rounded-full bg-fg px-2.5 py-1 text-xs font-semibold text-bg">{t.level}</span>

@@ -3,7 +3,13 @@ import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
 const sans = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-sans", display: "swap" });
-const display = Fraunces({ subsets: ["latin", "latin-ext"], variable: "--font-display", display: "swap" });
+const display = Fraunces({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-display",
+  display: "swap",
+  style: ["normal", "italic"],
+  axes: ["SOFT", "opsz"],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -19,13 +25,15 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   viewportFit: "cover",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#faf9f6" },
-    { media: "(prefers-color-scheme: dark)", color: "#090b12" },
-  ],
+  // Dark is the default theme, so the browser chrome (mobile address bar) is dark too.
+  // ThemeToggle updates this tag if the visitor chooses light.
+  themeColor: "#111219",
+  colorScheme: "dark light",
 };
 
-const themeScript = `(function(){try{var t=localStorage.getItem('academie.theme');if(!t){t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme='dark'}})();`;
+// Dark by default on every device, whatever the system setting is. Only an explicit choice of
+// "light" (saved by the toggle) switches it off.
+const themeScript = `(function(){var t='dark';try{if(localStorage.getItem('academie.theme')==='light')t='light'}catch(e){}document.documentElement.dataset.theme=t;if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#f8f6f1')}})();`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

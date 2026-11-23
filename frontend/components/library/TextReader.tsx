@@ -77,7 +77,7 @@ export default function TextReader({ item, onBack }: { item: TextItem; onBack: (
       {/* Text */}
       <div className="mt-6 space-y-4">
         {item.passages.map((p, i) => (
-          <section key={i} className="rounded-3xl border border-line bg-surface p-5 sm:p-7">
+          <section key={i} className="panel rounded-3xl p-5 sm:p-7">
             <div className="flex items-start justify-between gap-3">
               <p className={`whitespace-pre-line font-display leading-relaxed ${isPoem ? "text-[1.05rem] sm:text-2xl" : "text-lg sm:text-xl"}`}>{p.fr}</p>
               <button
@@ -101,7 +101,7 @@ export default function TextReader({ item, onBack }: { item: TextItem; onBack: (
             <li key={g.fr}>
               <button
                 onClick={() => speak(g.fr)}
-                className="flex w-full items-start justify-between gap-3 rounded-2xl border border-line bg-surface px-4 py-3 text-left transition hover:border-accent/40"
+                className="flex w-full items-start justify-between gap-3 panel rounded-2xl px-4 py-3 text-left transition hover:border-accent/40"
               >
                 <span className="min-w-0">
                   <span className="block font-medium">{g.fr}</span>
@@ -116,7 +116,7 @@ export default function TextReader({ item, onBack }: { item: TextItem; onBack: (
       </section>
 
       {/* Questions */}
-      <section className="mt-8 rounded-3xl border border-line bg-surface p-5 sm:p-7">
+      <section className="mt-8 panel rounded-3xl p-5 sm:p-7">
         <h3 className="font-semibold">Check your understanding</h3>
         <div className="mt-4 space-y-6">
           {item.questions.map((q, qi) => (

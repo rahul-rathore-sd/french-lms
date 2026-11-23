@@ -195,7 +195,7 @@ function Compose({ onChanged, onDone }: { onChanged: () => void; onDone: () => v
     }
   };
   return (
-    <form onSubmit={submit} className="mt-4 space-y-3 rounded-2xl border border-line bg-surface p-5">
+    <form onSubmit={submit} className="mt-4 space-y-3 panel rounded-2xl p-5">
       <input required type="email" placeholder="To" value={f.to_addr} onChange={(e) => setF({ ...f, to_addr: e.target.value })} className={inputCls} />
       <input required placeholder="Subject" value={f.subject} onChange={(e) => setF({ ...f, subject: e.target.value })} className={inputCls} />
       <textarea required rows={8} placeholder="Message" value={f.body} onChange={(e) => setF({ ...f, body: e.target.value })} className={`${inputCls} resize-y`} />

@@ -28,7 +28,7 @@ export default function HomePage() {
               <span className="h-1.5 w-1.5 rounded-full bg-success" /> CEFR A1 → C2 · Audio · Flashcards
             </span>
             <h1 className="mt-6 font-display text-4xl font-medium leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl">
-              Learn French the way it is <span className="text-accent">actually spoken.</span>
+              Learn French the way it is <em>actually spoken.</em>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
               A calm, beautifully designed place to go from first greetings to literary fluency. Structured courses, real pronunciation, and a lexicon that remembers what you forget.
@@ -74,12 +74,12 @@ export default function HomePage() {
       {/* Method */}
       <section id="method" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
         <p className="text-sm font-medium text-accent">The method</p>
-        <h2 className="mt-3 max-w-2xl font-display text-3xl font-medium tracking-tight sm:text-5xl">Four habits that make French stick.</h2>
+        <h2 className="mt-3 max-w-2xl font-display text-3xl font-medium tracking-tight sm:text-5xl">Four habits that make French <em>stick.</em></h2>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {method.map(({ icon: Icon, title, body }, i) => (
             <div
               key={title}
-              className="animate-rise rounded-2xl border border-line bg-surface p-6 transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-soft"
+              className="animate-rise panel rounded-2xl p-6 transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-soft"
               style={{ animationDelay: `${i * 70}ms` }}
             >
               <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent/10 text-accent"><Icon className="h-5 w-5" /></span>
@@ -93,7 +93,7 @@ export default function HomePage() {
       {/* Library */}
       <section id="library" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
         <p className="text-sm font-medium text-accent">The library</p>
-        <h2 className="mt-3 max-w-2xl font-display text-3xl font-medium tracking-tight sm:text-5xl">Learn from real French, level by level.</h2>
+        <h2 className="mt-3 max-w-2xl font-display text-3xl font-medium tracking-tight sm:text-5xl">Learn from <em>real French</em>, level by level.</h2>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
             { icon: Feather, title: "Poetry", body: "From Frère Jacques to Baudelaire, with translation and audio.", href: "/library?s=poetry" },
@@ -102,7 +102,7 @@ export default function HomePage() {
             { icon: Languages, title: "Translate", body: "Build sentences word by word and decode French to English.", href: "/library?s=translate" },
             { icon: ScrollText, title: "Grammar", body: "Clear rules, examples and verb tables from A1 to C1.", href: "/library?s=grammar" },
           ].map(({ icon: Icon, title, body, href }) => (
-            <Link key={title} href={href} className="group rounded-2xl border border-line bg-surface p-6 transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-soft">
+            <Link key={title} href={href} className="group panel rounded-2xl p-6 transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-soft">
               <span className="grid h-11 w-11 place-items-center rounded-xl bg-gold/15 text-gold"><Icon className="h-5 w-5" /></span>
               <h3 className="mt-5 text-lg font-semibold">{title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">{body}</p>
@@ -116,13 +116,13 @@ export default function HomePage() {
       <section id="levels" className="scroll-mt-20 border-y border-line/70 bg-surface/40">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
           <p className="text-sm font-medium text-accent">Your path</p>
-          <h2 className="mt-3 max-w-2xl font-display text-3xl font-medium tracking-tight sm:text-5xl">From bonjour to Balzac.</h2>
+          <h2 className="mt-3 max-w-2xl font-display text-3xl font-medium tracking-tight sm:text-5xl">From <em>bonjour</em> to Balzac.</h2>
           <ol className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {initialCourses.map((c) => (
               <li key={c.id}>
                 <Link
                   href="/dashboard"
-                  className="group flex h-full flex-col rounded-2xl border border-line bg-surface p-6 transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-soft"
+                  className="group flex h-full flex-col panel rounded-2xl p-6 transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-soft"
                 >
                   <div className="flex items-center justify-between">
                     <span className="rounded-full bg-fg px-3 py-1 text-xs font-semibold text-bg">{c.cefr_level}</span>
@@ -152,7 +152,7 @@ export default function HomePage() {
 
       {/* CTA */}
       <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
-        <div className="relative overflow-hidden rounded-3xl border border-line bg-surface px-6 py-16 text-center sm:px-12">
+        <div className="relative overflow-hidden panel rounded-3xl px-6 py-16 text-center sm:px-12">
           <div className="ambient absolute inset-0" />
           <h2 className="relative font-display text-3xl font-medium tracking-tight sm:text-5xl">Ten minutes a day is enough.</h2>
           <p className="relative mx-auto mt-4 max-w-lg text-muted">Pick up where you left off on any device. Your streak, XP and flashcards are always waiting.</p>

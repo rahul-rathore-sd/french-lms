@@ -130,7 +130,7 @@ export default function BooksPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search by book name, author, or topic..."
-              className="w-full rounded-2xl border border-line bg-surface py-2.5 pl-10 pr-9 text-sm outline-none transition placeholder:text-muted focus:border-accent focus:ring-2 focus:ring-accent/15"
+              className="w-full panel rounded-2xl py-2.5 pl-10 pr-9 text-sm outline-none transition placeholder:text-muted focus:border-accent focus:ring-2 focus:ring-accent/15"
             />
             {query && (
               <button
@@ -214,7 +214,7 @@ export default function BooksPage() {
               <article
                 key={b.slug}
                 onClick={() => setSelectedBook(b)}
-                className="group relative flex flex-col justify-between cursor-pointer rounded-2xl border border-line bg-surface p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-soft sm:p-5"
+                className="group relative flex flex-col justify-between cursor-pointer panel rounded-2xl p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-soft sm:p-5"
               >
                 <div className="flex gap-4">
                   {/* Book Cover */}
@@ -275,7 +275,7 @@ export default function BooksPage() {
             onClick={() => setSelectedBook(null)}
           >
             <div
-              className="relative max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-3xl border border-line bg-surface p-6 shadow-2xl sm:p-8"
+              className="relative max-h-[90vh] w-full max-w-xl overflow-y-auto panel rounded-3xl p-6 shadow-2xl sm:p-8"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}

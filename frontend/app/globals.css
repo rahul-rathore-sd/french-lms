@@ -2,34 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design tokens (RGB triplets so Tailwind can apply opacity). */
+/*
+ * Design tokens (RGB triplets so Tailwind can apply opacity).
+ *
+ * Dark is the default and is tuned for long sessions: a softened charcoal (not pure black), warm
+ * off-white text (not pure white), and gentler accent colours, so there is less glare and less
+ * halation around the letters. Light is the optional alternative (toggle in the header).
+ */
 :root {
-  --bg: 250 249 246;
+  --bg: 248 246 241;
   --surface: 255 255 255;
-  --raised: 244 242 237;
-  --line: 228 224 215;
-  --fg: 20 24 38;
-  --muted: 100 106 122;
-  --accent: 44 82 214;
+  --raised: 243 240 233;
+  --line: 226 221 211;
+  --fg: 28 30 40;
+  --muted: 102 106 122;
+  --accent: 52 84 208;
   --accent-fg: 255 255 255;
   --success: 22 138 92;
-  --danger: 205 58 58;
-  --gold: 176 128 40;
+  --danger: 200 60 60;
+  --gold: 168 122 36;
   color-scheme: light;
 }
 
 [data-theme="dark"] {
-  --bg: 9 11 18;
-  --surface: 16 19 30;
-  --raised: 24 28 42;
-  --line: 40 46 66;
-  --fg: 237 239 246;
-  --muted: 150 158 180;
-  --accent: 110 140 255;
-  --accent-fg: 9 11 18;
-  --success: 74 211 150;
-  --danger: 255 120 120;
-  --gold: 224 178 90;
+  --bg: 17 18 25;
+  --surface: 24 26 36;
+  --raised: 33 36 49;
+  --line: 48 52 68;
+  --fg: 229 227 220;
+  --muted: 152 157 174;
+  --accent: 139 161 242;
+  --accent-fg: 14 15 22;
+  --success: 112 201 160;
+  --danger: 240 132 132;
+  --gold: 222 187 122;
   color-scheme: dark;
 }
 
@@ -41,16 +47,43 @@ body {
   background: rgb(var(--bg));
   color: rgb(var(--fg));
   font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 16.5px;
+  line-height: 1.6;
+  letter-spacing: -0.003em;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   min-height: 100vh;
+  /* a very quiet vignette keeps large dark areas from looking flat */
+  background-image:
+    radial-gradient(70rem 40rem at 50% -20%, rgb(var(--accent) / 0.07), transparent 70%),
+    radial-gradient(50rem 30rem at 110% 60%, rgb(var(--gold) / 0.04), transparent 70%);
+  background-attachment: fixed;
+}
+
+/* Display headings: Fraunces with its "soft" optical axes for a refined, editorial feel. */
+.font-display {
+  font-variation-settings: "SOFT" 40, "opsz" 96;
+  font-feature-settings: "ss01", "liga", "kern";
+}
+
+/* Italic accent words inside headings, e.g. <em>actually spoken.</em> */
+h1 em, h2 em {
+  font-style: italic;
+  font-weight: 400;
+  background: linear-gradient(100deg, rgb(var(--accent)), rgb(var(--gold)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-right: 0.06em;
 }
 
 /* Soft ambient backdrop used on hero sections. */
 .ambient {
   background:
-    radial-gradient(60rem 30rem at 85% -10%, rgb(var(--accent) / 0.16), transparent 60%),
-    radial-gradient(40rem 24rem at -5% 10%, rgb(var(--gold) / 0.10), transparent 60%);
+    radial-gradient(60rem 30rem at 85% -10%, rgb(var(--accent) / 0.14), transparent 60%),
+    radial-gradient(44rem 26rem at -5% 10%, rgb(var(--gold) / 0.09), transparent 60%),
+    radial-gradient(40rem 20rem at 50% 120%, rgb(var(--accent) / 0.06), transparent 70%);
 }
 
 .grain::after {
@@ -58,12 +91,38 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+/* Premium surface: hairline top highlight + deep, soft shadow. Use with bg-surface. */
+.panel {
+  position: relative;
+  border: 1px solid rgb(var(--line));
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.025), transparent 40%),
+    rgb(var(--surface));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.04),
+    0 1px 2px rgb(0 0 0 / 0.18),
+    0 18px 44px -22px rgb(0 0 0 / 0.55);
+}
+:root:not([data-theme="dark"]) .panel {
+  background: rgb(var(--surface));
+  box-shadow: 0 1px 2px rgb(30 30 60 / 0.05), 0 16px 40px -24px rgb(30 30 60 / 0.25);
+}
+
+/* Header: frosted glass with a gradient hairline instead of a hard border. */
+.glass-header {
+  background: rgb(var(--bg) / 0.72);
+  backdrop-filter: saturate(160%) blur(18px);
+  -webkit-backdrop-filter: saturate(160%) blur(18px);
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, rgb(var(--line)), transparent) 1;
+}
+
 ::selection {
-  background: rgb(var(--accent) / 0.3);
+  background: rgb(var(--accent) / 0.28);
 }
 
 :focus-visible {
@@ -78,6 +137,11 @@ body {
   background: rgb(var(--line));
   border-radius: 8px;
   border: 2px solid rgb(var(--bg));
+}
+
+/* Smooth theme switch (only while the user toggles, so page load never animates). */
+html.theme-anim, html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease !important;
 }
 
 .flip-scene { perspective: 1200px; }

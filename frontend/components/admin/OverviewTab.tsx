@@ -26,14 +26,14 @@ export default function OverviewTab({ stats, refreshKey }: { stats: Stats | null
     <section className="mt-6 space-y-6">
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         {tiles.map(([k, label]) => (
-          <div key={k} className="rounded-2xl border border-line bg-surface p-5">
+          <div key={k} className="panel rounded-2xl p-5">
             <p className="font-display text-3xl font-semibold">{stats ? stats[k] ?? 0 : "–"}</p>
             <p className="text-sm text-muted">{label}</p>
           </div>
         ))}
       </div>
 
-      <div className="rounded-2xl border border-line bg-surface p-6">
+      <div className="panel rounded-2xl p-6">
         <h2 className="font-semibold">Recent activity</h2>
         {activity.length === 0 ? <p className="mt-2 text-sm text-muted">Nothing yet.</p> : (
           <ul className="mt-3 divide-y divide-line text-sm">
@@ -47,7 +47,7 @@ export default function OverviewTab({ stats, refreshKey }: { stats: Stats | null
         )}
       </div>
 
-      <div className="rounded-2xl border border-line bg-surface p-6">
+      <div className="panel rounded-2xl p-6">
         <h2 className="font-semibold">Connect Hermes</h2>
         <p className="mt-1 text-sm text-muted">Hermes runs on your PC and talks to this site with a secret key (never shown here). Mailbox passwords also stay on your PC.</p>
         <pre className="mt-4 overflow-x-auto rounded-xl bg-raised p-4 text-xs leading-relaxed">{`python hermes.py config --url ${typeof window !== "undefined" ? window.location.origin : "https://yourdomain.com"} --key <HERMES_API_KEY>

@@ -66,7 +66,7 @@ export default function ApplyPage() {
   if (done) {
     return (
       <AuthShell>
-        <div className="w-full animate-rise rounded-2xl border border-line bg-surface p-8 text-center shadow-soft">
+        <div className="w-full animate-rise panel rounded-2xl p-8 text-center shadow-soft">
           <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-success/15 text-success">
             <CheckCircle2 className="h-7 w-7" />
           </span>
@@ -88,7 +88,7 @@ export default function ApplyPage() {
 
   return (
     <AuthShell>
-      <form onSubmit={submit} className="w-full animate-rise rounded-2xl border border-line bg-surface p-6 shadow-soft sm:p-8">
+      <form onSubmit={submit} className="w-full animate-rise panel rounded-2xl p-6 shadow-soft sm:p-8">
         <h1 className="font-display text-3xl font-semibold tracking-tight">Talk to us</h1>
         <p className="mt-2 text-sm text-muted">Tell us a little about you and your French goals. We reply personally, usually within a day.</p>
 

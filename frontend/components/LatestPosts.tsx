@@ -40,7 +40,7 @@ export default function LatestPosts() {
           <li key={p.slug}>
             <a
               href={`/blog/${p.slug}/`}
-              className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6 transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-soft"
+              className="flex h-full flex-col panel rounded-2xl p-6 transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-soft"
             >
               <span className="text-xs text-muted">{(p.publish_at ?? p.created_at).slice(0, 10)}</span>
               <h3 className="mt-2 font-display text-xl font-semibold leading-snug">{p.title}</h3>

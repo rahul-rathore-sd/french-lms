@@ -17,7 +17,7 @@ export default function HeroDemo() {
   const active = speaking === p.fr;
 
   return (
-    <div className="relative animate-rise rounded-3xl border border-line bg-surface p-6 shadow-soft sm:p-8">
+    <div className="relative animate-rise panel rounded-3xl p-6 shadow-soft sm:p-8">
       <div className="absolute -inset-px -z-10 rounded-3xl bg-gradient-to-br from-accent/30 via-transparent to-gold/20 blur-2xl" />
       <div className="mb-6 flex items-center justify-between">
         <span className="rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">Try it · tap to listen</span>
