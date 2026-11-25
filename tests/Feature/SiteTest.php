@@ -82,6 +82,47 @@ class SiteTest extends TestCase
         $this->assertNotSame('123456', Learner::first()->pin_hash);                                      // hashed
     }
 
+    public function test_new_profiles_need_a_6_to_8_digit_pin(): void
+    {
+        foreach (['1234', '12345', '123456789', 'abcdef'] as $bad) {
+            $this->postJson('/register', ['name' => 'Anna', 'pin' => $bad], self::FETCH)->assertStatus(422);
+        }
+        foreach (['123456', '12345678'] as $i => $good) {
+            $this->postJson('/register', ['name' => 'User'.$i, 'pin' => $good], self::FETCH)->assertOk();
+        }
+
+        $c = $this->register('Karim');
+        $this->as($c)->postJson('/me/pin', ['current' => '123456', 'new' => '1234'], self::FETCH)->assertStatus(422);
+        $this->as($c)->postJson('/me/pin', ['current' => '123456', 'new' => '654321'], self::FETCH)->assertOk();
+    }
+
+    public function test_registration_needs_the_invite_code_when_one_is_set(): void
+    {
+        config(['tcf.invite_code' => 'SPIRE7']);
+        $this->get('/register')->assertOk()->assertSee('Invite code');
+
+        $this->postJson('/register', ['name' => 'Anna', 'pin' => '123456'], self::FETCH)->assertStatus(403);
+        $this->postJson('/register', ['name' => 'Anna', 'pin' => '123456', 'invite' => 'wrong'], self::FETCH)->assertStatus(403);
+        $this->assertSame(0, Learner::count());
+
+        $this->postJson('/register', ['name' => 'Anna', 'pin' => '123456', 'invite' => ' SPIRE7 '], self::FETCH)->assertOk();
+        $this->assertSame(1, Learner::count());
+
+        // logging in never needs the code, and without a code configured the field disappears
+        $this->postJson('/login', ['name' => 'Anna', 'pin' => '123456'], self::FETCH)->assertOk();
+        config(['tcf.invite_code' => '']);
+        $this->get('/register')->assertDontSee('Invite code');
+    }
+
+    public function test_login_works_from_any_address_and_survives_a_network_change(): void
+    {
+        // the phone moves from Wi-Fi to mobile data: another IP, same cookie. The app must not care.
+        $c = $this->register('Anna');
+        $this->withServerVariables(['REMOTE_ADDR' => '157.49.7.139'])->as($c)->get('/')->assertOk()->assertSee('Anna');
+        $this->withServerVariables(['REMOTE_ADDR' => '223.191.80.29'])->as($c)
+            ->putJson('/me/state/progress', ['value' => ['done' => ['x' => '2026-11-25'], 'days' => [], 'checks' => []]], self::FETCH)->assertOk();
+    }
+
     public function test_site_can_be_full(): void
     {
         config(['tcf.max_learners' => 1]);

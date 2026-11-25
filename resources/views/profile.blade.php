@@ -44,8 +44,8 @@
         <label class="grid gap-1 text-sm font-medium">Current PIN
             <input name="current" type="password" inputmode="numeric" pattern="\d{4,8}" required maxlength="8" autocomplete="current-password" class="rounded-xl border border-line bg-raised/50 px-4 py-3 text-base font-normal tracking-widest">
         </label>
-        <label class="grid gap-1 text-sm font-medium">New PIN
-            <input name="new" type="password" inputmode="numeric" pattern="\d{4,8}" required maxlength="8" autocomplete="new-password" class="rounded-xl border border-line bg-raised/50 px-4 py-3 text-base font-normal tracking-widest">
+        <label class="grid gap-1 text-sm font-medium">New PIN (6 to 8 digits)
+            <input name="new" type="password" inputmode="numeric" pattern="\d{6,8}" required maxlength="8" autocomplete="new-password" class="rounded-xl border border-line bg-raised/50 px-4 py-3 text-base font-normal tracking-widest">
         </label>
         <p class="hidden text-sm" data-error role="alert"></p>
         <button class="btn btn-primary" type="submit">Change PIN</button>

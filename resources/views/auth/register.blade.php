@@ -14,9 +14,14 @@
             <label class="grid gap-1 text-sm font-medium">Your name
                 <input name="name" required minlength="2" maxlength="30" autocomplete="username" class="rounded-xl border border-line bg-raised/50 px-4 py-3 text-base font-normal" autofocus>
             </label>
-            <label class="grid gap-1 text-sm font-medium">PIN (4 to 8 digits)
-                <input name="pin" type="password" inputmode="numeric" pattern="\d{4,8}" required maxlength="8" autocomplete="new-password" class="rounded-xl border border-line bg-raised/50 px-4 py-3 text-base font-normal tracking-widest">
+            <label class="grid gap-1 text-sm font-medium">PIN (6 to 8 digits)
+                <input name="pin" type="password" inputmode="numeric" pattern="\d{6,8}" required maxlength="8" autocomplete="new-password" class="rounded-xl border border-line bg-raised/50 px-4 py-3 text-base font-normal tracking-widest">
             </label>
+            @if ($needsInvite)
+                <label class="grid gap-1 text-sm font-medium">Invite code (from the site owner)
+                    <input name="invite" required autocomplete="off" autocapitalize="characters" class="rounded-xl border border-line bg-raised/50 px-4 py-3 text-base font-normal tracking-widest">
+                </label>
+            @endif
             <label class="grid gap-1 text-sm font-medium">Where do you start?
                 <select name="level" class="rounded-xl border border-line bg-raised/50 px-4 py-3 text-base font-normal">
                     <option value="A1" selected>A1: complete beginner</option>

@@ -56,8 +56,8 @@ class ProfileController extends Controller
             return response()->json(['ok' => false, 'error' => 'Current PIN is wrong.'], 422);
         }
         $new = (string) $request->input('new', '');
-        if (! preg_match('/^\d{4,8}$/', $new)) {
-            return response()->json(['ok' => false, 'error' => 'New PIN: 4 to 8 digits.'], 422);
+        if (! preg_match('/^\d{6,8}$/', $new)) {
+            return response()->json(['ok' => false, 'error' => 'New PIN: 6 to 8 digits.'], 422);
         }
         $learner->update(['pin_hash' => Hash::make($new)]);
         // every other device must log in again with the new PIN

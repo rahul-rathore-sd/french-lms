@@ -17,6 +17,9 @@ return [
 
     'target' => 'NCLC 7',
 
+    // Only people who know this code can create a profile (leave empty to allow anyone).
+    'invite_code' => (string) env('TCF_INVITE_CODE', ''),
+
     // How many people can have a profile on this private site.
     'max_learners' => (int) env('TCF_MAX_LEARNERS', 6),
 

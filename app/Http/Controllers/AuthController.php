@@ -33,7 +33,7 @@ class AuthController extends Controller
         }
         View::share('learner', null);
 
-        return view('auth.register', ['max' => config('tcf.max_learners'), 'full' => Learner::count() >= config('tcf.max_learners')]);
+        return view('auth.register', ['max' => config('tcf.max_learners'), 'full' => Learner::count() >= config('tcf.max_learners'), 'needsInvite' => config('tcf.invite_code') !== '']);
     }
 
     public function login(Request $request): JsonResponse
@@ -73,14 +73,20 @@ class AuthController extends Controller
             return $this->err('Too many attempts. Please try again later.', 429);
         }
 
+        // the site is open to the internet (no web-server password), so creating a profile needs the owner's invite code
+        $invite = (string) config('tcf.invite_code');
+        if ($invite !== '' && ! hash_equals($invite, trim((string) $request->input('invite', '')))) {
+            return $this->err('Wrong invite code. Ask the site owner for it.', 403);
+        }
+
         $name = trim((string) $request->input('name', ''));
         $pin = (string) $request->input('pin', '');
         $level = (string) $request->input('level', 'A1');
         if (! preg_match(self::NAME_RULE, $name)) {
             return $this->err('Name: 2 to 30 characters (letters, numbers, space, dot, dash).');
         }
-        if (! preg_match('/^\d{4,8}$/', $pin)) {
-            return $this->err('PIN: 4 to 8 digits (6 is a good choice).');
+        if (! preg_match('/^\d{6,8}$/', $pin)) {
+            return $this->err('PIN: 6 to 8 digits.');
         }
         if (! array_key_exists($level, Learner::CREDIT)) {
             return $this->err('Choose a starting level.');
