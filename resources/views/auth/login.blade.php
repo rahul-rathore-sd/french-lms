@@ -19,6 +19,5 @@
         <button type="submit" class="btn btn-primary">Log in</button>
     </form>
 
-    <p class="mt-5 text-center text-sm text-muted">New here? <a href="/register" class="text-accent underline">Create your profile</a></p>
 </div>
 @endsection

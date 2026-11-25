@@ -65,6 +65,7 @@
 
 <footer class="mx-auto max-w-5xl px-4 pb-10 pt-4 text-sm text-muted">
     <p>Personal study site for TCF Canada (target NCLC 7). Score bands come from published sources; always confirm them on the official IRCC / France Éducation international pages before booking.</p>
+    <p class="mt-3 text-center">Made with <span class="text-danger" aria-label="love">♥</span> by Rahul Rathore</p>
 </footer>
 </body>
 </html>

@@ -123,6 +123,15 @@ class SiteTest extends TestCase
             ->putJson('/me/state/progress', ['value' => ['done' => ['x' => '2026-11-25'], 'days' => [], 'checks' => []]], self::FETCH)->assertOk();
     }
 
+    public function test_login_page_has_no_signup_link_and_footer_has_credit(): void
+    {
+        $this->get('/login')->assertOk()
+            ->assertDontSee('Create your profile')
+            ->assertDontSee('href="/register"', false)
+            ->assertSee('Rahul Rathore');
+        $this->get('/register')->assertOk();
+    }
+
     public function test_site_can_be_full(): void
     {
         config(['tcf.max_learners' => 1]);
